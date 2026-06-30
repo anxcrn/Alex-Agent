@@ -67,7 +67,7 @@ Interact with the evolution engine directly from the chat:
 ### Linux, macOS, WSL2, Termux
 
 ```bash
-curl -fsSL https://alex-agent.nexus.com/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/anxcrn/alex-agent/main/scripts/install.sh | bash
 ```
 
 ### Windows (native, PowerShell)
@@ -75,7 +75,7 @@ curl -fsSL https://alex-agent.nexus.com/install.sh | bash
 Run this in PowerShell:
 
 ```powershell
-iex (irm https://alex-agent.nexus.com/install.ps1)
+iex (irm https://raw.githubusercontent.com/anxcrn/alex-agent/main/scripts/install.ps1)
 ```
 
 The installer handles everything: uv, Python 3.11, Node.js, ripgrep, ffmpeg, and portable Git Bash.
