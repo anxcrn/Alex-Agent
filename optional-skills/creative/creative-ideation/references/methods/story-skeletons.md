@@ -60,7 +60,7 @@ Six-clause skeleton: stable normalcy → disrupting event → cascading conseque
 
 **Specificity is the engine.** Generic verbs, generic nouns, generic adjectives produce stories that don't escalate because nothing specific is happening to anyone in particular.
 
-**The story knows more than the writer.** Strong stories are built by *responsiveness*: draft, read what you wrote, ask "what does this story now want?", write the next sentence to fulfill that want. The writer is in service to the story.
+**The story knows more than the writer.** Strong stories are Created by *responsiveness*: draft, read what you wrote, ask "what does this story now want?", write the next sentence to fulfill that want. The writer is in service to the story.
 
 This contrasts directly with formula-driven writing.
 

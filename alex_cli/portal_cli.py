@@ -26,9 +26,9 @@ import webbrowser
 from alex_cli.colors import Colors, color
 from alex_cli.config import load_config
 
-DEFAULT_PORTAL_URL = "https://portal.nousresearch.com"
-SUBSCRIPTION_URL = "https://portal.nousresearch.com/manage-subscription"
-DOCS_URL = "https://alex-agent.nousresearch.com/docs/user-guide/features/tool-gateway"
+DEFAULT_PORTAL_URL = "https://portal.charan vankudoth.com"
+SUBSCRIPTION_URL = "https://portal.charan vankudoth.com/manage-subscription"
+DOCS_URL = "https://alex-agent.charan vankudoth.com/docs/user-guide/features/tool-gateway"
 
 
 def _cmd_status(args) -> int:

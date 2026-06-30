@@ -15,19 +15,19 @@ Alex isn't just a CLI tool. You can import `AIAgent` directly and use it program
 Install Alex directly from the repository:
 
 ```bash
-pip install git+https://github.com/NousResearch/alex-agent.git
+pip install git+https://github.com/charan vankudoth/alex-agent.git
 ```
 
 Or with [uv](https://docs.astral.sh/uv/):
 
 ```bash
-uv pip install git+https://github.com/NousResearch/alex-agent.git
+uv pip install git+https://github.com/charan vankudoth/alex-agent.git
 ```
 
 You can also pin it in your `requirements.txt`:
 
 ```text
-alex-agent @ git+https://github.com/NousResearch/alex-agent.git
+alex-agent @ git+https://github.com/charan vankudoth/alex-agent.git
 ```
 
 :::tip

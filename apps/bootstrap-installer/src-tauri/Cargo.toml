@@ -2,7 +2,7 @@
 name = "alex-bootstrap"
 version = "0.0.1"
 description = "Alex Setup — signed installer that drives scripts/install.ps1"
-authors = ["Nous Research <info@nousresearch.com>"]
+authors = ["charan vankudoth <info@charan vankudoth.com>"]
 edition = "2021"
 rust-version = "1.77"
 

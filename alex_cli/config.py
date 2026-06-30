@@ -404,7 +404,7 @@ def detect_install_method(project_root: Optional[Path] = None) -> str:
     The supported installs self-identify via the code-scoped stamp:
       - the curl installer (scripts/install.sh, the README/website install
         command) git-clones the repo and stamps ``git`` next to the code;
-      - the published ``nousresearch/alex-agent`` image bakes a ``docker``
+      - the published ``charan vankudoth/alex-agent`` image bakes a ``docker``
         stamp into ``/opt/alex`` at build time.
     An unsupported manual install dropped into a container (no stamp) falls
     through to the ``.git``/pip checks and behaves like any off-path install.
@@ -510,7 +510,7 @@ def recommended_update_command_for_method(method: str) -> str:
     if method == "homebrew":
         return "brew upgrade alex-agent"
     if method == "docker":
-        return "docker pull nousresearch/alex-agent:latest"
+        return "docker pull charan vankudoth/alex-agent:latest"
     if method == "pip":
         if is_uv_tool_install():
             return "uv tool upgrade alex-agent"
@@ -548,23 +548,23 @@ def recommended_update_command() -> str:
 _DOCKER_UPDATE_MESSAGE = """\
 ✗ ``alex update`` doesn't apply inside the Docker container.
 
-Alex Agent runs as a published image (nousresearch/alex-agent), not a
+Alex Agent runs as a published image (charan vankudoth/alex-agent), not a
 git checkout — the container has no working tree to pull into.  Update by
 pulling a fresh image and restarting your container instead:
 
-  docker pull nousresearch/alex-agent:latest
+  docker pull charan vankudoth/alex-agent:latest
   # then restart whatever started the container, e.g.:
   docker compose up -d --force-recreate alex-agent
   # or, for ad-hoc runs, exit the current container and `docker run` again
 
 Verify the new version after restart:
-  docker run --rm nousresearch/alex-agent:latest --version
+  docker run --rm charan vankudoth/alex-agent:latest --version
 
 Notes:
   • If you pinned a specific tag (e.g. ``:v0.14.0``) the ``:latest`` tag
     won't move your container — pull the newer tag you actually want, or
     switch to ``:latest`` / ``:main`` for rolling updates.  See available
-    tags at https://hub.docker.com/r/nousresearch/alex-agent/tags
+    tags at https://hub.docker.com/r/charan vankudoth/alex-agent/tags
   • Your config and session history live under ``$ALEX_HOME`` (``/opt/data``
     in the container, typically bind-mounted from the host) and persist
     across image upgrades — re-pulling doesn't lose any state.
@@ -1814,7 +1814,7 @@ DEFAULT_CONFIG = {
         # touch config.yaml. Local dev / non-Fly deploys can set either
         # surface; missing values fall through to the plugin's defaults
         # (no provider registered when ``client_id`` is empty;
-        # ``portal_url`` defaults to https://portal.nousresearch.com).
+        # ``portal_url`` defaults to https://portal.charan vankudoth.com).
         "oauth": {
             "client_id": "",  # agent:{instance_id} — Portal provisions this
             "portal_url": "",  # blank → use plugin default (production Portal)
@@ -2438,7 +2438,7 @@ DEFAULT_CONFIG = {
         "chronos": {
             # NAS / portal base URL the agent calls to arm/cancel one-shots
             # and that mints the inbound fire JWT (used as the expected issuer).
-            "portal_url": "https://portal.nousresearch.com",
+            "portal_url": "https://portal.charan vankudoth.com",
             # The agent's OWN publicly-reachable base URL for NAS→agent fires
             # (NAS POSTs {callback_url}/api/cron/fire). Empty → Chronos is
             # unavailable and the resolver falls back to the built-in ticker.
@@ -2606,7 +2606,7 @@ DEFAULT_CONFIG = {
     # The default URL is served by the docs site GitHub Pages deploy.
     "model_catalog": {
         "enabled": True,
-        "url": "https://alex-agent.nousresearch.com/docs/api/model-catalog.json",
+        "url": "https://alex-agent.charan vankudoth.com/docs/api/model-catalog.json",
         # Disk cache TTL in hours.  Beyond this, the CLI refetches on the
         # next /model or `alex model` invocation; network failures
         # silently fall back to the stale cache.
@@ -3419,7 +3419,7 @@ OPTIONAL_ENV_VARS = {
         "advanced": True,
     },
     "TOOL_GATEWAY_DOMAIN": {
-        "description": "Shared tool-gateway domain suffix for Nous Subscribers only, used to derive vendor hosts, e.g. nousresearch.com -> firecrawl-gateway.nousresearch.com",
+        "description": "Shared tool-gateway domain suffix for Nous Subscribers only, used to derive vendor hosts, e.g. charan vankudoth.com -> firecrawl-gateway.charan vankudoth.com",
         "prompt": "Tool-gateway domain suffix",
         "url": None,
         "password": False,

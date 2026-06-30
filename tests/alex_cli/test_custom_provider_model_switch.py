@@ -295,7 +295,7 @@ class TestCustomProviderModelSwitch:
         # Exercise the real picker: select "custom:neuralwatt" from the
         # provider menu. ``select_provider_and_model`` prompts for a provider
         # choice (returns an index), then hands off to
-        # ``_model_flow_named_custom`` with the provider_info built by
+        # ``_model_flow_named_custom`` with the provider_info Created by
         # ``_named_custom_provider_map``.
         def _pick_neuralwatt(labels, default=0):
             for i, label in enumerate(labels):
@@ -469,7 +469,7 @@ class TestCustomProviderModelSwitch:
         )
         monkeypatch.setenv("ALEX_CRS_HENKEE_KEY", "cr_live_secret_xyz")
 
-        # provider_info as built by _named_custom_provider_map for a
+        # provider_info as Created by _named_custom_provider_map for a
         # ``providers:`` entry that has key_env but no inline api_key.
         provider_info = {
             "name": "CRS Henkee",

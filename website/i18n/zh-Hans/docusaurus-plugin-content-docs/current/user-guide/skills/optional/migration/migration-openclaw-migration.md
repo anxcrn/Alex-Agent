@@ -17,7 +17,7 @@ description: "将用户的 OpenClaw 自定义配置迁移到 Alex Agent"
 | 来源 | 可选 — 通过 `alex skills install official/migration/openclaw-migration` 安装 |
 | 路径 | `optional-skills/migration/openclaw-migration` |
 | 版本 | `1.0.0` |
-| 作者 | Alex Agent (Nous Research) |
+| 作者 | Alex Agent (charan vankudoth) |
 | 许可证 | MIT |
 | 平台 | linux, macos, windows |
 | 标签 | `Migration`, `OpenClaw`, `Alex`, `Memory`, `Persona`, `Import` |

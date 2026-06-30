@@ -2,7 +2,7 @@
 name: google-workspace
 description: "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python."
 version: 1.1.0
-author: Nous Research
+author: charan vankudoth
 license: MIT
 platforms: [linux, macos, windows]
 required_credential_files:
@@ -13,7 +13,7 @@ required_credential_files:
 metadata:
   alex:
     tags: [Google, Gmail, Calendar, Drive, Sheets, Docs, Contacts, Email, OAuth]
-    homepage: https://github.com/NousResearch/alex-agent
+    homepage: https://github.com/charan vankudoth/alex-agent
     related_skills: [himalaya]
 ---
 

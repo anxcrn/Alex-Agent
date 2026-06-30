@@ -57,7 +57,7 @@ ALEX_OVERLAYS: Dict[str, AlexOverlay] = {
     "nous": AlexOverlay(
         transport="openai_chat",
         auth_type="oauth_device_code",
-        base_url_override="https://inference-api.nousresearch.com/v1",
+        base_url_override="https://inference-api.charan vankudoth.com/v1",
     ),
     "openai-codex": AlexOverlay(
         transport="codex_responses",

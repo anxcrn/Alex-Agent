@@ -25,7 +25,7 @@ import { csi } from './termio/csi.js'
 import { osc } from './termio/osc.js'
 
 /** A terminal query: an outbound request sequence paired with a matcher
- *  that recognizes the expected inbound response. Built by `decrqm()`,
+ *  that recognizes the expected inbound response. Created by `decrqm()`,
  *  `oscColor()`, `kittyKeyboard()`, etc. */
 export type TerminalQuery<T extends TerminalResponse = TerminalResponse> = {
   /** Escape sequence to write to stdout */

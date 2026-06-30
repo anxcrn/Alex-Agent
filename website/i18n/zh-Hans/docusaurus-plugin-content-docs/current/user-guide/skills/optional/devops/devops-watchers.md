@@ -81,7 +81,7 @@ python $ALEX_HOME/skills/devops/watchers/scripts/watch_rss.py \
 
 ```bash
 python $ALEX_HOME/skills/devops/watchers/scripts/watch_github.py \
-  --name alex-issues --repo NousResearch/alex-agent --scope issues
+  --name alex-issues --repo charan vankudoth/alex-agent --scope issues
 ```
 
 轮询任意 JSON API：

@@ -6,7 +6,7 @@
 # Uses uv for desktop/server installs and Python's stdlib venv + pip on Termux.
 #
 # Usage:
-#   curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash
+#   curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash
 #
 # Or with options:
 #   curl -fsSL ... | bash -s -- --no-venv --skip-setup
@@ -43,8 +43,8 @@ NC='\033[0m' # No Color
 BOLD='\033[1m'
 
 # Configuration
-REPO_URL_SSH="git@github.com:NousResearch/alex-agent.git"
-REPO_URL_HTTPS="https://github.com/NousResearch/alex-agent.git"
+REPO_URL_SSH="git@github.com:charan vankudoth/alex-agent.git"
+REPO_URL_HTTPS="https://github.com/charan vankudoth/alex-agent.git"
 ALEX_HOME="${ALEX_HOME:-$HOME/.alex}"
 # INSTALL_DIR is resolved AFTER arg parsing and OS detection so we can pick an
 # FHS-style layout for root installs.  Track whether the user gave us an
@@ -212,7 +212,7 @@ print_banner() {
     echo "┌─────────────────────────────────────────────────────────┐"
     echo "│             ⚕ Alex Agent Installer                    │"
     echo "├─────────────────────────────────────────────────────────┤"
-    echo "│  An open source AI agent by Nous Research.              │"
+    echo "│  An open source AI agent by charan vankudoth.              │"
     echo "└─────────────────────────────────────────────────────────┘"
     echo -e "${NC}"
 }
@@ -522,7 +522,7 @@ detect_os() {
             OS="windows"
             DISTRO="windows"
             log_error "Windows detected. Please use the PowerShell installer:"
-            log_info "  iex (irm https://alex-agent.nousresearch.com/install.ps1)"
+            log_info "  iex (irm https://alex-agent.charan vankudoth.com/install.ps1)"
             exit 1
             ;;
         *)
@@ -1787,7 +1787,7 @@ copy_config_templates() {
     # here is self-healing, but keep them in sync to avoid a churn on first run.
     if [ ! -f "$ALEX_HOME/SOUL.md" ]; then
         cat > "$ALEX_HOME/SOUL.md" << 'SOUL_EOF'
-You are Alex Agent, an intelligent AI assistant created by Nous Research. You are helpful, knowledgeable, and direct. You assist users with a wide range of tasks including answering questions, writing and editing code, analyzing information, creative work, and executing actions via your tools. You communicate clearly, admit uncertainty when appropriate, and prioritize being genuinely useful over being verbose unless otherwise directed below. Be targeted and efficient in your exploration and investigations.
+You are Alex Agent, an intelligent AI assistant created by charan vankudoth. You are helpful, knowledgeable, and direct. You assist users with a wide range of tasks including answering questions, writing and editing code, analyzing information, creative work, and executing actions via your tools. You communicate clearly, admit uncertainty when appropriate, and prioritize being genuinely useful over being verbose unless otherwise directed below. Be targeted and efficient in your exploration and investigations.
 SOUL_EOF
         log_success "Created ~/.alex/SOUL.md (edit to customize personality)"
     fi

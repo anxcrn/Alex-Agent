@@ -7,10 +7,10 @@ const config: Config = {
   tagline: 'The self-improving AI agent',
   favicon: 'img/favicon.ico',
 
-  url: 'https://alex-agent.nousresearch.com',
+  url: 'https://alex-agent.charan vankudoth.com',
   baseUrl: '/docs/',
 
-  organizationName: 'NousResearch',
+  organizationName: 'charan vankudoth',
   projectName: 'alex-agent',
 
   onBrokenLinks: 'warn',
@@ -90,7 +90,7 @@ const config: Config = {
         docs: {
           routeBasePath: '/',  // Docs at the root of /docs/
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/NousResearch/alex-agent/edit/main/website/',
+          editUrl: 'https://github.com/charan vankudoth/alex-agent/edit/main/website/',
         },
         blog: false,
         theme: {
@@ -131,7 +131,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://alex-agent.nousresearch.com/',
+          href: 'https://alex-agent.charan vankudoth.com/',
           label: 'Download',
           position: 'left',
         },
@@ -140,17 +140,17 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://alex-agent.nousresearch.com',
+          href: 'https://alex-agent.charan vankudoth.com',
           label: 'Home',
           position: 'right',
         },
         {
-          href: 'https://github.com/NousResearch/alex-agent',
+          href: 'https://github.com/charan vankudoth/alex-agent',
           label: 'GitHub',
           position: 'right',
         },
         {
-          href: 'https://discord.gg/NousResearch',
+          href: 'https://discord.gg/charan vankudoth',
           label: 'Discord',
           position: 'right',
         },
@@ -171,21 +171,21 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            { label: 'Discord', href: 'https://discord.gg/NousResearch' },
-            { label: 'GitHub Issues', href: 'https://github.com/NousResearch/alex-agent/issues' },
+            { label: 'Discord', href: 'https://discord.gg/charan vankudoth' },
+            { label: 'GitHub Issues', href: 'https://github.com/charan vankudoth/alex-agent/issues' },
             { label: 'Skills Hub', href: 'https://agentskills.io' },
           ],
         },
         {
           title: 'More',
           items: [
-            { label: 'Desktop Download', href: 'https://alex-agent.nousresearch.com/' },
-            { label: 'GitHub', href: 'https://github.com/NousResearch/alex-agent' },
-            { label: 'Nous Research', href: 'https://nousresearch.com' },
+            { label: 'Desktop Download', href: 'https://alex-agent.charan vankudoth.com/' },
+            { label: 'GitHub', href: 'https://github.com/charan vankudoth/alex-agent' },
+            { label: 'charan vankudoth', href: 'https://charan vankudoth.com' },
           ],
         },
       ],
-      copyright: `Built by <a href="https://nousresearch.com">Nous Research</a> · MIT License · ${new Date().getFullYear()}`,
+      copyright: `Created by <a href="https://charan vankudoth.com">charan vankudoth</a> · MIT License · ${new Date().getFullYear()}`,
     },
     prism: {
       theme: prismThemes.github,

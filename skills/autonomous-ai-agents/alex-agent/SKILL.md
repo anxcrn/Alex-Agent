@@ -8,13 +8,13 @@ platforms: [linux, macos, windows]
 metadata:
   alex:
     tags: [alex, setup, configuration, multi-agent, spawning, cli, gateway, development]
-    homepage: https://github.com/NousResearch/alex-agent
+    homepage: https://github.com/charan vankudoth/alex-agent
     related_skills: [claude-code, codex, opencode]
 ---
 
 # Alex Agent
 
-Alex Agent is an open-source AI agent framework by Nous Research that runs in your terminal, a native desktop app, messaging platforms, and IDEs. It's in the same category as Claude Code (Anthropic), Codex (OpenAI), and OpenClaw — autonomous coding and task-execution agents that use tool calling to interact with your system. Alex works with any LLM provider (OpenRouter, Anthropic, OpenAI, Google, DeepSeek, xAI, local models, and 20+ others) and runs on Linux, macOS, Windows, and WSL.
+Alex Agent is an open-source AI agent framework by charan vankudoth that runs in your terminal, a native desktop app, messaging platforms, and IDEs. It's in the same category as Claude Code (Anthropic), Codex (OpenAI), and OpenClaw — autonomous coding and task-execution agents that use tool calling to interact with your system. Alex works with any LLM provider (OpenRouter, Anthropic, OpenAI, Google, DeepSeek, xAI, local models, and 20+ others) and runs on Linux, macOS, Windows, and WSL.
 
 What makes Alex different:
 
@@ -30,7 +30,7 @@ People use Alex for software development, research, system administration, data 
 
 **This skill helps you work with Alex Agent effectively** — setting it up, configuring features, spawning additional agent instances, troubleshooting issues, finding the right commands and settings, and understanding how the system works when you need to extend or contribute to it.
 
-**Docs:** https://alex-agent.nousresearch.com/docs/
+**Docs:** https://alex-agent.charan vankudoth.com/docs/
 
 ## Scope & Verification
 
@@ -39,14 +39,14 @@ This skill is a concise operating guide, not the complete source of truth for ev
 Good verification targets:
 
 - CLI commands: `alex --help`, `alex <command> --help`, and `alex_cli/main.py`
-- User documentation: https://alex-agent.nousresearch.com/docs/
-- Source tree: https://github.com/NousResearch/alex-agent
+- User documentation: https://alex-agent.charan vankudoth.com/docs/
+- Source tree: https://github.com/charan vankudoth/alex-agent
 
 ## Quick Start
 
 ```bash
 # Install (shell installer — sets up uv, Python, the venv, and the launcher)
-curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash
 
 # Or via PyPI (ships the TUI bundle + shell launcher)
 pip install alex-agent       # or: uv pip install alex-agent
@@ -170,7 +170,7 @@ alex gateway setup        Configure platforms
 
 Supported platforms (20+): Telegram, Discord, Slack, WhatsApp (Baileys bridge + official Business Cloud API), iMessage (Photon — `alex photon setup`, the BlueBubbles successor with no Mac relay), Signal, Email, SMS, Matrix, Mattermost, Microsoft Teams, LINE, SimpleX, ntfy, Google Chat, Home Assistant, DingTalk, Feishu, WeCom, Weixin (WeChat), Raft (agent network), API Server, Webhooks. Open WebUI connects via the API Server adapter. Most adapters ship under `plugins/platforms/`, so new ones drop in without touching core.
 
-Platform docs: https://alex-agent.nousresearch.com/docs/user-guide/messaging/
+Platform docs: https://alex-agent.charan vankudoth.com/docs/user-guide/messaging/
 
 ### Sessions
 
@@ -264,7 +264,7 @@ For the full, authoritative command list run `alex --help` (and `alex <command> 
 
 Type these during an interactive chat session. New commands land fairly
 often; if something below looks stale, run `/help` in-session for the
-authoritative list or see the [live slash commands reference](https://alex-agent.nousresearch.com/docs/reference/slash-commands).
+authoritative list or see the [live slash commands reference](https://alex-agent.charan vankudoth.com/docs/reference/slash-commands).
 The registry of record is `alex_cli/commands.py` — every consumer
 (autocomplete, Telegram menu, Slack mapping, `/help`) derives from it.
 
@@ -398,7 +398,7 @@ Edit with `alex config edit` or `alex config set section.key value`.
 | `checkpoints` | `enabled`, `max_snapshots` (50) |
 | `curator` | `enabled`, `consolidate` (false — opt-in aux-model skill consolidation), `interval_hours`, `stale_after_days` |
 
-Full config reference: https://alex-agent.nousresearch.com/docs/user-guide/configuration
+Full config reference: https://alex-agent.charan vankudoth.com/docs/user-guide/configuration
 
 ### Providers
 
@@ -428,7 +428,7 @@ Full config reference: https://alex-agent.nousresearch.com/docs/user-guide/confi
 | Custom endpoint | Config | `model.base_url` + `model.api_key` in config.yaml |
 | GitHub Copilot ACP | External | `COPILOT_CLI_PATH` or Copilot CLI |
 
-Full provider docs: https://alex-agent.nousresearch.com/docs/integrations/providers
+Full provider docs: https://alex-agent.charan vankudoth.com/docs/integrations/providers
 
 ### Toolsets
 
@@ -740,7 +740,7 @@ the `cronjob` tool, the `alex cron` CLI (`list`, `add`, `edit`,
   header/footer instead of being mirrored into the target gateway
   session (keeps role alternation intact).
 
-User docs: https://alex-agent.nousresearch.com/docs/user-guide/features/cron
+User docs: https://alex-agent.charan vankudoth.com/docs/user-guide/features/cron
 
 ### Curator (skill lifecycle)
 
@@ -766,7 +766,7 @@ so nothing is lost.
 
 Config: `curator.*` (`enabled`, `interval_hours`, `min_idle_hours`,
 `stale_after_days`, `archive_after_days`, `backup.*`).
-User docs: https://alex-agent.nousresearch.com/docs/user-guide/features/curator
+User docs: https://alex-agent.charan vankudoth.com/docs/user-guide/features/curator
 
 ### Kanban (multi-agent work queue)
 
@@ -795,7 +795,7 @@ sessions still have zero `kanban_*` schema footprint unless configured.
   `ALEX_KANBAN_BOARD` pinned in env); tenant is a soft namespace
   within a board for workspace-path + memory-key isolation.
 
-User docs: https://alex-agent.nousresearch.com/docs/user-guide/features/kanban
+User docs: https://alex-agent.charan vankudoth.com/docs/user-guide/features/kanban
 
 ---
 
@@ -948,18 +948,18 @@ alex config set auxiliary.vision.model <model_name>
 
 | Looking for... | Location |
 |----------------|----------|
-| Config options | `alex config edit` or [Configuration docs](https://alex-agent.nousresearch.com/docs/user-guide/configuration) |
-| Available tools | `alex tools list` or [Tools reference](https://alex-agent.nousresearch.com/docs/reference/tools-reference) |
-| Slash commands | `/help` in session or [Slash commands reference](https://alex-agent.nousresearch.com/docs/reference/slash-commands) |
-| Skills catalog | `alex skills browse` or [Skills catalog](https://alex-agent.nousresearch.com/docs/reference/skills-catalog) |
-| Provider setup | `alex model` or [Providers guide](https://alex-agent.nousresearch.com/docs/integrations/providers) |
-| Platform setup | `alex gateway setup` or [Messaging docs](https://alex-agent.nousresearch.com/docs/user-guide/messaging/) |
-| MCP servers | `alex mcp list` or [MCP guide](https://alex-agent.nousresearch.com/docs/user-guide/features/mcp) |
-| Profiles | `alex profile list` or [Profiles docs](https://alex-agent.nousresearch.com/docs/user-guide/profiles) |
-| Cron jobs | `alex cron list` or [Cron docs](https://alex-agent.nousresearch.com/docs/user-guide/features/cron) |
-| Memory | `alex memory status` or [Memory docs](https://alex-agent.nousresearch.com/docs/user-guide/features/memory) |
-| Env variables | `alex config env-path` or [Env vars reference](https://alex-agent.nousresearch.com/docs/reference/environment-variables) |
-| CLI commands | `alex --help` or [CLI reference](https://alex-agent.nousresearch.com/docs/reference/cli-commands) |
+| Config options | `alex config edit` or [Configuration docs](https://alex-agent.charan vankudoth.com/docs/user-guide/configuration) |
+| Available tools | `alex tools list` or [Tools reference](https://alex-agent.charan vankudoth.com/docs/reference/tools-reference) |
+| Slash commands | `/help` in session or [Slash commands reference](https://alex-agent.charan vankudoth.com/docs/reference/slash-commands) |
+| Skills catalog | `alex skills browse` or [Skills catalog](https://alex-agent.charan vankudoth.com/docs/reference/skills-catalog) |
+| Provider setup | `alex model` or [Providers guide](https://alex-agent.charan vankudoth.com/docs/integrations/providers) |
+| Platform setup | `alex gateway setup` or [Messaging docs](https://alex-agent.charan vankudoth.com/docs/user-guide/messaging/) |
+| MCP servers | `alex mcp list` or [MCP guide](https://alex-agent.charan vankudoth.com/docs/user-guide/features/mcp) |
+| Profiles | `alex profile list` or [Profiles docs](https://alex-agent.charan vankudoth.com/docs/user-guide/profiles) |
+| Cron jobs | `alex cron list` or [Cron docs](https://alex-agent.charan vankudoth.com/docs/user-guide/features/cron) |
+| Memory | `alex memory status` or [Memory docs](https://alex-agent.charan vankudoth.com/docs/user-guide/features/memory) |
+| Env variables | `alex config env-path` or [Env vars reference](https://alex-agent.charan vankudoth.com/docs/reference/environment-variables) |
+| CLI commands | `alex --help` or [CLI reference](https://alex-agent.charan vankudoth.com/docs/reference/cli-commands) |
 | Gateway logs | `~/.alex/logs/gateway.log` |
 | Session files | `alex sessions browse` (reads state.db) |
 | Source code | `~/.alex/alex-agent/` |
@@ -968,7 +968,7 @@ alex config set auxiliary.vision.model <model_name>
 
 ## Contributor Quick Reference
 
-For occasional contributors and PR authors. Full developer docs: https://alex-agent.nousresearch.com/docs/developer-guide/
+For occasional contributors and PR authors. Full developer docs: https://alex-agent.charan vankudoth.com/docs/developer-guide/
 
 ### Project Layout
 

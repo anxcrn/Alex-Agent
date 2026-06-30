@@ -123,7 +123,7 @@ tail -f ~/.alex/logs/update.log
 alex version
 ```
 
-与 [GitHub releases 页面](https://github.com/NousResearch/alex-agent/releases) 上的最新版本进行比较。
+与 [GitHub releases 页面](https://github.com/charan vankudoth/alex-agent/releases) 上的最新版本进行比较。
 
 ### 从消息平台更新
 

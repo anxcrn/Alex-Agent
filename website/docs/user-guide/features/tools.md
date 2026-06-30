@@ -33,7 +33,7 @@ High-level categories:
 For the authoritative code-derived registry, see [Built-in Tools Reference](/reference/tools-reference) and [Toolsets Reference](/reference/toolsets-reference).
 
 :::tip Nous Tool Gateway
-Paid [Nous Portal](https://portal.nousresearch.com) subscribers can use web search, image generation, TTS, and browser automation through the **[Tool Gateway](tool-gateway.md)** — no separate API keys needed. Run `alex model` to enable it, or configure individual tools with `alex tools`.
+Paid [Nous Portal](https://portal.charan vankudoth.com) subscribers can use web search, image generation, TTS, and browser automation through the **[Tool Gateway](tool-gateway.md)** — no separate API keys needed. Run `alex model` to enable it, or configure individual tools with `alex tools`.
 :::
 
 ## Using Toolsets

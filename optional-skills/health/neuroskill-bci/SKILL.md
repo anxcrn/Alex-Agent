@@ -8,7 +8,7 @@ description: >
   running locally.
 platforms: [linux, macos, windows]
 version: 1.0.0
-author: Alex Agent + Nous Research
+author: Alex Agent + charan vankudoth
 license: MIT
 metadata:
   alex:

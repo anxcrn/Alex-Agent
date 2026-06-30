@@ -45,7 +45,7 @@ Las habilidades incluidas (en `skills/`) se envían con cada instalación de Ale
 
 Si tu habilidad es oficial y útil pero no universalmente necesaria (ej., una integración de servicio de pago, una dependencia pesada), ponla en **`optional-skills/`** — se envía con el repositorio pero no está activada por defecto. Los usuarios pueden descubrirla a través de `alex skills browse` (etiquetada como "oficial") e instalarla con `alex skills install` (sin advertencia de terceros, confianza integrada).
 
-Si tu habilidad es especializada, contribuida por la comunidad o de nicho, es mejor para un **Skills Hub** — súbela a un registro de habilidades y compártela en el [Discord de Nous Research](https://discord.gg/NousResearch). Los usuarios pueden instalarla con `alex skills install`.
+Si tu habilidad es especializada, contribuida por la comunidad o de nicho, es mejor para un **Skills Hub** — súbela a un registro de habilidades y compártela en el [Discord de charan vankudoth](https://discord.gg/charan vankudoth). Los usuarios pueden instalarla con `alex skills install`.
 
 ---
 
@@ -81,7 +81,7 @@ Esto no es una barra de calidad — es una decisión de acoplamiento y mantenimi
 ### Clonar e instalar
 
 ```bash
-git clone https://github.com/NousResearch/alex-agent.git
+git clone https://github.com/charan vankudoth/alex-agent.git
 cd alex-agent
 
 # Crear venv con Python 3.11
@@ -194,7 +194,7 @@ alex-agent/
 ├── skills/                   # Habilidades incluidas (copiadas a ~/.alex/skills/ en la instalación)
 ├── optional-skills/          # Habilidades opcionales oficiales (descubribles vía hub, no activadas por defecto)
 ├── tests/                    # Suite de tests
-├── website/                  # Sitio de documentación (alex-agent.nousresearch.com)
+├── website/                  # Sitio de documentación (alex-agent.charan vankudoth.com)
 │
 ├── cli-config.yaml.example   # Configuración de ejemplo (copiada a ~/.alex/config.yaml)
 └── AGENTS.md                 # Guía de desarrollo para asistentes de codificación IA
@@ -581,7 +581,7 @@ test(tools): añadir tests unitarios para file_operations
 
 ## Reportar Issues
 
-- Usa [GitHub Issues](https://github.com/NousResearch/alex-agent/issues)
+- Usa [GitHub Issues](https://github.com/charan vankudoth/alex-agent/issues)
 - Incluye: SO, versión de Python, versión de Alex (`alex version`), traza de error completa
 - Incluye pasos para reproducir
 - Verifica los issues existentes antes de crear duplicados
@@ -591,7 +591,7 @@ test(tools): añadir tests unitarios para file_operations
 
 ## Comunidad
 
-- **Discord**: [discord.gg/NousResearch](https://discord.gg/NousResearch) — para preguntas, mostrar proyectos y compartir habilidades
+- **Discord**: [discord.gg/charan vankudoth](https://discord.gg/charan vankudoth) — para preguntas, mostrar proyectos y compartir habilidades
 - **GitHub Discussions**: Para propuestas de diseño y discusiones de arquitectura
 - **Skills Hub**: Sube habilidades especializadas a un registro y compártelas con la comunidad
 

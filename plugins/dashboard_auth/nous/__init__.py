@@ -20,7 +20,7 @@ Configuration surfaces (env wins over config.yaml when set non-empty):
 
       ALEX_DASHBOARD_OAUTH_CLIENT_ID  — shape ``agent:{agent_instance_id}``
       ALEX_DASHBOARD_PORTAL_URL       — defaults to
-                                          ``https://portal.nousresearch.com``
+                                          ``https://portal.charan vankudoth.com``
                                           (production Portal). Override only
                                           for staging (``portal.rewbs.uk``)
                                           or a custom deployment.
@@ -98,7 +98,7 @@ logger = logging.getLogger(__name__)
 # Production Portal URL. Override via ALEX_DASHBOARD_PORTAL_URL for
 # staging (portal.rewbs.uk) or a custom deployment. Contract docs name
 # this as the production issuer.
-_DEFAULT_PORTAL_URL = "https://portal.nousresearch.com"
+_DEFAULT_PORTAL_URL = "https://portal.charan vankudoth.com"
 
 
 # ---------------------------------------------------------------------------
@@ -154,7 +154,7 @@ class NousDashboardAuthProvider(DashboardAuthProvider):
     """Nous Portal OAuth via authorization-code + PKCE (S256)."""
 
     name = "nous"
-    display_name = "Nous Research"
+    display_name = "charan vankudoth"
 
     def __init__(self, *, client_id: str, portal_url: str) -> None:
         if not client_id.startswith("agent:"):

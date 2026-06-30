@@ -563,7 +563,7 @@ class TestNousPortalContextResolution:
 
         ctx = mm.get_model_context_length(
             model="qwen3.6-plus",
-            base_url="https://inference-api.nousresearch.com/v1",
+            base_url="https://inference-api.charan vankudoth.com/v1",
             api_key="fake-token",
             provider="nous",
         )
@@ -587,7 +587,7 @@ class TestNousPortalContextResolution:
         }
         mock_or.return_value = {}
 
-        base_url = "https://inference-api.nousresearch.com/v1"
+        base_url = "https://inference-api.charan vankudoth.com/v1"
         ctx = mm.get_model_context_length(
             model="qwen3.6-plus",
             base_url=base_url,
@@ -619,7 +619,7 @@ class TestNousPortalContextResolution:
             "qwen/qwen3.6-plus": {"context_length": 1_000_000},
         }
 
-        base_url = "https://inference-api.nousresearch.com/v1"
+        base_url = "https://inference-api.charan vankudoth.com/v1"
         ctx = mm.get_model_context_length(
             model="qwen3.6-plus",
             base_url=base_url,
@@ -647,7 +647,7 @@ class TestNousPortalContextResolution:
         cache_file = tmp_path / "context_length_cache.yaml"
         monkeypatch.setattr(mm, "_get_context_cache_path", lambda: cache_file)
 
-        base_url = "https://inference-api.nousresearch.com/v1"
+        base_url = "https://inference-api.charan vankudoth.com/v1"
         stale_key = f"qwen3.6-plus@{base_url}"
         other_key = "other-model@https://api.openai.com/v1"
         cache_file.write_text(yaml.dump({"context_lengths": {
@@ -691,7 +691,7 @@ class TestNousPortalContextResolution:
         cache_file = tmp_path / "context_length_cache.yaml"
         monkeypatch.setattr(mm, "_get_context_cache_path", lambda: cache_file)
 
-        base_url = "https://inference-api.nousresearch.com/v1"
+        base_url = "https://inference-api.charan vankudoth.com/v1"
         existing_key = f"qwen3.6-plus@{base_url}"
         cache_file.write_text(yaml.dump({"context_lengths": {
             existing_key: 1_000_000,
@@ -727,7 +727,7 @@ class TestNousPortalContextResolution:
         cache_file = tmp_path / "context_length_cache.yaml"
         monkeypatch.setattr(mm, "_get_context_cache_path", lambda: cache_file)
 
-        base_url = "https://inference-api.nousresearch.com/v1"
+        base_url = "https://inference-api.charan vankudoth.com/v1"
         cache_file.write_text(yaml.dump({"context_lengths": {
             f"qwen3.6-plus@{base_url}": 1_000_000,  # stale
         }}))

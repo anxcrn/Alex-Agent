@@ -7,7 +7,7 @@ description: >
   Connects to an IRC server and relays messages between an IRC channel
   (or DMs) and the Alex agent.  No external dependencies — uses
   Python's stdlib asyncio for the IRC protocol.
-author: Nous Research
+author: charan vankudoth
 # ``requires_env`` entries are surfaced in ``alex config`` UI via the
 # platform-plugin env var injector in ``alex_cli/config.py``.
 requires_env:

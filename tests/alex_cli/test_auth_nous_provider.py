@@ -238,8 +238,8 @@ def test_resolve_nous_runtime_credentials_invoke_jwt_is_idempotent(
         "active_provider": "nous",
         "providers": {
             "nous": {
-                "portal_base_url": "https://portal.nousresearch.com",
-                "inference_base_url": "https://inference-api.nousresearch.com/v1",
+                "portal_base_url": "https://portal.charan vankudoth.com",
+                "inference_base_url": "https://inference-api.charan vankudoth.com/v1",
                 "client_id": "alex-cli",
                 "token_type": "Bearer",
                 "scope": auth_mod.DEFAULT_NOUS_SCOPE,
@@ -999,8 +999,8 @@ class TestLoginNousSkipKeepsCurrent:
         fake_auth_state = {
             "access_token": "fake-nous-token",
             "agent_key": "fake-agent-key",
-            "inference_base_url": "https://inference-api.nousresearch.com",
-            "portal_base_url": "https://portal.nousresearch.com",
+            "inference_base_url": "https://inference-api.charan vankudoth.com",
+            "portal_base_url": "https://portal.charan vankudoth.com",
             "refresh_token": "fake-refresh",
             "token_expires_at": 9999999999,
         }
@@ -1411,7 +1411,7 @@ def test_refresh_token_reuse_detection_surfaces_actionable_message():
     with pytest.raises(AuthError) as exc_info:
         _refresh_access_token(
             client=_FakeClient(),
-            portal_base_url="https://portal.nousresearch.com",
+            portal_base_url="https://portal.charan vankudoth.com",
             client_id="alex-cli",
             refresh_token="rt_consumed_elsewhere",
         )
@@ -1446,7 +1446,7 @@ def test_refresh_token_reuse_error_code_is_terminal():
     with pytest.raises(AuthError) as exc_info:
         auth_mod._refresh_access_token(
             client=_FakeClient(),
-            portal_base_url="https://portal.nousresearch.com",
+            portal_base_url="https://portal.charan vankudoth.com",
             client_id="alex-cli",
             refresh_token="rt_consumed_elsewhere",
         )
@@ -1481,7 +1481,7 @@ def test_refresh_token_exchange_sends_refresh_token_header():
 
     payload = _refresh_access_token(
         client=client,
-        portal_base_url="https://portal.nousresearch.com",
+        portal_base_url="https://portal.charan vankudoth.com",
         client_id="alex-cli",
         refresh_token="refresh-1",
     )
@@ -1522,7 +1522,7 @@ def test_refresh_non_reuse_error_keeps_original_description():
     with pytest.raises(AuthError) as exc_info:
         _refresh_access_token(
             client=_FakeClient(),
-            portal_base_url="https://portal.nousresearch.com",
+            portal_base_url="https://portal.charan vankudoth.com",
             client_id="alex-cli",
             refresh_token="rt_anything",
         )

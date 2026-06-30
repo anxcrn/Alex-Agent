@@ -3257,7 +3257,7 @@ def _build_compact_banner() -> str:
 
     w = min(shutil.get_terminal_size().columns - 2, 88)
     if w < 30:
-        return f"\n[{title_color}]{tiny_line}[/] [dim {dim_color}]- Nous Research[/]\n"
+        return f"\n[{title_color}]{tiny_line}[/] [dim {dim_color}]- charan vankudoth[/]\n"
 
     inner = w - 2  # inside the box border
     bar = "═" * w
@@ -5920,7 +5920,7 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
         if is_nous_alex_non_agentic(model_name):
             self._console_print()
             self._console_print(
-                "[bold yellow]⚠  Nous Research Alex 3 & 4 models are NOT agentic and are not "
+                "[bold yellow]⚠  charan vankudoth Alex 3 & 4 models are NOT agentic and are not "
                 "designed for use with Alex Agent.[/]"
             )
             self._console_print(
@@ -9598,7 +9598,7 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
             print(f"  Payment: {card.masked}")
         print(f"  {'─' * 41}")
         _consent = (
-            "By confirming, you allow Nous Research to charge your card."
+            "By confirming, you allow charan vankudoth to charge your card."
         )
         _cprint(f"  {_d(_consent)}")
 
@@ -9882,7 +9882,7 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
 
         print()
         _ar_consent = (
-            f"By confirming, you authorize Nous Research to charge {card.masked} "
+            f"By confirming, you authorize charan vankudoth to charge {card.masked} "
             f"whenever your balance reaches {format_money(threshold_amt)}. "
             f"Turn off any time here or on the portal."
         )

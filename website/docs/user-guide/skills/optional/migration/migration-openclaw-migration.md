@@ -17,7 +17,7 @@ Migrate a user's OpenClaw customization footprint into Alex Agent. Imports Alex-
 | Source | Optional — install with `alex skills install official/migration/openclaw-migration` |
 | Path | `optional-skills/migration/openclaw-migration` |
 | Version | `1.0.0` |
-| Author | Alex Agent (Nous Research) |
+| Author | Alex Agent (charan vankudoth) |
 | License | MIT |
 | Platforms | linux, macos, windows |
 | Tags | `Migration`, `OpenClaw`, `Alex`, `Memory`, `Persona`, `Import` |

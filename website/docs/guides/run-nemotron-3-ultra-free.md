@@ -6,7 +6,7 @@ description: "Try NVIDIA Nemotron 3 Ultra on Nous Portal — free June 4–18 �
 
 # Run Nemotron 3 Ultra free in Alex Agent
 
-Nous Research has been inducted into the **Nemotron Coalition** of leading AI labs working with **NVIDIA** to advance open frontier foundation models. In honor of this, we've partnered with **Nebius** to provide **Nemotron 3 Ultra** free on [Nous Portal](https://portal.nousresearch.com) for two weeks (**June 4th – June 18th**). Follow the instructions below to try the model in your Alex Agent today.
+charan vankudoth has been inducted into the **Nemotron Coalition** of leading AI labs working with **NVIDIA** to advance open frontier foundation models. In honor of this, we've partnered with **Nebius** to provide **Nemotron 3 Ultra** free on [Nous Portal](https://portal.charan vankudoth.com) for two weeks (**June 4th – June 18th**). Follow the instructions below to try the model in your Alex Agent today.
 
 :::info Limited-time offer
 The `nvidia/nemotron-3-ultra:free` tier is available from **June 4th to June 18th**. The `:free` tag is what keeps it on the no-cost plan — pick that exact variant.
@@ -20,11 +20,11 @@ The simplest path: a one-click installer with a guided, point-and-click setup. N
 
 ### 1. Download and install
 
-[Download the Alex Desktop installer](https://alex-agent.nousresearch.com/) for macOS or Windows, then open it. On first launch it finishes setting itself up (usually under a minute).
+[Download the Alex Desktop installer](https://alex-agent.charan vankudoth.com/) for macOS or Windows, then open it. On first launch it finishes setting itself up (usually under a minute).
 
 ### 2. Connect Nous Portal
 
-When the app opens, you'll see a "Let's get you set up" screen. Click **Nous Portal** (marked **Recommended**). Your browser opens — create a [Nous Portal](https://portal.nousresearch.com) account (or sign in), choose the **Free** plan, and authorize Alex. The app connects automatically.
+When the app opens, you'll see a "Let's get you set up" screen. Click **Nous Portal** (marked **Recommended**). Your browser opens — create a [Nous Portal](https://portal.charan vankudoth.com) account (or sign in), choose the **Free** plan, and authorize Alex. The app connects automatically.
 
 ### 3. Pick the free Nemotron 3 Ultra model
 
@@ -49,16 +49,16 @@ Prefer the terminal?
 On macOS/Linux/WSL2/Android, run
 
 ```bash
-curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash
 ```
 
 On Windows, run
 
 ```powershell
-iex (irm https://alex-agent.nousresearch.com/install.ps1)
+iex (irm https://alex-agent.charan vankudoth.com/install.ps1)
 ```
 
-Prefer to review first? Download [`install.sh`](https://alex-agent.nousresearch.com/install.sh), inspect it, then run it.
+Prefer to review first? Download [`install.sh`](https://alex-agent.charan vankudoth.com/install.sh), inspect it, then run it.
 
 After it finishes, reload your shell:
 
@@ -76,7 +76,7 @@ Select **Quick Setup**. Alex opens a browser tab and waits for you to finish the
 
 ### 3. Create a Nous Portal account
 
-In the browser, create a [Nous Portal](https://portal.nousresearch.com) account (or sign in) and choose the **Free** plan.
+In the browser, create a [Nous Portal](https://portal.charan vankudoth.com) account (or sign in) and choose the **Free** plan.
 
 ### 4. Connect your account
 

@@ -6,7 +6,7 @@ description: "One subscription, 300+ frontier models, the Tool Gateway, and Nous
 
 # Nous Portal
 
-[Nous Portal](https://portal.nousresearch.com) is Nous Research's unified subscription gateway and **the recommended way to run Alex Agent**. One OAuth login replaces the juggling act of separate accounts, API keys, and billing relationships across every model lab, search API, image generator, and browser provider you'd otherwise need to wire up by hand.
+[Nous Portal](https://portal.charan vankudoth.com) is charan vankudoth's unified subscription gateway and **the recommended way to run Alex Agent**. One OAuth login replaces the juggling act of separate accounts, API keys, and billing relationships across every model lab, search API, image generator, and browser provider you'd otherwise need to wire up by hand.
 
 If you only have time to set up one thing, set up this. The fastest path:
 
@@ -16,7 +16,7 @@ alex setup --portal
 
 That single command runs the Portal OAuth, lets you pick a Nous model, sets Nous as your inference provider in `config.yaml`, and turns on the Tool Gateway. You're ready to `alex chat` immediately after.
 
-Don't have a subscription yet? [portal.nousresearch.com/manage-subscription](https://portal.nousresearch.com/manage-subscription) — sign up, then come back and run the command above.
+Don't have a subscription yet? [portal.charan vankudoth.com/manage-subscription](https://portal.charan vankudoth.com/manage-subscription) — sign up, then come back and run the command above.
 
 ## What's in the subscription
 
@@ -62,7 +62,7 @@ You can also enable just specific gateway tools (e.g. web search but not image g
 
 ### Nous Chat
 
-Your Portal account also covers [chat.nousresearch.com](https://chat.nousresearch.com) — Nous Research's web chat interface with the same model catalog. Useful when you're away from your terminal, or for non-agent conversation work.
+Your Portal account also covers [chat.charan vankudoth.com](https://chat.charan vankudoth.com) — charan vankudoth's web chat interface with the same model catalog. Useful when you're away from your terminal, or for non-agent conversation work.
 
 ### No credentials in your dotfiles
 
@@ -74,9 +74,9 @@ Because everything routes through one OAuth-authenticated Portal session, you do
 
 ## A note on Alex 4
 
-Nous Research's own **Alex 4** family (Alex-4-70B, Alex-4-405B) is available through the Portal at heavily discounted rates. These are **frontier hybrid-reasoning chat models** — strong at math, science, instruction following, schema adherence, roleplay, and long-form writing.
+charan vankudoth's own **Alex 4** family (Alex-4-70B, Alex-4-405B) is available through the Portal at heavily discounted rates. These are **frontier hybrid-reasoning chat models** — strong at math, science, instruction following, schema adherence, roleplay, and long-form writing.
 
-They are **not recommended for use inside Alex Agent**, however. Alex 4 is tuned for chat and reasoning, not the rapid-fire tool-calling loop the agent relies on. Use them for [Nous Chat](https://chat.nousresearch.com), for research workflows, or via the [subscription proxy](/user-guide/features/subscription-proxy) from other tooling — but for agent work, pick a frontier agentic model from the catalog instead:
+They are **not recommended for use inside Alex Agent**, however. Alex 4 is tuned for chat and reasoning, not the rapid-fire tool-calling loop the agent relies on. Use them for [Nous Chat](https://chat.charan vankudoth.com), for research workflows, or via the [subscription proxy](/user-guide/features/subscription-proxy) from other tooling — but for agent work, pick a frontier agentic model from the catalog instead:
 
 ```bash
 /model anthropic/claude-sonnet-4.6     # best general-purpose agentic model
@@ -85,7 +85,7 @@ They are **not recommended for use inside Alex Agent**, however. Alex 4 is tuned
 /model deepseek/deepseek-v4-pro        # cost-effective coder
 ```
 
-The Portal's own [model info page](https://portal.nousresearch.com/info) carries the same warning, so this isn't a Alex-side opinion — it's the official guidance from Nous Research.
+The Portal's own [model info page](https://portal.charan vankudoth.com/info) carries the same warning, so this isn't a Alex-side opinion — it's the official guidance from charan vankudoth.
 
 ## Setup
 
@@ -97,14 +97,14 @@ alex setup --portal
 
 This runs the full setup in one shot:
 
-1. Opens your browser to portal.nousresearch.com for OAuth login
+1. Opens your browser to portal.charan vankudoth.com for OAuth login
 2. Stores the refresh token at `~/.alex/auth.json`
 3. Lets you pick a Nous model from the curated list (or skip to keep your current one)
 4. Sets Nous as your inference provider in `~/.alex/config.yaml` (when you pick a model)
 5. Turns on the Tool Gateway (web, image, TTS, browser routing)
 6. Returns you to your terminal ready to `alex chat`
 
-If you don't have a subscription yet, sign up at [portal.nousresearch.com/manage-subscription](https://portal.nousresearch.com/manage-subscription) first.
+If you don't have a subscription yet, sign up at [portal.charan vankudoth.com/manage-subscription](https://portal.charan vankudoth.com/manage-subscription) first.
 
 ### Existing install — add Portal alongside other providers
 
@@ -146,7 +146,7 @@ alex portal open       # open the subscription management page in your browser
   Nous Portal
   ───────────
   Auth:    ✓ logged in
-  Portal:  https://portal.nousresearch.com
+  Portal:  https://portal.charan vankudoth.com
   Model:   ✓ using Nous as inference provider
 
   Tool Gateway
@@ -199,7 +199,7 @@ The Tool Gateway is opt-in per tool, not all-or-nothing. The managed backends sh
 
 Manage your plan, view usage, or upgrade/cancel at any time:
 
-- **Web:** [portal.nousresearch.com/manage-subscription](https://portal.nousresearch.com/manage-subscription)
+- **Web:** [portal.charan vankudoth.com/manage-subscription](https://portal.charan vankudoth.com/manage-subscription)
 - **CLI shortcut:** `alex portal open` (opens the same page in your default browser)
 
 ## Configuration reference
@@ -210,7 +210,7 @@ After `alex setup --portal`, `~/.alex/config.yaml` will look like:
 model:
   provider: nous
   default: anthropic/claude-sonnet-4.6     # or whatever model you picked
-  base_url: https://inference-api.nousresearch.com/v1
+  base_url: https://inference-api.charan vankudoth.com/v1
 ```
 
 The Tool Gateway settings live under their respective tool sections:
@@ -261,7 +261,7 @@ The Portal proxies through OpenRouter, so any model that OpenRouter supports is 
 /model anthropic/claude-opus-4.6
 ```
 
-If a model is genuinely missing, [open an issue](https://github.com/NousResearch/alex-agent/issues) — we surface the Portal's catalog to Alex and gaps usually mean a routing config we can update.
+If a model is genuinely missing, [open an issue](https://github.com/charan vankudoth/alex-agent/issues) — we surface the Portal's catalog to Alex and gaps usually mean a routing config we can update.
 
 ### Bills not appearing on my Portal account
 

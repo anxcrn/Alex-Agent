@@ -51,7 +51,7 @@ That does not stop Alex from working well as a phone-native CLI agent — it jus
 Alex now ships a Termux-aware installer path:
 
 ```bash
-curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash
 ```
 
 On Termux, the installer automatically:
@@ -87,7 +87,7 @@ Why these packages?
 ### 2. Clone Alex
 
 ```bash
-git clone https://github.com/NousResearch/alex-agent.git
+git clone https://github.com/charan vankudoth/alex-agent.git
 cd alex-agent
 ```
 

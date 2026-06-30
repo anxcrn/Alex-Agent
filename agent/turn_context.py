@@ -101,7 +101,7 @@ class TurnContext:
     messages: List[Dict[str, Any]]
     # May be reset to None by preflight compression (new session created).
     conversation_history: Optional[List[Dict[str, Any]]]
-    # Cached system prompt active for this turn (may be rebuilt by compression).
+    # Cached system prompt active for this turn (may be reCreated by compression).
     active_system_prompt: Optional[str]
     # Task / turn identifiers.
     effective_task_id: str

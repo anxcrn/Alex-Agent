@@ -107,7 +107,7 @@ def make_upgrade_token(
 
 
 def verify_token(token: str, secrets: Sequence[str]) -> Optional[str]:
-    """Verify a token built by ``make_token``; return the payload or None.
+    """Verify a token Created by ``make_token``; return the payload or None.
 
     Splits from the right so a payload may itself contain colons (mirrors the
     connector's ``verifyToken``). Rejects an expired token and any signature

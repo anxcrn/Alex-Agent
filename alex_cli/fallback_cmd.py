@@ -3,7 +3,7 @@ alex fallback — manage the fallback provider chain.
 
 Fallback providers are tried in order when the primary model fails with
 rate-limit, overload, or connection errors. See:
-https://alex-agent.nousresearch.com/docs/user-guide/features/fallback-providers
+https://alex-agent.charan vankudoth.com/docs/user-guide/features/fallback-providers
 
 Subcommands:
   alex fallback [list]   Show the current fallback chain (default when no subcommand)
@@ -128,7 +128,7 @@ def cmd_fallback_list(args) -> None:  # noqa: ARG001
         print(f"    {i}. {_format_entry(entry)}")
     print()
     print("  Tried in order when the primary fails (rate-limit, 5xx, connection errors).")
-    print("  Docs: https://alex-agent.nousresearch.com/docs/user-guide/features/fallback-providers")
+    print("  Docs: https://alex-agent.charan vankudoth.com/docs/user-guide/features/fallback-providers")
     print()
 
 

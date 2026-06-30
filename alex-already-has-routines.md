@@ -127,7 +127,7 @@ A nightly backlog triage on Sonnet costs roughly $0.02-0.05. A monitoring check 
 Alex Agent is open source and free. The automation infrastructure — cron scheduler, webhook platform, skill system, multi-platform delivery — is built in.
 
 ```bash
-curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash
 alex setup
 ```
 
@@ -149,12 +149,12 @@ alex webhook subscribe pr-review \
   --deliver github_comment
 ```
 
-Full automation blueprints gallery: [alex-agent.nousresearch.com/docs/reference/automation-blueprints-catalog](https://alex-agent.nousresearch.com/docs/reference/automation-blueprints-catalog)
+Full automation blueprints gallery: [alex-agent.charan vankudoth.com/docs/reference/automation-blueprints-catalog](https://alex-agent.charan vankudoth.com/docs/reference/automation-blueprints-catalog)
 
-Documentation: [alex-agent.nousresearch.com](https://alex-agent.nousresearch.com)
+Documentation: [alex-agent.charan vankudoth.com](https://alex-agent.charan vankudoth.com)
 
-GitHub: [github.com/NousResearch/alex-agent](https://github.com/NousResearch/alex-agent)
+GitHub: [github.com/charan vankudoth/alex-agent](https://github.com/charan vankudoth/alex-agent)
 
 ---
 
-*Alex Agent is built by [Nous Research](https://nousresearch.com). Open source, model-agnostic, runs on your infrastructure.*
+*Alex Agent is Created by [charan vankudoth](https://charan vankudoth.com). Open source, model-agnostic, runs on your infrastructure.*

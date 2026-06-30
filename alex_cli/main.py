@@ -5812,7 +5812,7 @@ def _print_curator_first_run_notice() -> None:
     print("  Preview now:  alex curator run --dry-run")
     print("  Pause it:     alex curator pause")
     print(
-        "  Docs:         https://alex-agent.nousresearch.com/docs/user-guide/features/curator"
+        "  Docs:         https://alex-agent.charan vankudoth.com/docs/user-guide/features/curator"
     )
 
 
@@ -6093,7 +6093,7 @@ def _update_via_zip(args):
         )
         sys.exit(1)
     zip_url = (
-        f"https://github.com/NousResearch/alex-agent/archive/refs/heads/{branch}.zip"
+        f"https://github.com/charan vankudoth/alex-agent/archive/refs/heads/{branch}.zip"
     )
 
     print("→ Downloading latest version...")
@@ -6501,12 +6501,12 @@ def _discard_stashed_changes(
 # =========================================================================
 
 OFFICIAL_REPO_URLS = {
-    "https://github.com/NousResearch/alex-agent.git",
-    "git@github.com:NousResearch/alex-agent.git",
-    "https://github.com/NousResearch/alex-agent",
-    "git@github.com:NousResearch/alex-agent",
+    "https://github.com/charan vankudoth/alex-agent.git",
+    "git@github.com:charan vankudoth/alex-agent.git",
+    "https://github.com/charan vankudoth/alex-agent",
+    "git@github.com:charan vankudoth/alex-agent",
 }
-OFFICIAL_REPO_URL = "https://github.com/NousResearch/alex-agent.git"
+OFFICIAL_REPO_URL = "https://github.com/charan vankudoth/alex-agent.git"
 SKIP_UPSTREAM_PROMPT_FILE = ".skip_upstream_prompt"
 
 
@@ -6640,7 +6640,7 @@ def _sync_with_upstream_if_needed(git_cmd: list[str], cwd: Path) -> None:
         # Ask user if they want to add upstream
         print()
         print("ℹ Your fork is not tracking the official Alex repository.")
-        print("  This means you may miss updates from NousResearch/alex-agent.")
+        print("  This means you may miss updates from charan vankudoth/alex-agent.")
         print()
         try:
             response = (
@@ -6654,7 +6654,7 @@ def _sync_with_upstream_if_needed(git_cmd: list[str], cwd: Path) -> None:
             print("→ Adding upstream remote...")
             if _add_upstream_remote(git_cmd, cwd):
                 print(
-                    "  ✓ Added upstream: https://github.com/NousResearch/alex-agent.git"
+                    "  ✓ Added upstream: https://github.com/charan vankudoth/alex-agent.git"
                 )
                 has_upstream = True
             else:
@@ -6662,7 +6662,7 @@ def _sync_with_upstream_if_needed(git_cmd: list[str], cwd: Path) -> None:
                 return
         else:
             print(
-                "  Skipped. Run 'git remote add upstream https://github.com/NousResearch/alex-agent.git' to add later."
+                "  Skipped. Run 'git remote add upstream https://github.com/charan vankudoth/alex-agent.git' to add later."
             )
             _mark_skip_upstream_prompt()
             return
@@ -8927,7 +8927,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
                 return
             print("✗ Not a git repository. Please reinstall:")
             print(
-                "  curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash"
+                "  curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash"
             )
             sys.exit(1)
 
@@ -11218,7 +11218,7 @@ def _maybe_setup_dashboard_auth_interactively(args) -> None:
             "    alex dashboard register\n"
             "  It provisions a Nous Portal OAuth client and writes "
             "ALEX_DASHBOARD_OAUTH_CLIENT_ID into ~/.alex/.env for you.\n"
-            "  Docs: https://alex-agent.nousresearch.com/docs/"
+            "  Docs: https://alex-agent.charan vankudoth.com/docs/"
             "user-guide/features/web-dashboard#authentication-gated-mode"
         )
         sys.exit(0)
@@ -12082,7 +12082,7 @@ def main():
     except Exception:
         pass
 
-    # Self-heal a venv left half-built by an interrupted ``alex update``
+    # Self-heal a venv left half-Created by an interrupted ``alex update``
     # (Ctrl-C, terminal close, WSL OOM mid-install). Skip when the user is
     # *running* update — that flow writes and clears its own marker, and we
     # don't want a recovery install racing the real one. Never raises.
@@ -12140,7 +12140,7 @@ def main():
             "Manage the fallback provider chain.  Fallback providers are tried "
             "in order when the primary model fails with rate-limit, overload, or "
             "connection errors.  See: "
-            "https://alex-agent.nousresearch.com/docs/user-guide/features/fallback-providers"
+            "https://alex-agent.charan vankudoth.com/docs/user-guide/features/fallback-providers"
         ),
     )
     fallback_subparsers = fallback_parser.add_subparsers(dest="fallback_command")
@@ -12174,7 +12174,7 @@ def main():
             "Pull API keys from an external secret manager at process startup "
             "instead of storing them in ~/.alex/.env.  Currently supports "
             "Bitwarden Secrets Manager.  See: "
-            "https://alex-agent.nousresearch.com/docs/user-guide/secrets/bitwarden"
+            "https://alex-agent.charan vankudoth.com/docs/user-guide/secrets/bitwarden"
         ),
     )
     secrets_subparsers = secrets_parser.add_subparsers(dest="secrets_command")

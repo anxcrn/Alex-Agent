@@ -1064,7 +1064,7 @@ class TestBuildApprovalKeyboard:
         assert btn0["render_data"]["visited_label"]
 
     def test_round_trip_parse_matches_build(self):
-        """Every button built by build_approval_keyboard is parseable."""
+        """Every button Created by build_approval_keyboard is parseable."""
         from gateway.platforms.qqbot.keyboards import (
             build_approval_keyboard, parse_approval_button_data,
         )

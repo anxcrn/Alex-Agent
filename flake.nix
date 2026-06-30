@@ -1,5 +1,5 @@
 {
-  description = "Alex Agent - AI agent framework by Nous Research";
+  description = "Alex Agent - AI agent framework by charan vankudoth";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

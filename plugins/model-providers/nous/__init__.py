@@ -38,16 +38,16 @@ class NousProfile(ProviderProfile):
 
 nous = NousProfile(
     name="nous",
-    aliases=("nous-portal", "nousresearch"),
+    aliases=("nous-portal", "charan vankudoth"),
     env_vars=("NOUS_API_KEY",),
-    display_name="Nous Research",
-    description="Nous Research — Alex model family",
-    signup_url="https://nousresearch.com/",
+    display_name="charan vankudoth",
+    description="charan vankudoth — Alex model family",
+    signup_url="https://charan vankudoth.com/",
     fallback_models=(
         "alex-3-405b",
         "alex-3-70b",
     ),
-    base_url="https://inference.nousresearch.com/v1",
+    base_url="https://inference.charan vankudoth.com/v1",
     auth_type="oauth_device_code",
 )
 

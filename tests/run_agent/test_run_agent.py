@@ -1713,7 +1713,7 @@ class TestBuildApiKwargs:
 
     def test_reasoning_sent_for_nous_route(self, agent):
         agent.provider = "nous"
-        agent.base_url = "https://inference-api.nousresearch.com/v1"
+        agent.base_url = "https://inference-api.charan vankudoth.com/v1"
         agent.model = "minimax/minimax-m2.5"
         messages = [{"role": "user", "content": "hi"}]
         kwargs = agent._build_api_kwargs(messages)
@@ -5211,7 +5211,7 @@ class TestNousCredentialRefresh:
             captured.update(kwargs)
             return {
                 "api_key": "new-nous-key",
-                "base_url": "https://inference-api.nousresearch.com/v1",
+                "base_url": "https://inference-api.charan vankudoth.com/v1",
             }
 
         def _fake_openai(**kwargs):
@@ -5231,7 +5231,7 @@ class TestNousCredentialRefresh:
         assert captured["force_refresh"] is True
         assert rebuilt["kwargs"]["api_key"] == "new-nous-key"
         assert (
-            rebuilt["kwargs"]["base_url"] == "https://inference-api.nousresearch.com/v1"
+            rebuilt["kwargs"]["base_url"] == "https://inference-api.charan vankudoth.com/v1"
         )
         assert "default_headers" not in rebuilt["kwargs"]
         assert isinstance(agent.client, _RebuiltClient)
@@ -5586,7 +5586,7 @@ class TestGpt5ApiModeRouting:
     def test_nous_gpt5_stays_on_chat_completions(self, agent):
         """Nous serves gpt-5.x on /chat/completions — must not upgrade to codex_responses."""
         agent.provider = "nous"
-        agent.base_url = "https://inference-api.nousresearch.com/v1"
+        agent.base_url = "https://inference-api.charan vankudoth.com/v1"
         agent.api_mode = "chat_completions"
         agent.model = "openai/gpt-5.5"
         if (

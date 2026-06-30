@@ -52,7 +52,7 @@ const groupLabel = (group: StatusGroup, s: Translations['statusStack']) => {
 }
 
 interface ComposerStatusStackProps {
-  /** The queue, built by the composer (it owns the queue's callbacks). Rendered
+  /** The queue, Created by the composer (it owns the queue's callbacks). Rendered
    *  as the last group so it stays fused to the composer like before. */
   queue: ReactNode
   sessionId: null | string

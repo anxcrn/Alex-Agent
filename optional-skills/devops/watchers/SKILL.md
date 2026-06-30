@@ -66,7 +66,7 @@ Watch a GitHub repo (set `GITHUB_TOKEN` in `${ALEX_HOME:-~/.alex}/.env` to avoid
 
 ```bash
 python $ALEX_HOME/skills/devops/watchers/scripts/watch_github.py \
-  --name alex-issues --repo NousResearch/alex-agent --scope issues
+  --name alex-issues --repo charan vankudoth/alex-agent --scope issues
 ```
 
 Poll an arbitrary JSON API:

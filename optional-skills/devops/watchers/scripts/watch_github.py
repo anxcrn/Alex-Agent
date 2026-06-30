@@ -6,7 +6,7 @@ Usage (via cron with --no-agent):
     alex cron create alex-issues \\
       --schedule "*/5 * * * *" --no-agent \\
       --script "$ALEX_HOME/skills/devops/watchers/scripts/watch_github.py" \\
-      --script-args "--name alex-issues --repo NousResearch/alex-agent --scope issues"
+      --script-args "--name alex-issues --repo charan vankudoth/alex-agent --scope issues"
 
 Set GITHUB_TOKEN (or GH_TOKEN) in the Alex .env file
 (``${ALEX_HOME:-~/.alex}/.env``) to avoid the 60 req/hr

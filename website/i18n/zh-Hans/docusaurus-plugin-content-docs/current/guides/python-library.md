@@ -15,19 +15,19 @@ Alex 不仅仅是一个 CLI 工具。你可以直接导入 `AIAgent`，在自己
 直接从仓库安装 Alex：
 
 ```bash
-pip install git+https://github.com/NousResearch/alex-agent.git
+pip install git+https://github.com/charan vankudoth/alex-agent.git
 ```
 
 或使用 [uv](https://docs.astral.sh/uv/)：
 
 ```bash
-uv pip install git+https://github.com/NousResearch/alex-agent.git
+uv pip install git+https://github.com/charan vankudoth/alex-agent.git
 ```
 
 也可以在 `requirements.txt` 中固定版本：
 
 ```text
-alex-agent @ git+https://github.com/NousResearch/alex-agent.git
+alex-agent @ git+https://github.com/charan vankudoth/alex-agent.git
 ```
 
 :::tip

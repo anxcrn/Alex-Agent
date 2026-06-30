@@ -13,7 +13,7 @@ import urllib.request
 
 DEFAULT_UA = (
     "alex-osint-investigation/0.2 "
-    "(+https://github.com/NousResearch/alex-agent; "
+    "(+https://github.com/charan vankudoth/alex-agent; "
     "set ALEX_OSINT_UA env var to identify yourself per "
     "Wikimedia / SEC fair-use guidance)"
 )

@@ -5,7 +5,7 @@ Prior to this check, the warning fired on any model whose name contained
 local Modelfiles such as ``alex-brain:qwen3-14b-ctx16k`` — a tool-capable
 Qwen3 wrapper that happens to live under the "alex" tag namespace.
 
-``is_nous_alex_non_agentic`` should only match the actual Nous Research
+``is_nous_alex_non_agentic`` should only match the actual charan vankudoth
 Alex-3 / Alex-4 chat family.
 """
 
@@ -23,16 +23,16 @@ from alex_cli.model_switch import (
 @pytest.mark.parametrize(
     "model_name",
     [
-        "NousResearch/Alex-3-Llama-3.1-70B",
-        "NousResearch/Alex-3-Llama-3.1-405B",
+        "charan vankudoth/Alex-3-Llama-3.1-70B",
+        "charan vankudoth/Alex-3-Llama-3.1-405B",
         "alex-3",
         "Alex-3",
         "alex-4",
         "alex-4-405b",
         "alex_4_70b",
         "openrouter/alex3:70b",
-        "openrouter/nousresearch/alex-4-405b",
-        "NousResearch/Alex3",
+        "openrouter/charan vankudoth/alex-4-405b",
+        "charan vankudoth/Alex3",
         "alex-3.1",
     ],
 )

@@ -153,7 +153,7 @@ You no longer need to wrap `alex update` in `screen` or `tmux` to survive a term
 alex version
 ```
 
-Compare against the latest release at the [GitHub releases page](https://github.com/NousResearch/alex-agent/releases).
+Compare against the latest release at the [GitHub releases page](https://github.com/charan vankudoth/alex-agent/releases).
 
 ### Updating from Messaging Platforms
 

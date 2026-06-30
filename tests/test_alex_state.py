@@ -778,7 +778,7 @@ class TestMessageStorage:
 
     def test_replace_messages_persists_tool_name(self, db):
         """`replace_messages` (used by /retry, /undo, /compress) must write
-        tool_name to the DB for messages built by make_tool_result_message."""
+        tool_name to the DB for messages Created by make_tool_result_message."""
         from agent.tool_dispatch_helpers import make_tool_result_message
         db.create_session(session_id="s1", source="cli")
         db.replace_messages(

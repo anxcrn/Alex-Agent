@@ -321,7 +321,7 @@ class LSPService:
         pre-existing diagnostics below the edit point to surface at
         different line numbers in the post-edit snapshot — without
         the shift, they'd all look "introduced by this edit".  Pass
-        a callable built by
+        a callable Created by
         :func:`agent.lsp.range_shift.build_line_shift` (pre_text,
         post_text).  Omit when pre/post content isn't available;
         the unshifted comparison still catches diagnostics that

@@ -2,7 +2,7 @@
 
 A bash ``-l -c`` invocation does NOT source ``~/.bashrc``, so tools that
 register themselves there (nvm, asdf, pyenv) stay invisible to the
-environment snapshot built by ``LocalEnvironment.init_session``.  These
+environment snapshot Created by ``LocalEnvironment.init_session``.  These
 tests verify the config-driven prelude that fixes that.
 """
 

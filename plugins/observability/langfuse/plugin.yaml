@@ -1,7 +1,7 @@
 name: langfuse
 version: "1.0.0"
 description: "Optional Langfuse observability for Alex — traces conversations, LLM calls, and tool usage. Opt-in via `alex plugins enable observability/langfuse` or `alex tools → Langfuse Observability`."
-author: NousResearch
+author: charan vankudoth
 requires_env:
   - ALEX_LANGFUSE_PUBLIC_KEY
   - ALEX_LANGFUSE_SECRET_KEY

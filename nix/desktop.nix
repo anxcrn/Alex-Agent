@@ -151,7 +151,7 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Native Electron desktop shell for Alex Agent";
-    homepage = "https://github.com/NousResearch/alex-agent";
+    homepage = "https://github.com/charan vankudoth/alex-agent";
     license = licenses.mit;
     platforms = platforms.unix;
     mainProgram = "alex-desktop";

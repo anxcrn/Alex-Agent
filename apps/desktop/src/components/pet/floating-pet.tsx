@@ -89,7 +89,7 @@ function loadPosition(): Point {
  * writes `display.pet.*` from the slash worker, so we keep polling `pet.info`
  * while no pet is active and the mascot pops in within a few seconds — no
  * reload, no CLI. Once a pet is live we still refresh more slowly so generated
- * pets rewritten on disk (or renamed/rebuilt by the hatch flow) repaint without
+ * pets rewritten on disk (or renamed/reCreated by the hatch flow) repaint without
  * restarting the app.
  *
  * Promotion to a separate frameless OS-level window is a follow-up — the

@@ -35,11 +35,11 @@ Alex Agent 提供了一个 Nix flake，支持三个层级的集成：
 
 ```bash
 # 直接运行（首次使用时构建，之后使用缓存）
-nix run github:NousResearch/alex-agent -- setup
-nix run github:NousResearch/alex-agent -- chat
+nix run github:charan vankudoth/alex-agent -- setup
+nix run github:charan vankudoth/alex-agent -- chat
 
 # 或持久化安装
-nix profile install github:NousResearch/alex-agent
+nix profile install github:charan vankudoth/alex-agent
 alex setup
 alex chat
 ```
@@ -50,7 +50,7 @@ alex chat
 <summary><strong>从本地克隆构建</strong></summary>
 
 ```bash
-git clone https://github.com/NousResearch/alex-agent.git
+git clone https://github.com/charan vankudoth/alex-agent.git
 cd alex-agent
 nix build
 ./result/bin/alex setup
@@ -75,7 +75,7 @@ nix build
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    alex-agent.url = "github:NousResearch/alex-agent";
+    alex-agent.url = "github:charan vankudoth/alex-agent";
   };
 
   outputs = { nixpkgs, alex-agent, ... }: {
@@ -685,7 +685,7 @@ services.alex-agent = {
 
 ```nix
 {
-  inputs.alex-agent.url = "github:NousResearch/alex-agent";
+  inputs.alex-agent.url = "github:charan vankudoth/alex-agent";
   outputs = { alex-agent, nixpkgs, ... }: {
     nixpkgs.overlays = [ alex-agent.overlays.default ];
     # 然后：

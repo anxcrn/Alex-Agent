@@ -29,7 +29,7 @@ those use cases warrant attention later they can ship as separate tools.
 
 Response shape
 --------------
-All providers return a dict built by :func:`success_response` /
+All providers return a dict Created by :func:`success_response` /
 :func:`error_response`. Keys:
 
     success         bool

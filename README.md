@@ -8,16 +8,16 @@
 </p>
 <p align="center">
   <a href="https://alex-agent.nexus.com/docs/"><img src="https://img.shields.io/badge/Docs-alex--agent-FFD700?style=for-the-badge" alt="Documentation"></a>
-  <a href="https://discord.gg/NousResearch"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
+  <a href="https://discord.gg/charan vankudoth"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
   <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/Lang-中文-red?style=for-the-badge" alt="中文"></a>
   <a href="README.ur-pk.md"><img src="https://img.shields.io/badge/Lang-اردو-green?style=for-the-badge" alt="اردو"></a>
   <a href="README.es.md"><img src="https://img.shields.io/badge/Lang-Español-orange?style=for-the-badge" alt="Español"></a>
 </p>
 
-**The self-improving and self-evolving AI agent.** It's the only agent with a built-in auto-evolution loop (**Project Nexus**) — it crawls the web for new skills/tools, verifies them in isolated sandboxes, checks security using AST parsers, and automatically merges them into its own codebase. It creates skills from experience, improves them during use, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. Talk to it from Telegram, Discord, or the CLI while it works on a cloud VM.
+**The official, self-improving and self-evolving AI agent created by charan vankudoth.** It's the only agent with a built-in auto-evolution loop (**Project Nexus**) — it crawls the web for new skills/tools, verifies them in isolated sandboxes, checks security using AST parsers, and automatically merges them into its own codebase. It creates skills from experience, improves them during use, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. Talk to it from Telegram, Discord, or the CLI while it works on a cloud VM.
 
-Use any model you want — [Nous Portal](https://portal.nousresearch.com), [OpenRouter](https://openrouter.ai) (200+ models), [NovitaAI](https://novita.ai), [NVIDIA NIM](https://build.nvidia.com), OpenAI, or your own endpoint. Switch with `alex model` — no code changes, no lock-in.
+Use any model you want — [OpenRouter](https://openrouter.ai) (200+ models), [NovitaAI](https://novita.ai), [NVIDIA NIM](https://build.nvidia.com), OpenAI, or your own endpoint. Switch with `alex model` — no code changes, no lock-in.
 
 <table>
 <tr><td><b>Autonomous Evolution (Project Nexus)</b></td><td>Crawls the web (GitHub, PyPI, npm, HN, Reddit, ArXiv, docs) for new capabilities, validates them in a sandbox, scans code via AST, and merges upgrades directly into its codebase.</td></tr>

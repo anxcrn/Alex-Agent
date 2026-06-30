@@ -24,10 +24,10 @@ A quick search before you build saves your time and keeps the PR queue clean —
 
 - **Search both open *and* merged PRs and issues** for your topic or error symptom — the duplicate-check in the PR template fires at review time, after you've already done the work:
   ```bash
-  gh search issues --repo NousResearch/alex-agent "<your terms>"
-  gh search prs --repo NousResearch/alex-agent --state all "<your terms>"
+  gh search issues --repo charan vankudoth/alex-agent "<your terms>"
+  gh search prs --repo charan vankudoth/alex-agent --state all "<your terms>"
   ```
-  Or use the web UI: [issues](https://github.com/NousResearch/alex-agent/issues?q=) · [PRs (all states)](https://github.com/NousResearch/alex-agent/pulls?q=is%3Apr).
+  Or use the web UI: [issues](https://github.com/charan vankudoth/alex-agent/issues?q=) · [PRs (all states)](https://github.com/charan vankudoth/alex-agent/pulls?q=is%3Apr).
 - **The issue tracker can lag the code.** Many requested features are already implemented in-tree, so also search the source (`search_files`, or your editor's grep) for the capability before proposing it.
 - **If an open PR already addresses it**, consider reviewing or improving that one instead of opening a competing duplicate.
 - **For larger work**, comment on the issue to signal you're working on it, so others don't start the same thing.
@@ -63,7 +63,7 @@ Bundled skills (in `skills/`) ship with every Alex install. They should be **bro
 
 If your skill is official and useful but not universally needed (e.g., a paid service integration, a heavyweight dependency), put it in **`optional-skills/`** — it ships with the repo but isn't activated by default. Users can discover it via `alex skills browse` (labeled "official") and install it with `alex skills install` (no third-party warning, built-in trust).
 
-If your skill is specialized, community-contributed, or niche, it's better suited for a **Skills Hub** — upload it to a skills registry and share it in the [Nous Research Discord](https://discord.gg/NousResearch). Users can install it with `alex skills install`.
+If your skill is specialized, community-contributed, or niche, it's better suited for a **Skills Hub** — upload it to a skills registry and share it in the [charan vankudoth Discord](https://discord.gg/charan vankudoth). Users can install it with `alex skills install`.
 
 ---
 
@@ -107,7 +107,7 @@ development environment on the same layout the CLI, updater, lazy dependency
 installer, gateway, and docs assume.
 
 ```bash
-curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash
 cd "${ALEX_HOME:-$HOME/.alex}/alex-agent"
 
 # Add dev/test extras on top of the standard install.
@@ -133,7 +133,7 @@ system `python3 -m alex_cli.main` can pick up unrelated system Python
 packages.
 
 ```bash
-git clone https://github.com/NousResearch/alex-agent.git
+git clone https://github.com/charan vankudoth/alex-agent.git
 cd alex-agent
 
 # Create venv with Python 3.11
@@ -250,7 +250,7 @@ alex-agent/
 ├── skills/                   # Bundled skills (copied to ~/.alex/skills/ on install)
 ├── optional-skills/          # Official optional skills (discoverable via hub, not activated by default)
 ├── tests/                    # Test suite
-├── website/                  # Documentation site (alex-agent.nousresearch.com)
+├── website/                  # Documentation site (alex-agent.charan vankudoth.com)
 │
 ├── cli-config.yaml.example   # Example configuration (copied to ~/.alex/config.yaml)
 └── AGENTS.md                 # Development guide for AI coding assistants
@@ -963,7 +963,7 @@ test(tools): add unit tests for file_operations
 
 ## Reporting Issues
 
-- Use [GitHub Issues](https://github.com/NousResearch/alex-agent/issues)
+- Use [GitHub Issues](https://github.com/charan vankudoth/alex-agent/issues)
 - Include: OS, Python version, Alex version (`alex version`), full error traceback
 - Include steps to reproduce
 - Check existing issues before creating duplicates
@@ -973,7 +973,7 @@ test(tools): add unit tests for file_operations
 
 ## Community
 
-- **Discord**: [discord.gg/NousResearch](https://discord.gg/NousResearch) — for questions, showcasing projects, and sharing skills
+- **Discord**: [discord.gg/charan vankudoth](https://discord.gg/charan vankudoth) — for questions, showcasing projects, and sharing skills
 - **GitHub Discussions**: For design proposals and architecture discussions
 - **Skills Hub**: Upload specialized skills to a registry and share them with the community
 

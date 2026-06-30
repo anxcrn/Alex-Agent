@@ -49,7 +49,7 @@ development environment on the same layout the CLI, updater, lazy dependency
 installer, gateway, and docs assume.
 
 ```bash
-curl -fsSL https://alex-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://alex-agent.charan vankudoth.com/install.sh | bash
 cd "${ALEX_HOME:-$HOME/.alex}/alex-agent"
 
 # Add dev/test extras on top of the standard install.
@@ -75,7 +75,7 @@ system `python3 -m alex_cli.main` can pick up unrelated system Python
 packages.
 
 ```bash
-git clone https://github.com/NousResearch/alex-agent.git
+git clone https://github.com/charan vankudoth/alex-agent.git
 cd alex-agent
 
 # Create venv with Python 3.11
@@ -128,7 +128,7 @@ scripts/run_tests.sh
 - **Comments**: Only when explaining non-obvious intent, trade-offs, or API quirks
 - **Error handling**: Catch specific exceptions. Use `logger.warning()`/`logger.error()` with `exc_info=True` for unexpected errors
 - **Cross-platform**: Never assume Unix (see below)
-- **Profile-safe paths**: Never hardcode `~/.alex` — use `get_alex_home()` from `alex_constants` for code paths and `display_alex_home()` for user-facing messages. See [AGENTS.md](https://github.com/NousResearch/alex-agent/blob/main/AGENTS.md#profiles-multi-instance-support) for full rules.
+- **Profile-safe paths**: Never hardcode `~/.alex` — use `get_alex_home()` from `alex_constants` for code paths and `display_alex_home()` for user-facing messages. See [AGENTS.md](https://github.com/charan vankudoth/alex-agent/blob/main/AGENTS.md#profiles-multi-instance-support) for full rules.
 
 ## Cross-Platform Compatibility
 
@@ -264,7 +264,7 @@ fix(security): prevent shell injection in sudo password piping
 
 ## Reporting Issues
 
-- Use [GitHub Issues](https://github.com/NousResearch/alex-agent/issues)
+- Use [GitHub Issues](https://github.com/charan vankudoth/alex-agent/issues)
 - Include: OS, Python version, Alex version (`alex version`), full error traceback
 - Include steps to reproduce
 - Check existing issues before creating duplicates
@@ -272,10 +272,10 @@ fix(security): prevent shell injection in sudo password piping
 
 ## Community
 
-- **Discord**: [discord.gg/NousResearch](https://discord.gg/NousResearch)
+- **Discord**: [discord.gg/charan vankudoth](https://discord.gg/charan vankudoth)
 - **GitHub Discussions**: For design proposals and architecture discussions
 - **Skills Hub**: Upload specialized skills and share with the community
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the [MIT License](https://github.com/NousResearch/alex-agent/blob/main/LICENSE).
+By contributing, you agree that your contributions will be licensed under the [MIT License](https://github.com/charan vankudoth/alex-agent/blob/main/LICENSE).

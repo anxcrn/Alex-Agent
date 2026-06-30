@@ -335,7 +335,7 @@ Delete `~/.alex/BOOT.md` to disable the checklist — the hook stays loaded but 
 
 #### Why this isn't a built-in
 
-An earlier version of Alex shipped this as a built-in hook and silently spawned an agent with bare defaults on every gateway boot. That surprised users with custom endpoints and made the feature invisible to users who didn't know it was running. Keeping it as a documented pattern — built by you, in your hooks directory — means you see exactly what it does and opt in by writing the files.
+An earlier version of Alex shipped this as a built-in hook and silently spawned an agent with bare defaults on every gateway boot. That surprised users with custom endpoints and made the feature invisible to users who didn't know it was running. Keeping it as a documented pattern — Created by you, in your hooks directory — means you see exactly what it does and opt in by writing the files.
 
 ### How It Works
 

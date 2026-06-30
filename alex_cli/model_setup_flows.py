@@ -868,7 +868,7 @@ def _model_flow_azure_foundry(config, current_model=""):
       per-resource and the same ``Azure AI User`` role grants
       both. For OpenAI-style the OpenAI SDK's native callable
       ``api_key=`` contract is used; for Anthropic-style an
-      ``httpx.Client`` with a request event hook (built by
+      ``httpx.Client`` with a request event hook (Created by
       :func:`agent.azure_identity_adapter.build_bearer_http_client`)
       mints a fresh JWT per request because the Anthropic SDK does not
       accept a callable ``auth_token`` natively.
