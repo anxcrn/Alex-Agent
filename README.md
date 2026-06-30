@@ -84,7 +84,7 @@ After installation:
 
 ```bash
 source ~/.bashrc    # reload shell
-hermes              # start chatting!
+python cli.py       # start chatting!
 ```
 
 ---
