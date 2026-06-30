@@ -645,7 +645,7 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
     GREEN = "#4ADE80"
     CYAN = "#22D3EE"
     RED = "#F87171"
-    YELLOW = "#FBBF24"
+    YELLOW = "#FF007F"
     WHITE = "#E2E8F0"
     DIM_WHITE = "#94A3B8"
 
@@ -855,7 +855,58 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
 
     layout.add_row(left_group, right_group)
 
-    # ── Update check ──
+    # ── SYSTEM ARSENAL (TOOLS & SKILLS) PANEL ──
+    arsenal_lines = []
+    
+    # Toolsets list
+    toolsets_str = []
+    for ts, tl in sorted(toolsets_dict.items()):
+        short_tools = ", ".join(tl[:4])
+        if len(tl) > 4:
+            short_tools += f" (+{len(tl)-4} more)"
+        toolsets_str.append(f"[bold {CYAN}]{ts}[/]: [dim {WHITE}]{short_tools}[/]")
+    
+    # Skills list
+    skills_str = []
+    for cat, sk in sorted(skills_by_category.items()):
+        short_sk = ", ".join(sk[:4])
+        if len(sk) > 4:
+            short_sk += f" (+{len(sk)-4} more)"
+        skills_str.append(f"[bold {NEON}]{cat}[/]: [dim {WHITE}]{short_sk}[/]")
+        
+    arsenal_lines.append(f"[bold {NEON}]ACTIVE TOOLSETS ({total_tools} tools in {total_toolsets} toolsets):[/]")
+    for line in toolsets_str[:6]:
+        arsenal_lines.append(f"  [dim {NEON}]>[/] {line}")
+    if len(toolsets_str) > 6:
+        arsenal_lines.append(f"  [dim {NEON}]>[/] ... and {len(toolsets_str)-6} more toolsets")
+        
+    if _skills_enabled and skills_by_category:
+        arsenal_lines.append("")
+        arsenal_lines.append(f"[bold {NEON}]ACTIVE SKILLS ({total_skills} skills in {len(skills_by_category)} categories):[/]")
+        for line in skills_str[:4]:
+            arsenal_lines.append(f"  [dim {NEON}]>[/] {line}")
+        if len(skills_str) > 4:
+            arsenal_lines.append(f"  [dim {NEON}]>[/] ... and {len(skills_str)-4} more categories")
+    else:
+        arsenal_lines.append("")
+        arsenal_lines.append(f"[dim {WHITE}]No active skills loaded[/]")
+
+    # Build the Panel
+    arsenal_panel = Panel(
+        "\n".join(arsenal_lines),
+        title=f"[bold {NEON}]─ SYSTEM ARSENAL (ACTIVE TOOLS & SKILLS) ─[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+
+    # ── Parent Layout (Single column wrapping 2-column + Arsenal) ──
+    parent_layout = Table.grid(padding=(1, 0))
+    parent_layout.add_column("main")
+    parent_layout.add_row(layout)
+    parent_layout.add_row(arsenal_panel)
+
+    # ── Update check (using Cyberpunk hot pink/magenta #FF007F instead of yellow) ──
+    CYBER_PINK = "#FF007F"
     update_line = ""
     try:
         behind = get_update_result(timeout=0.5)
@@ -863,12 +914,12 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
             from alex_cli.config import get_managed_update_command, recommended_update_command
             if behind > 0:
                 commits_word = "commit" if behind == 1 else "commits"
-                update_line = f"[bold {YELLOW}]⚠ {behind} {commits_word} behind — run {recommended_update_command()} to update[/]"
+                update_line = f"[bold {CYBER_PINK}]⚠ {behind} {commits_word} behind — run {recommended_update_command()} to update[/]"
             else:
                 managed_cmd = get_managed_update_command()
-                update_line = f"[bold {YELLOW}]⚠ update available[/]"
+                update_line = f"[bold {CYBER_PINK}]⚠ update available[/]"
                 if managed_cmd:
-                    update_line += f"[dim {YELLOW}] — run [bold]{managed_cmd}[/bold][/]"
+                    update_line += f"[dim {CYBER_PINK}] — run [bold]{managed_cmd}[/bold][/]"
     except Exception:
         pass
 
@@ -877,8 +928,8 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
         from alex_cli.config import detect_install_method
         if detect_install_method() == "pip":
             update_line = (
-                f"[bold {YELLOW}]⚠ pip install not officially supported[/]"
-                f"[dim {YELLOW}] — may cause instability[/]"
+                f"[bold {CYBER_PINK}]⚠ pip install not officially supported[/]"
+                f"[dim {CYBER_PINK}] — may cause instability[/]"
             )
     except Exception:
         pass
@@ -894,7 +945,7 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
 
     # ── Print everything ──
     outer_panel = Panel(
-        layout,
+        parent_layout,
         title=f"[bold {NEON}]⟨ ALEX AGENT TERMINAL {VERSION} ⟩[/]",
         subtitle=f"[dim {DIM_P}]{status_bar}[/]",
         border_style=DEEP,
