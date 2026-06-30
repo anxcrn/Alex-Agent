@@ -61,28 +61,28 @@ def _skin_color(key: str, fallback: str) -> str:
 
 from alex_cli import __version__ as VERSION, __release_date__ as RELEASE_DATE
 
-ALEX_AGENT_LOGO = """[bold #FFD700] █████╗ ██╗     ███████╗██╗  ██╗      █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
-[bold #FFD700]██╔══██╗██║     ██╔════╝╚██╗██╔╝     ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
-[#FFBF00]███████║██║     █████╗   ╚███╔╝█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║   [/]
-[#FFBF00]██╔══██║██║     ██╔══╝   ██╔██╗╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║   [/]
-[#CD7F32]██║  ██║███████╗███████╗██╔╝ ██╗     ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║   [/]
-[#CD7F32]╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   [/]"""
+ALEX_AGENT_LOGO = """[bold #BF5FFF] █████╗ ██╗     ███████╗██╗  ██╗       █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
+[bold #A855F7]██╔══██╗██║     ██╔════╝╚██╗██╔╝      ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
+[#9333EA]███████║██║     █████╗   ╚███╔╝ █████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║[/]
+[#7C3AED]██╔══██║██║     ██╔══╝   ██╔██╗ ╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║[/]
+[#6D28D9]██║  ██║███████╗███████╗██╔╝ ██╗      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║[/]
+[#5B21B6]╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝[/]
+[dim #7C3AED]  TACTICAL AI · AUTONOMOUS · ADAPTIVE · UNSTOPPABLE[/]"""
 
-ALEX_CADUCEUS = """[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀[/]
-[#FFBF00]⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀[/]
-[#FFD700]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFD700]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]"""
+ALEX_CADUCEUS = """[#6D28D9]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+[#7C3AED]⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⠟⠻⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+[#9333EA]⠀⠀⠀⠀⠀⠀⣠⣾⡿⠋⠀⠀⠀⠙⢿⣷⣄⠀⠀⠀⠀⠀⠀⠀[/]
+[#9333EA]⠀⠀⠀⠀⢀⣾⡿⠋⠀⠀⢠⡄⠀⠀⠀⠙⢿⣷⡀⠀⠀⠀⠀⠀[/]
+[#A855F7]⠀⠀⠀⣰⣿⠟⠀⠀⠀⣰⣿⣿⣆⠀⠀⠀⠻⣿⣆⠀⠀⠀⠀[/]
+[#A855F7]⠀⠀⢰⣿⠏⠀⠀⢀⣾⡿⠉⢿⣷⡀⠀⠀⠀⠹⣿⡆⠀⠀⠀[/]
+[#BF5FFF]⠀⠀⣿⡟⠀⠀⣠⣿⠟⠀⠀⠀⠻⣿⣄⠀⠀⠀⢻⣿⠀⠀⠀[/]
+[#BF5FFF]⠀⠀⣿⡇⠀⠀⠙⠋⠀⠀⚔⠀⠀⠙⠋⠀⠀⠀⢸⣿⠀⠀⠀[/]
+[#7C3AED]⠀⠀⢿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⡿⠀⠀⠀[/]
+[#6D28D9]⠀⠀⠘⢿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⡿⠃⠀⠀⠀[/]
+[#5B21B6]⠀⠀⠀⠈⠻⢿⣷⣦⣄⣀⠀⠀⣀⣠⣴⣾⡿⠟⠁⠀⠀⠀⠀[/]
+[#4C1D95]⠀⠀⠀⠀⠀⠈⠙⠻⠿⠿⠿⠿⠿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀[/]"""
+
+
 
 
 
@@ -584,7 +584,7 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
                          session_id: str = None,
                          get_toolset_for_tool=None,
                          context_length: int = None):
-    """Build and print a welcome banner with caduceus on left and info on right.
+    """Build and print a cyberpunk-themed welcome banner.
 
     Args:
         console: Rich Console instance.
@@ -596,22 +596,20 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
         get_toolset_for_tool: Callable to map tool name -> toolset name.
         context_length: Model's context window size in tokens.
     """
+    from datetime import datetime
     from model_tools import check_tool_availability, TOOLSET_REQUIREMENTS
     from rich.panel import Panel
     from rich.table import Table
+    from rich.columns import Columns
+    from rich.text import Text
     if get_toolset_for_tool is None:
         from model_tools import get_toolset_for_tool
 
     tools = tools or []
     enabled_toolsets = enabled_toolsets or []
+    now = datetime.now()
 
     _, unavailable_toolsets = check_tool_availability(quiet=True)
-    # The availability check walks the GLOBAL toolset registry, so it includes
-    # toolsets that aren't part of this agent's platform set at all (e.g.
-    # `discord`, `feishu_doc` on a CLI session). Those must never surface in the
-    # banner's "Available Tools" — they aren't exposed to the agent. Restrict to
-    # toolsets actually enabled for this agent; a toolset that's enabled but
-    # currently has unmet deps legitimately shows as disabled/lazy below.
     _enabled_ts = {str(t) for t in enabled_toolsets}
     if _enabled_ts:
         unavailable_toolsets = [
@@ -619,9 +617,6 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
             if str(item.get("id", item.get("name", ""))) in _enabled_ts
         ]
     disabled_tools = set()
-    # Tools whose toolset has a check_fn are lazy-initialized (e.g. honcho,
-    # homeassistant) — they show as unavailable at banner time because the
-    # check hasn't run yet, but they aren't misconfigured.
     lazy_tools = set()
     for item in unavailable_toolsets:
         toolset_name = item.get("name", "")
@@ -632,17 +627,7 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
         else:
             disabled_tools.update(tools_in_ts)
 
-    layout_table = Table.grid(padding=(0, 2))
-    layout_table.add_column("left", justify="center")
-    layout_table.add_column("right", justify="left")
-
-    # Resolve skin colors once for the entire banner
-    accent = _skin_color("banner_accent", "#FFBF00")
-    dim = _skin_color("banner_dim", "#B8860B")
-    text = _skin_color("banner_text", "#FFF8DC")
-    session_color = _skin_color("session_border", "#8B8682")
-
-    # Use skin's custom caduceus art if provided
+    # Use skin's custom art if provided
     try:
         from alex_cli.skin_engine import get_active_skin
         _bskin = get_active_skin()
@@ -650,30 +635,34 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
     except Exception:
         _bskin = None
         _hero = ALEX_CADUCEUS
-    left_lines = ["", _hero, ""]
+
+    # ── Color palette (cyberpunk purple/violet) ──
+    NEON = "#BF5FFF"
+    PURPLE = "#A855F7"
+    DEEP = "#7C3AED"
+    DARK = "#5B21B6"
+    DIM_P = "#6D28D9"
+    GREEN = "#4ADE80"
+    CYAN = "#22D3EE"
+    RED = "#F87171"
+    YELLOW = "#FBBF24"
+    WHITE = "#E2E8F0"
+    DIM_WHITE = "#94A3B8"
+
+    # ── Model info ──
     model_short = model.split("/")[-1] if "/" in model else model
     if model_short.endswith(".gguf"):
         model_short = model_short[:-5]
     if len(model_short) > 28:
         model_short = model_short[:25] + "..."
-    ctx_str = f" [dim {dim}]·[/] [dim {dim}]{_format_context_length(context_length)} context[/]" if context_length else ""
-    left_lines.append(f"[{accent}]{model_short}[/]{ctx_str} [dim {dim}]·[/] [dim {dim}]charan vankudoth[/]")
+    ctx_str = _format_context_length(context_length) if context_length else "∞"
 
-    if os.getenv("ALEX_YOLO_MODE"):
-        left_lines.append(f"[bold red]⚠ YOLO mode[/] [dim {dim}]— all approval prompts bypassed[/]")
-    left_lines.append(f"[dim {dim}]{cwd}[/]")
-    if session_id:
-        left_lines.append(f"[dim {session_color}]Session: {session_id}[/]")
-    left_content = "\n".join(left_lines)
-
-    right_lines = [f"[bold {accent}]Available Tools[/]"]
+    # ── Toolset counting ──
     toolsets_dict: Dict[str, list] = {}
-
     for tool in tools:
         tool_name = tool["function"]["name"]
         toolset = _display_toolset_name(get_toolset_for_tool(tool_name) or "other")
         toolsets_dict.setdefault(toolset, []).append(tool_name)
-
     for item in unavailable_toolsets:
         toolset_id = item.get("id", item.get("name", "unknown"))
         display_name = _display_toolset_name(toolset_id)
@@ -683,92 +672,7 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
             if tool_name not in toolsets_dict[display_name]:
                 toolsets_dict[display_name].append(tool_name)
 
-    sorted_toolsets = sorted(toolsets_dict.keys())
-    display_toolsets = sorted_toolsets[:8]
-    remaining_toolsets = len(sorted_toolsets) - 8
-
-    for toolset in display_toolsets:
-        tool_names = toolsets_dict[toolset]
-        colored_names = []
-        for name in sorted(tool_names):
-            if name in disabled_tools:
-                colored_names.append(f"[red]{name}[/]")
-            elif name in lazy_tools:
-                colored_names.append(f"[yellow]{name}[/]")
-            else:
-                colored_names.append(f"[{text}]{name}[/]")
-
-        tools_str = ", ".join(colored_names)
-        if len(", ".join(sorted(tool_names))) > 45:
-            short_names = []
-            length = 0
-            for name in sorted(tool_names):
-                if length + len(name) + 2 > 42:
-                    short_names.append("...")
-                    break
-                short_names.append(name)
-                length += len(name) + 2
-            colored_names = []
-            for name in short_names:
-                if name == "...":
-                    colored_names.append("[dim]...[/]")
-                elif name in disabled_tools:
-                    colored_names.append(f"[red]{name}[/]")
-                elif name in lazy_tools:
-                    colored_names.append(f"[yellow]{name}[/]")
-                else:
-                    colored_names.append(f"[{text}]{name}[/]")
-            tools_str = ", ".join(colored_names)
-
-        right_lines.append(f"[dim {dim}]{toolset}:[/] {tools_str}")
-
-    if remaining_toolsets > 0:
-        right_lines.append(f"[dim {dim}](and {remaining_toolsets} more toolsets...)[/]")
-
-    # MCP Servers section (only if configured)
-    try:
-        from tools.mcp_tool import get_mcp_status
-        mcp_status = get_mcp_status()
-    except Exception:
-        mcp_status = []
-
-    if mcp_status:
-        right_lines.append("")
-        right_lines.append(f"[bold {accent}]MCP Servers[/]")
-        for srv in mcp_status:
-            status = srv.get("status")
-            if srv["connected"]:
-                right_lines.append(
-                    f"[dim {dim}]{srv['name']}[/] [{text}]({srv['transport']})[/] "
-                    f"[dim {dim}]—[/] [{text}]{srv['tools']} tool(s)[/]"
-                )
-            elif srv.get("disabled") or status == "disabled":
-                right_lines.append(
-                    f"[dim {dim}]{srv['name']}[/] [dim]({srv['transport']})[/] "
-                    f"[dim {dim}]— disabled[/]"
-                )
-            elif status == "connecting":
-                right_lines.append(
-                    f"[dim {dim}]{srv['name']}[/] [dim]({srv['transport']})[/] "
-                    f"[yellow]— connecting[/]"
-                )
-            elif status == "configured":
-                right_lines.append(
-                    f"[dim {dim}]{srv['name']}[/] [dim]({srv['transport']})[/] "
-                    f"[dim {dim}]— configured[/]"
-                )
-            else:
-                right_lines.append(
-                    f"[red]{srv['name']}[/] [dim]({srv['transport']})[/] "
-                    f"[red]— failed[/]"
-                )
-
-    right_lines.append("")
-    right_lines.append(f"[bold {accent}]Available Skills[/]")
-    # The skills catalog is only reachable when the `skills` toolset is enabled
-    # (it exposes skill_view / skill_manage). When it's disabled — e.g. a Blank
-    # Slate install — the agent literally cannot load any skill, so advertising
-    # the on-disk catalog here is misleading. Reflect the real state instead.
+    # Skills
     _skills_enabled = (not _enabled_ts) or ("skills" in _enabled_ts)
     if _skills_enabled:
         skills_by_category = get_available_skills()
@@ -777,113 +681,234 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
         skills_by_category = {}
         total_skills = 0
 
-    if not _skills_enabled:
-        right_lines.append(f"[dim {dim}]Skills toolset disabled[/]")
-    elif skills_by_category:
-        for category in sorted(skills_by_category.keys()):
-            skill_names = sorted(skills_by_category[category])
-            if len(skill_names) > 8:
-                display_names = skill_names[:8]
-                skills_str = ", ".join(display_names) + f" +{len(skill_names) - 8} more"
-            else:
-                skills_str = ", ".join(skill_names)
-            if len(skills_str) > 50:
-                skills_str = skills_str[:47] + "..."
-            right_lines.append(f"[dim {dim}]{category}:[/] [{text}]{skills_str}[/]")
-    else:
-        right_lines.append(f"[dim {dim}]No skills installed[/]")
-
-    right_lines.append("")
+    # MCP
+    try:
+        from tools.mcp_tool import get_mcp_status
+        mcp_status = get_mcp_status()
+    except Exception:
+        mcp_status = []
     mcp_connected = sum(1 for s in mcp_status if s["connected"]) if mcp_status else 0
-    summary_parts = [f"{len(tools)} tools", f"{total_skills} skills"]
+
+    total_tools = len(tools)
+    total_toolsets = len(toolsets_dict)
+
+    # ═══════════════════════════════════════════════════════════════
+    # Print the logo
+    # ═══════════════════════════════════════════════════════════════
+    console.print()
+    term_width = shutil.get_terminal_size().columns
+    if term_width >= 95:
+        _logo = _bskin.banner_logo if _bskin and hasattr(_bskin, 'banner_logo') and _bskin.banner_logo else ALEX_AGENT_LOGO
+        console.print(_logo)
+
+    # ═══════════════════════════════════════════════════════════════
+    # Build the cyberpunk layout: LEFT column + RIGHT column
+    # ═══════════════════════════════════════════════════════════════
+    layout = Table.grid(padding=(0, 2))
+    layout.add_column("left", ratio=1)
+    layout.add_column("right", ratio=1)
+
+    # ── LEFT COLUMN ──
+    left_lines = []
+
+    # System Status panel
+    sys_status = []
+    sys_status.append(f"[bold {GREEN}][✓][/] [bold {WHITE}]CORE SYSTEMS     [/][bold {GREEN}]ONLINE[/]")
+    sys_status.append(f"[bold {GREEN}][✓][/] [bold {WHITE}]AI MODELS         [/][bold {GREEN}]ONLINE[/]")
+    sys_status.append(f"[bold {GREEN}][✓][/] [bold {WHITE}]MEMORY ENGINE     [/][bold {GREEN}]ONLINE[/]")
+    sys_status.append(f"[bold {GREEN}][✓][/] [bold {WHITE}]AGENT NETWORK     [/][bold {GREEN}]ONLINE[/]")
+    sys_status.append(f"[bold {GREEN}][✓][/] [bold {WHITE}]TOOLS & PROTOCOLS  [/][bold {GREEN}]ONLINE[/]")
+    sys_status.append(f"[bold {GREEN}][✓][/] [bold {WHITE}]SECURITY SHIELD   [/][bold {GREEN}]ACTIVE[/]")
+    if os.getenv("ALEX_YOLO_MODE"):
+        sys_status.append(f"[bold {RED}][!][/] [bold {RED}]YOLO MODE         ENGAGED[/]")
+    sys_panel = Panel(
+        "\n".join(sys_status),
+        title=f"[bold {NEON}]─ SYSTEM STATUS ─[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    left_lines.append(sys_panel)
+
+    # Creator panel
+    creator_lines = []
+    creator_lines.append(f"[dim {DIM_WHITE}]Founder[/]")
+    creator_lines.append(f"[bold {WHITE}]CHARAN VANKUDOTH[/]")
+    creator_lines.append(f"[dim {DIM_WHITE}]India · Telangana · Mahabubabad[/]")
+    creator_lines.append("")
+    creator_lines.append(f"[bold {DIM_P}]\"[/][italic {PURPLE}]I don't seek power.[/]")
+    creator_lines.append(f" [italic {PURPLE}]I seek change.[/][bold {DIM_P}]\"[/]")
+    creator_panel = Panel(
+        "\n".join(creator_lines),
+        title=f"[bold {NEON}]─ CREATED BY ─[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    left_lines.append(creator_panel)
+
+    # Boot sequence
+    boot_lines = []
+    boot_lines.append(f"[{GREEN}]>> Initializing Alex Agent...[/]")
+    boot_lines.append(f"[{GREEN}]>> Loading core modules...[/]")
+    boot_lines.append(f"[{GREEN}]>> Establishing secure connection...[/]")
+    progress_bar = "█" * 30
+    boot_lines.append(f"[{GREEN}]>> Boot sequence [{NEON}]{progress_bar}[/{NEON}] 100%[/]")
+    boot_lines.append(f"[{GREEN}]>> Welcome back, Charan.[/]")
+    boot_lines.append(f"[{GREEN}]>> How can I assist you today?[/]")
+    boot_lines.append("")
+    boot_lines.append(f"[bold {NEON}]alex@agent:~$[/] [dim {WHITE}]▌[/]")
+    boot_panel = Panel(
+        "\n".join(boot_lines),
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    left_lines.append(boot_panel)
+
+    # ── RIGHT COLUMN ──
+    right_lines = []
+
+    # Time display
+    time_str = now.strftime("%H:%M:%S")
+    date_str = now.strftime("%b %d, %Y").upper()
+    day_str = now.strftime("%A").upper()
+    time_panel = Panel(
+        f"[bold {NEON}]{time_str}[/]\n[dim {DIM_WHITE}]{date_str}[/]\n[dim {DIM_WHITE}]{day_str}[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    right_lines.append(time_panel)
+
+    # Agent Capabilities
+    cap_lines = []
+    capabilities = [
+        ("CODE ANALYSIS", "100"),
+        ("THREAT DETECTION", "100"),
+        ("AUTONOMOUS CODING", "100"),
+        ("TASK EXECUTION", "100"),
+        ("MEMORY RECALL", "100"),
+        ("PATTERN RECOGNITION", "100"),
+        ("ADAPTIVE LEARNING", "100"),
+    ]
+    for cap_name, pct in capabilities:
+        bar = f"[bold {NEON}]{'█' * 12}[/]"
+        cap_lines.append(f"[dim {DIM_WHITE}]> {cap_name:<22}[/] {bar} [{GREEN}]{pct}%[/]")
+    cap_panel = Panel(
+        "\n".join(cap_lines),
+        title=f"[bold {NEON}]─ AGENT CAPABILITIES ─[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    right_lines.append(cap_panel)
+
+    # Active Missions
+    mission_lines = []
+    missions = [
+        "HUNTING THE EVIL",
+        "PROTECTING HUMANITY",
+        "BRINGING CHANGE",
+        "BUILDING THE FUTURE",
+    ]
+    for mission in missions:
+        mission_lines.append(f"[dim {DIM_WHITE}]> {mission:<26}[/][bold {CYAN}]>>> IN PROGRESS[/]")
+    mission_panel = Panel(
+        "\n".join(mission_lines),
+        title=f"[bold {NEON}]─ ACTIVE MISSIONS ─[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    right_lines.append(mission_panel)
+
+    # Core Modules
+    core_lines = []
+    version_label = format_banner_version_label()
+    core_modules = [
+        ("ALEX CORE", VERSION),
+        ("AI MODEL", model_short),
+        (f"CONTEXT", f"{ctx_str}"),
+        (f"TOOLS", f"{total_tools}"),
+        (f"SKILLS", f"{total_skills}"),
+    ]
     if mcp_connected:
-        summary_parts.append(f"{mcp_connected} MCP servers")
-    summary_parts.append("/help for commands")
-    # Indicate when the codex_app_server runtime is active so users
-    # understand why tool counts may not match what's actually reachable
-    # (codex builds its own tool list inside the spawned subprocess).
-    try:
-        from alex_cli.codex_runtime_switch import get_current_runtime
-        from alex_cli.config import load_config as _load_cfg
-        if get_current_runtime(_load_cfg()) == "codex_app_server":
-            right_lines.append(
-                f"[bold {accent}]Runtime:[/] [{text}]codex app-server[/] "
-                f"[dim {dim}](terminal/file ops/MCP run inside codex)[/]"
-            )
-    except Exception:
-        pass
-    # Show active profile name when not 'default'
-    try:
-        from alex_cli.profiles import get_active_profile_name
-        _profile_name = get_active_profile_name()
-        if _profile_name and _profile_name != "default":
-            right_lines.append(f"[bold {accent}]Profile:[/] [{text}]{_profile_name}[/]")
-    except Exception:
-        pass  # Never break the banner over a profiles.py bug
+        core_modules.append(("MCP SERVERS", str(mcp_connected)))
+    for mod_name, mod_ver in core_modules:
+        core_lines.append(f"[dim {DIM_WHITE}]> {mod_name:<20}[/][bold {WHITE}]{mod_ver}[/]")
+    core_panel = Panel(
+        "\n".join(core_lines),
+        title=f"[bold {NEON}]─ CORE MODULES ─[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    right_lines.append(core_panel)
 
-    right_lines.append(f"[dim {dim}]{' · '.join(summary_parts)}[/]")
+    # Location panel
+    loc_panel = Panel(
+        f"[bold {WHITE}]UNKNOWN[/]\n[dim {DIM_WHITE}]The World Is My Server[/]",
+        title=f"[bold {NEON}]─ LOCATION ─[/]",
+        border_style=DIM_P,
+        padding=(0, 1),
+    )
+    right_lines.append(loc_panel)
 
-    # Update check — use prefetched result if available
+    # Assemble left and right into renderables
+    from rich.console import Group
+    left_group = Group(*left_lines)
+    right_group = Group(*right_lines)
+
+    layout.add_row(left_group, right_group)
+
+    # ── Update check ──
+    update_line = ""
     try:
         behind = get_update_result(timeout=0.5)
         if behind is not None and behind != 0:
             from alex_cli.config import get_managed_update_command, recommended_update_command
             if behind > 0:
                 commits_word = "commit" if behind == 1 else "commits"
-                right_lines.append(
-                    f"[bold yellow]⚠ {behind} {commits_word} behind[/]"
-                    f"[dim yellow] — run [bold]{recommended_update_command()}[/bold] to update[/]"
-                )
+                update_line = f"[bold {YELLOW}]⚠ {behind} {commits_word} behind — run {recommended_update_command()} to update[/]"
             else:
-                # UPDATE_AVAILABLE_NO_COUNT: nix-built alex; we know an update
-                # exists but not by how much, and we don't know how the user
-                # installed it (nix run, profile, system flake, home-manager).
                 managed_cmd = get_managed_update_command()
-                line = "[bold yellow]⚠ update available[/]"
+                update_line = f"[bold {YELLOW}]⚠ update available[/]"
                 if managed_cmd:
-                    line += f"[dim yellow] — run [bold]{managed_cmd}[/bold][/]"
-                right_lines.append(line)
+                    update_line += f"[dim {YELLOW}] — run [bold]{managed_cmd}[/bold][/]"
     except Exception:
-        pass  # Never break the banner over an update check
+        pass
 
-    # Pip-install warning — `pip install alex-agent` is not the supported
-    # install path (it exists on PyPI for internal/CI reasons, not end users).
-    # Such installs miss the git checkout + installer-managed deps, so updates,
-    # self-update, and issue triage don't behave correctly. Warn, don't block.
+    # Pip warning
     try:
         from alex_cli.config import detect_install_method
         if detect_install_method() == "pip":
-            right_lines.append(
-                "[bold yellow]⚠ pip install not officially supported[/]"
-                "[dim yellow] — exists for reasons other than user install; "
-                "expect instability and an inability to support issues[/]"
+            update_line = (
+                f"[bold {YELLOW}]⚠ pip install not officially supported[/]"
+                f"[dim {YELLOW}] — may cause instability[/]"
             )
     except Exception:
-        pass  # Never break the banner over the install-method check
+        pass
 
-    right_content = "\n".join(right_lines)
-    layout_table.add_row(left_content, right_content)
+    # ── Status bar at the bottom ──
+    status_parts = [
+        f"[bold {NEON}]◉[/] [bold {WHITE}]USER: CHARAN[/]",
+        f"[bold {NEON}]◉[/] [bold {WHITE}]LEVEL: MAX[/]",
+        f"[bold {NEON}]◉[/] [bold {WHITE}]TITLE: SHADOW MONARCH[/]",
+        f"[bold {NEON}]◉[/] [bold {WHITE}]RANK: SSS[/]",
+    ]
+    status_bar = "    ".join(status_parts)
 
-    title_color = _skin_color("banner_title", "#FFD700")
-    border_color = _skin_color("banner_border", "#CD7F32")
-    version_label = format_banner_version_label()
-    release_info = get_latest_release_tag()
-    if release_info:
-        _tag, _url = release_info
-        title_markup = f"[bold {title_color}][link={_url}]{version_label}[/link][/]"
-    else:
-        title_markup = f"[bold {title_color}]{version_label}[/]"
+    # ── Print everything ──
     outer_panel = Panel(
-        layout_table,
-        title=title_markup,
-        border_style=border_color,
-        padding=(0, 2),
+        layout,
+        title=f"[bold {NEON}]⟨ ALEX AGENT TERMINAL {VERSION} ⟩[/]",
+        subtitle=f"[dim {DIM_P}]{status_bar}[/]",
+        border_style=DEEP,
+        padding=(1, 2),
     )
 
-    console.print()
-    term_width = shutil.get_terminal_size().columns
-    if term_width >= 95:
-        _logo = _bskin.banner_logo if _bskin and hasattr(_bskin, 'banner_logo') and _bskin.banner_logo else ALEX_AGENT_LOGO
-        console.print(_logo)
-        console.print()
     console.print(outer_panel)
+
+    if update_line:
+        console.print(update_line)
+
+    # Session info
+    if session_id:
+        console.print(f"[dim {DIM_WHITE}]Session: {session_id}[/]")
+    console.print(f"[dim {DIM_WHITE}]{cwd}[/]")
+    console.print()
+
