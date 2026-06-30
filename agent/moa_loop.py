@@ -1,7 +1,7 @@
 """Mixture-of-Agents runtime helpers for /moa turns.
 
 The slash command is deliberately not a model tool. It marks one user turn as
-MoA-enabled; the normal Hermes agent loop still owns tool calling and turn
+MoA-enabled; the normal Alex agent loop still owns tool calling and turn
 termination, while this module gathers reference-model context before each model
 iteration.
 """
@@ -51,7 +51,7 @@ def _slot_runtime(slot: dict[str, str]) -> dict[str, Any]:
     model = str(slot.get("model") or "").strip()
     out: dict[str, Any] = {"provider": provider, "model": model}
     try:
-        from hermes_cli.runtime_provider import resolve_runtime_provider
+        from alex_cli.runtime_provider import resolve_runtime_provider
 
         rt = resolve_runtime_provider(requested=provider, target_model=model)
         # Pass the resolved endpoint through so call_llm builds the request for
@@ -156,7 +156,7 @@ def _reference_messages(messages: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
     Reference calls are advisory: they never call tools and never emit the
     ``tool_calls`` the main model did. Replaying the full transcript verbatim
-    (a) re-bills the ~8K-token Hermes system prompt per reference per
+    (a) re-bills the ~8K-token Alex system prompt per reference per
     iteration and (b) risks 400s from strict providers (Mistral, Fireworks)
     that reject orphan ``tool`` messages or ``tool_calls`` the reference never
     produced. We keep only the user/assistant *text* turns, dropping the
@@ -243,7 +243,7 @@ def aggregate_moa_context(
     synth_prompt = (
         "You are the aggregator in a Mixture of Agents process. Synthesize the "
         "reference responses into concise, actionable guidance for the main "
-        "Hermes agent. Focus on next steps, tool-use strategy, risks, and any "
+        "Alex agent. Focus on next steps, tool-use strategy, risks, and any "
         "disagreements. Do not answer the user directly unless that is all that "
         "is needed; produce context the main agent should use in its normal loop.\n\n"
         f"Original user prompt:\n{user_prompt}\n\n"
@@ -269,7 +269,7 @@ def aggregate_moa_context(
 
     return (
         "[Mixture of Agents context — use this as private guidance for the "
-        "normal Hermes agent loop. You may call tools, continue reasoning, or "
+        "normal Alex agent loop. You may call tools, continue reasoning, or "
         "finish normally.]\n"
         f"Aggregator: {agg_label}\n"
         f"References: {', '.join(_slot_label(slot) for slot in reference_models)}\n\n"
@@ -284,8 +284,8 @@ class MoAChatCompletions:
         self.preset_name = preset_name or "default"
 
     def create(self, **api_kwargs: Any) -> Any:
-        from hermes_cli.config import load_config
-        from hermes_cli.moa_config import resolve_moa_preset
+        from alex_cli.config import load_config
+        from alex_cli.moa_config import resolve_moa_preset
 
         preset = resolve_moa_preset(load_config().get("moa") or {}, self.preset_name)
         messages = list(api_kwargs.get("messages") or [])

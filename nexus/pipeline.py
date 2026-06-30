@@ -179,7 +179,7 @@ class EvolutionPipeline:
                     # 3. Analyze
                     logger.info("[Nexus/Pipeline] Analyzing: %s", disc.title)
                     analysis = analyzer.analyze(disc)
-                    if analysis.relevance_to_hermes < 5.0 or not analysis.actionable:
+                    if analysis.relevance_to_alex < 5.0 or not analysis.actionable:
                         logger.info("[Nexus/Pipeline] Discovery skipped (relevance too low or not actionable): %s", disc.title)
                         self.kb.update_discovery_status(disc_id, "rejected")
                         continue
@@ -201,7 +201,7 @@ class EvolutionPipeline:
                         source_url=disc.source_url,
                         source_type=disc.source_type.value,
                         description=f"Analyzed {disc.title}: {analysis.what_does_it_do}",
-                        confidence_score=analysis.relevance_to_hermes * 10
+                        confidence_score=analysis.relevance_to_alex * 10
                     )
 
                     # 4. Build

@@ -1,7 +1,7 @@
-"""Project Nexus — self-evolving engine for Hermes Agent.
+"""Project Nexus — self-evolving engine for Alex Agent.
 
 Nexus discovers, learns, builds, verifies, and merges new capabilities
-(skills, tools, MCP servers, techniques) into the running Hermes instance.
+(skills, tools, MCP servers, techniques) into the running Alex instance.
 """
 
 __all__ = [

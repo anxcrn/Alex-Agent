@@ -2,7 +2,7 @@
 
 The agent's system prompt is built once per session and reused across all
 turns — only context compression triggers a rebuild.  This keeps the
-upstream prefix cache warm.  See ``hermes-agent-dev``'s
+upstream prefix cache warm.  See ``alex-agent-dev``'s
 ``references/system-prompt-invariant.md`` for the invariants and
 ``references/self-improvement-loop.md`` for how the background-review
 fork inherits the cached prompt verbatim.
@@ -29,7 +29,7 @@ from typing import Any, Dict, List, Optional
 from agent.prompt_builder import (
     DEFAULT_AGENT_IDENTITY,
     GOOGLE_MODEL_OPERATIONAL_GUIDANCE,
-    HERMES_AGENT_HELP_GUIDANCE,
+    ALEX_AGENT_HELP_GUIDANCE,
     KANBAN_GUIDANCE,
     MEMORY_GUIDANCE,
     OPENAI_MODEL_EXECUTION_GUIDANCE,
@@ -125,7 +125,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
 
     Joined into a single string by :func:`build_system_prompt` and
     cached on ``agent._cached_system_prompt`` for the lifetime of the
-    AIAgent.  Hermes never re-renders parts of this string mid-
+    AIAgent.  Alex never re-renders parts of this string mid-
     session — that's the only way to keep upstream prompt caches
     warm across turns.
     """
@@ -149,7 +149,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
     stable_parts: List[str] = []
 
     # Try SOUL.md as primary identity unless the caller explicitly skipped it.
-    # Some execution modes (cron) still want HERMES_HOME persona while keeping
+    # Some execution modes (cron) still want ALEX_HOME persona while keeping
     # cwd project instructions disabled.
     _soul_loaded = False
     if agent.load_soul_identity or not agent.skip_context_files:
@@ -162,8 +162,8 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         # Fallback to hardcoded identity
         stable_parts.append(DEFAULT_AGENT_IDENTITY)
 
-    # Pointer to the hermes-agent skill + docs for user questions about Hermes itself.
-    stable_parts.append(HERMES_AGENT_HELP_GUIDANCE)
+    # Pointer to the alex-agent skill + docs for user questions about Alex itself.
+    stable_parts.append(ALEX_AGENT_HELP_GUIDANCE)
 
     # Universal task-completion / no-fabrication guidance.  Applied to ALL
     # models regardless of tool_use_enforcement gating — the failure modes
@@ -200,7 +200,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         tool_guidance.append(SKILLS_GUIDANCE)
     # Kanban worker/orchestrator lifecycle — only present when the
     # dispatcher spawned this process (kanban_show check_fn gates on
-    # HERMES_KANBAN_TASK env var). Normal chat sessions never see
+    # ALEX_KANBAN_TASK env var). Normal chat sessions never see
     # this block. Resolved once at __init__ (see _kanban_worker_guidance).
     _kanban_guidance = getattr(agent, "_kanban_worker_guidance", None)
     if _kanban_guidance:
@@ -316,7 +316,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
     if _env_hints:
         stable_parts.append(_env_hints)
 
-    # Coding posture (base Hermes, any interactive coding surface in a code
+    # Coding posture (base Alex, any interactive coding surface in a code
     # workspace — see agent/coding_context.py). The operating brief + the live
     # git/workspace snapshot are built once here and cached for the session;
     # the snapshot is never re-probed per turn (that would break the prompt
@@ -353,9 +353,9 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
             # Probe failure must never block prompt build.
             pass
 
-    # Active-profile hint — names the Hermes profile the agent is running
-    # under so it doesn't conflate ~/.hermes/skills/ (default profile) with
-    # ~/.hermes/profiles/<active>/skills/ (this profile's). Deterministic
+    # Active-profile hint — names the Alex profile the agent is running
+    # under so it doesn't conflate ~/.alex/skills/ (default profile) with
+    # ~/.alex/profiles/<active>/skills/ (this profile's). Deterministic
     # for the lifetime of the agent — profile name doesn't change
     # mid-session, so this doesn't break the prompt cache.
     # See file_safety._resolve_active_profile_name + classify_cross_profile_target
@@ -367,8 +367,8 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         active_profile = "default"
     if active_profile == "default":
         stable_parts.append(
-            "Active Hermes profile: default. Other profiles (if any) live "
-            "under ~/.hermes/profiles/<name>/. Each profile has its own "
+            "Active Alex profile: default. Other profiles (if any) live "
+            "under ~/.alex/profiles/<name>/. Each profile has its own "
             "skills/, plugins/, cron/, and memories/ that affect a different "
             "session than this one. Do not modify another profile's "
             "skills/plugins/cron/memories unless the user explicitly directs "
@@ -376,10 +376,10 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         )
     else:
         stable_parts.append(
-            f"Active Hermes profile: {active_profile}. This session reads "
-            f"and writes ~/.hermes/profiles/{active_profile}/. The default "
-            f"profile's data lives at ~/.hermes/skills/, ~/.hermes/plugins/, "
-            f"~/.hermes/cron/, ~/.hermes/memories/ — those belong to a "
+            f"Active Alex profile: {active_profile}. This session reads "
+            f"and writes ~/.alex/profiles/{active_profile}/. The default "
+            f"profile's data lives at ~/.alex/skills/, ~/.alex/plugins/, "
+            f"~/.alex/cron/, ~/.alex/memories/ — those belong to a "
             f"different session run from a different shell. Do NOT modify "
             f"another profile's skills/plugins/cron/memories unless the user "
             f"explicitly directs you to. The cross-profile write guard will "
@@ -449,8 +449,8 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         except Exception:
             pass
 
-    from hermes_time import now as _hermes_now
-    now = _hermes_now()
+    from alex_time import now as _alex_now
+    now = _alex_now()
     # Date-only (not minute-precision) so the system prompt is byte-stable
     # for the full day.  Minute-precision changes invalidate prefix-cache KV
     # on every rebuild path (compression boundary, fresh-agent gateway turns,
@@ -484,7 +484,7 @@ def build_system_prompt(agent: Any, system_message: Optional[str] = None) -> str
     Layers are ordered cache-friendly: stable identity/guidance first,
     then session-stable context files, then per-call volatile content
     (memory, USER profile, timestamp).  The whole string is treated as
-    one cached block — Hermes never rebuilds or reinjects parts of it
+    one cached block — Alex never rebuilds or reinjects parts of it
     mid-session, which is the only way to keep upstream prompt caches
     warm across turns.
     """

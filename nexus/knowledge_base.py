@@ -4,7 +4,7 @@ Provides persistent storage for discoveries, extracted knowledge,
 discovered MCP servers, and evolution audit logs.  Uses WAL mode for
 concurrent readers and a connection-per-thread pattern for thread safety.
 
-Database location: ``get_hermes_home() / 'nexus' / 'knowledge.db'``
+Database location: ``get_alex_home() / 'nexus' / 'knowledge.db'``
 """
 
 import hashlib
@@ -17,7 +17,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 
 logger = logging.getLogger(__name__)
 
@@ -172,10 +172,10 @@ class KnowledgeBase:
 
         Args:
             db_path: Override path for the database file.  Defaults to
-                ``get_hermes_home() / 'nexus' / 'knowledge.db'``.
+                ``get_alex_home() / 'nexus' / 'knowledge.db'``.
         """
         if db_path is None:
-            db_path = get_hermes_home() / "nexus" / "knowledge.db"
+            db_path = get_alex_home() / "nexus" / "knowledge.db"
         self._db_path = Path(db_path)
         self._db_path.parent.mkdir(parents=True, exist_ok=True)
         self._local = threading.local()

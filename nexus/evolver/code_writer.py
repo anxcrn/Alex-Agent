@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 
 logger = logging.getLogger(__name__)
 
@@ -28,13 +28,13 @@ class CodeWriter:
     """Safely writes files and directories into the codebase with backup safeguards."""
 
     def __init__(self) -> None:
-        self._nexus_home = get_hermes_home() / "nexus"
+        self._nexus_home = get_alex_home() / "nexus"
         self._backup_dir = self._nexus_home / "backups"
         self._backup_dir.mkdir(parents=True, exist_ok=True)
 
     def write_skill(self, skill_name: str, staging_path: str, category: str = "software-development") -> WriteResult:
         """Copy a generated skill directory to the skills tree."""
-        dest_dir = Path("d:/Nexus/hermes-agent-main/skills") / category / skill_name
+        dest_dir = Path("d:/Nexus/alex-agent-main/skills") / category / skill_name
         
         # Check if backup is needed (directory already exists)
         backup_path = None
@@ -56,7 +56,7 @@ class CodeWriter:
 
     def write_tool(self, tool_name: str, staging_path: str) -> WriteResult:
         """Copy a generated tool python file to the tools directory."""
-        dest_file = Path("d:/Nexus/hermes-agent-main/tools") / f"{tool_name}.py"
+        dest_file = Path("d:/Nexus/alex-agent-main/tools") / f"{tool_name}.py"
         
         # Check if backup is needed
         backup_path = None

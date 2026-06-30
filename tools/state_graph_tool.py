@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional
 from tools.registry import registry
 from tools.delegate_tool import _build_child_agent, _normalize_role
 
-logger = logging.getLogger("hermes.state_graph")
+logger = logging.getLogger("alex.state_graph")
 
 def _parse_subagent_json_output(output: str) -> dict:
     """Attempts to extract and parse a JSON block from the subagent's response."""

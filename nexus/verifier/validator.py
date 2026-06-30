@@ -24,7 +24,7 @@ class CorrectnessValidator:
     """Uses LLM models to perform structured reviews on generated evolution changes."""
 
     def __init__(self) -> None:
-        self.api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("HERMES_LLM_API_KEY")
+        self.api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("ALEX_LLM_API_KEY")
 
     def validate(self, code: str, intended_purpose: str) -> ValidationResult:
         """Analyze the source code to verify if it correctly implements the purpose."""

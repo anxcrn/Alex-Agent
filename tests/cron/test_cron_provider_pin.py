@@ -13,7 +13,7 @@ The fix has two halves:
     delivers a loud actionable error.
 
 These tests exercise the full run_job path (real imports, mocked AIAgent +
-resolve_runtime_provider against a temp HERMES_HOME) and the create_job
+resolve_runtime_provider against a temp ALEX_HOME) and the create_job
 snapshot capture. They are load-bearing: without the guard, cases (b) call the
 agent and "succeed" instead of failing closed.
 """
@@ -50,12 +50,12 @@ def _run_with_current_provider(job, current_provider, tmp_path):
     Returns (success, output, final_response, error, agent_constructed).
     """
     fake_db = MagicMock()
-    with patch("cron.scheduler._hermes_home", tmp_path), \
+    with patch("cron.scheduler._alex_home", tmp_path), \
          patch("cron.scheduler._resolve_origin", return_value=None), \
          patch("dotenv.load_dotenv"), \
-         patch("hermes_state.SessionDB", return_value=fake_db), \
+         patch("alex_state.SessionDB", return_value=fake_db), \
          patch(
-             "hermes_cli.runtime_provider.resolve_runtime_provider",
+             "alex_cli.runtime_provider.resolve_runtime_provider",
              return_value={
                  "api_key": "test-key",
                  "base_url": "https://example.invalid/v1",
@@ -175,7 +175,7 @@ class TestCreateJobSnapshot:
         jobs = self._isolate_storage(monkeypatch)
 
         with patch(
-            "hermes_cli.runtime_provider.resolve_runtime_provider",
+            "alex_cli.runtime_provider.resolve_runtime_provider",
             return_value={"provider": "openrouter"},
         ):
             job = jobs.create_job(prompt="do a thing", schedule="every 1 hour")
@@ -187,7 +187,7 @@ class TestCreateJobSnapshot:
         jobs = self._isolate_storage(monkeypatch)
 
         resolver = MagicMock(return_value={"provider": "openrouter"})
-        with patch("hermes_cli.runtime_provider.resolve_runtime_provider", resolver):
+        with patch("alex_cli.runtime_provider.resolve_runtime_provider", resolver):
             job = jobs.create_job(
                 prompt="do a thing", schedule="every 1 hour", provider="nous"
             )
@@ -202,7 +202,7 @@ class TestCreateJobSnapshot:
         jobs = self._isolate_storage(monkeypatch)
 
         with patch(
-            "hermes_cli.runtime_provider.resolve_runtime_provider",
+            "alex_cli.runtime_provider.resolve_runtime_provider",
             side_effect=RuntimeError("no creds"),
         ):
             job = jobs.create_job(prompt="do a thing", schedule="every 1 hour")
@@ -214,10 +214,10 @@ class TestCreateJobSnapshot:
         jobs = self._isolate_storage(monkeypatch)
         (tmp_path / "config.yaml").write_text("model:\n  default: llama-3.3-70b:free\n")
         monkeypatch.setattr(
-            "cron.jobs.get_hermes_home", lambda: tmp_path, raising=True
+            "cron.jobs.get_alex_home", lambda: tmp_path, raising=True
         )
         with patch(
-            "hermes_cli.runtime_provider.resolve_runtime_provider",
+            "alex_cli.runtime_provider.resolve_runtime_provider",
             return_value={"provider": "openrouter"},
         ):
             job = jobs.create_job(prompt="do a thing", schedule="every 1 hour")
@@ -229,10 +229,10 @@ class TestCreateJobSnapshot:
         jobs = self._isolate_storage(monkeypatch)
         (tmp_path / "config.yaml").write_text("model:\n  default: llama-3.3-70b:free\n")
         monkeypatch.setattr(
-            "cron.jobs.get_hermes_home", lambda: tmp_path, raising=True
+            "cron.jobs.get_alex_home", lambda: tmp_path, raising=True
         )
         with patch(
-            "hermes_cli.runtime_provider.resolve_runtime_provider",
+            "alex_cli.runtime_provider.resolve_runtime_provider",
             return_value={"provider": "openrouter"},
         ):
             job = jobs.create_job(
@@ -249,13 +249,13 @@ def _run_with_current_provider_and_model(job, current_provider, current_model, t
         f"model:\n  default: {current_model}\n"
     )
     fake_db = MagicMock()
-    with patch("cron.scheduler._hermes_home", tmp_path), \
-         patch("cron.scheduler._get_hermes_home", return_value=tmp_path), \
+    with patch("cron.scheduler._alex_home", tmp_path), \
+         patch("cron.scheduler._get_alex_home", return_value=tmp_path), \
          patch("cron.scheduler._resolve_origin", return_value=None), \
          patch("dotenv.load_dotenv"), \
-         patch("hermes_state.SessionDB", return_value=fake_db), \
+         patch("alex_state.SessionDB", return_value=fake_db), \
          patch(
-             "hermes_cli.runtime_provider.resolve_runtime_provider",
+             "alex_cli.runtime_provider.resolve_runtime_provider",
              return_value={
                  "api_key": "test-key",
                  "base_url": "https://example.invalid/v1",

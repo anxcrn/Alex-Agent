@@ -66,7 +66,7 @@ class EvolutionTester:
         # Test basic loading and registry import in sandbox
         test_wrapper = (
             f"import sys\n"
-            f"sys.path.insert(0, 'd:/Nexus/hermes-agent-main')\n"
+            f"sys.path.insert(0, 'd:/Nexus/alex-agent-main')\n"
             f"try:\n"
             f"    # Load the tool module from path\n"
             f"    import importlib.util\n"

@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from nexus.changelog import Changelog
 from nexus.evolver.code_writer import CodeWriter
 
@@ -60,8 +60,8 @@ class RollbackManager:
         if not file_path:
             return RollbackResult(success=False, error="No file path associated with this rollback token")
             
-        # Try to locate backup directory matching token in ~/.hermes/nexus/backups
-        backup_dir = get_hermes_home() / "nexus" / "backups"
+        # Try to locate backup directory matching token in ~/.alex/nexus/backups
+        backup_dir = get_alex_home() / "nexus" / "backups"
         backup_path = ""
         
         # Check folders under backups directory

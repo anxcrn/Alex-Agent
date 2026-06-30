@@ -11,7 +11,7 @@ def _response(content="done", *, tool_calls=None):
 
 
 def test_moa_virtual_provider_aggregator_is_actor(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".alex"
     home.mkdir()
     (home / "config.yaml").write_text(
         """
@@ -28,7 +28,7 @@ moa:
 """.strip(),
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("ALEX_HOME", str(home))
     calls = []
 
     def fake_call_llm(**kwargs):
@@ -69,7 +69,7 @@ def test_moa_does_not_cap_output_tokens(monkeypatch, tmp_path):
     omits the parameter and each model uses its real maximum. Regression for
     the "no limit on MoA models" fix.
     """
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".alex"
     home.mkdir()
     (home / "config.yaml").write_text(
         """
@@ -87,7 +87,7 @@ moa:
 """.strip(),
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("ALEX_HOME", str(home))
     calls = []
 
     def fake_call_llm(**kwargs):
@@ -143,7 +143,7 @@ def test_moa_slots_routed_through_resolve_runtime_provider(monkeypatch):
         }
 
     monkeypatch.setattr(
-        "hermes_cli.runtime_provider.resolve_runtime_provider", fake_resolve
+        "alex_cli.runtime_provider.resolve_runtime_provider", fake_resolve
     )
 
     rt = moa_loop._slot_runtime({"provider": "minimax", "model": "MiniMax-M2"})
@@ -163,7 +163,7 @@ def test_moa_slot_runtime_falls_back_on_resolution_error(monkeypatch):
         raise RuntimeError("unknown provider")
 
     monkeypatch.setattr(
-        "hermes_cli.runtime_provider.resolve_runtime_provider", boom
+        "alex_cli.runtime_provider.resolve_runtime_provider", boom
     )
 
     rt = moa_loop._slot_runtime({"provider": "mystery", "model": "x"})
@@ -176,7 +176,7 @@ def test_reference_messages_strips_system_and_tool_history():
     from agent.moa_loop import _reference_messages
 
     messages = [
-        {"role": "system", "content": "huge hermes system prompt"},
+        {"role": "system", "content": "huge alex system prompt"},
         {"role": "user", "content": "do the thing"},
         {
             "role": "assistant",
@@ -199,7 +199,7 @@ def test_reference_messages_strips_system_and_tool_history():
 
 
 def test_moa_facade_references_get_trimmed_messages(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".alex"
     home.mkdir()
     (home / "config.yaml").write_text(
         """
@@ -216,7 +216,7 @@ moa:
 """.strip(),
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("ALEX_HOME", str(home))
     calls = []
 
     def fake_call_llm(**kwargs):
@@ -247,7 +247,7 @@ moa:
 
 
 def test_moa_disabled_preset_skips_references(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".alex"
     home.mkdir()
     (home / "config.yaml").write_text(
         """
@@ -265,7 +265,7 @@ moa:
 """.strip(),
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("ALEX_HOME", str(home))
     calls = []
 
     def fake_call_llm(**kwargs):

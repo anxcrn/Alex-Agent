@@ -50,23 +50,23 @@ function appendUniquePathEntries(entries, { delimiter = path.delimiter } = {}) {
 }
 
 function buildDesktopBackendPath({
-  hermesHome,
+  alexHome,
   venvRoot,
   currentPath = '',
   platform = process.platform,
   pathModule = pathModuleForPlatform(platform)
 } = {}) {
   const delimiter = delimiterForPlatform(platform)
-  const hermesNodeBin = hermesHome ? pathModule.join(hermesHome, 'node', 'bin') : null
+  const alexNodeBin = alexHome ? pathModule.join(alexHome, 'node', 'bin') : null
   const venvBin = venvRoot ? pathModule.join(venvRoot, platform === 'win32' ? 'Scripts' : 'bin') : null
   const saneEntries = platform === 'win32' ? [] : POSIX_SANE_PATH_ENTRIES
 
-  return appendUniquePathEntries([hermesNodeBin, venvBin, currentPath, saneEntries], { delimiter })
+  return appendUniquePathEntries([alexNodeBin, venvBin, currentPath, saneEntries], { delimiter })
 }
 
-function normalizeHermesHomeRoot(hermesHome, { pathModule = pathModuleForPlatform(process.platform) } = {}) {
-  if (!hermesHome) return hermesHome
-  const resolved = pathModule.resolve(String(hermesHome))
+function normalizeAlexHomeRoot(alexHome, { pathModule = pathModuleForPlatform(process.platform) } = {}) {
+  if (!alexHome) return alexHome
+  const resolved = pathModule.resolve(String(alexHome))
   const parent = pathModule.dirname(resolved)
   if (pathModule.basename(parent).toLowerCase() === 'profiles') {
     return pathModule.dirname(parent)
@@ -75,7 +75,7 @@ function normalizeHermesHomeRoot(hermesHome, { pathModule = pathModuleForPlatfor
 }
 
 function buildDesktopBackendEnv({
-  hermesHome,
+  alexHome,
   pythonPathEntries = [],
   venvRoot,
   currentEnv = process.env,
@@ -89,7 +89,7 @@ function buildDesktopBackendEnv({
   return {
     PYTHONPATH: appendUniquePathEntries([...pythonPathEntries, currentPythonPath], { delimiter }),
     [key]: buildDesktopBackendPath({
-      hermesHome,
+      alexHome,
       venvRoot,
       currentPath: currentPathValue(currentEnv, platform),
       platform,
@@ -104,6 +104,6 @@ module.exports = {
   buildDesktopBackendEnv,
   buildDesktopBackendPath,
   delimiterForPlatform,
-  normalizeHermesHomeRoot,
+  normalizeAlexHomeRoot,
   pathEnvKey
 }

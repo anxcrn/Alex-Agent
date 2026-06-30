@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from nexus.evolver.code_writer import CodeWriter
 
 logger = logging.getLogger(__name__)
@@ -31,7 +31,7 @@ class EvolutionMerger:
 
     def __init__(self) -> None:
         self.writer = CodeWriter()
-        self._mcp_config_path = get_hermes_home() / "mcp_servers.json"
+        self._mcp_config_path = get_alex_home() / "mcp_servers.json"
 
     def merge_skill(self, skill_name: str, staging_path: str) -> MergeResult:
         """Merge a generated skill into the skills tree."""

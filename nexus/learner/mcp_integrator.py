@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from nexus.crawlers.base import Discovery
 
 logger = logging.getLogger(__name__)
@@ -29,7 +29,7 @@ class MCPIntegrator:
     """Auto-discovers and configures external Model Context Protocol servers."""
 
     def __init__(self) -> None:
-        self._staging_dir = get_hermes_home() / "nexus" / "staging" / "mcps"
+        self._staging_dir = get_alex_home() / "nexus" / "staging" / "mcps"
         self._staging_dir.mkdir(parents=True, exist_ok=True)
 
     def integrate(self, discovery: Discovery) -> MCPIntegrationResult:

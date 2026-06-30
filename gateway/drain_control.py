@@ -15,7 +15,7 @@ share one definition and can never disagree.
 
 Contract (presence-based, mirroring ``.restart_notify.json``):
 
-  * begin-drain  → write ``{HERMES_HOME}/.drain_request.json`` with
+  * begin-drain  → write ``{ALEX_HOME}/.drain_request.json`` with
     ``{"action": "drain", "requested_at": <iso>, "principal": <str>,
     "epoch": <instantiation-epoch>}``.
   * cancel-drain → remove the marker.
@@ -25,7 +25,7 @@ Contract (presence-based, mirroring ``.restart_notify.json``):
     marker from a *prior* instantiation) means "not draining" (revert to
     ``running`` if we had flipped it).
 
-Why the epoch (NS-570). ``HERMES_HOME`` is a **durable** store — on Hermes
+Why the epoch (NS-570). ``ALEX_HOME`` is a **durable** store — on Alex
 Cloud it is a persistent Fly volume (``/opt/data``). A begin-drain marker
 written there *survives a machine restart*. But the disruptive lifecycle
 actions a drain protects (auto-update / image migrate / env edit / profile
@@ -56,7 +56,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from utils import atomic_json_write
 
 _log = logging.getLogger(__name__)
@@ -86,7 +86,7 @@ def current_instantiation_epoch() -> str:
       | Fly microVM reboot (auto-upd.) | changes | changes    | NEW    | reject |
       | plain ``docker restart``       | same    | changes    | NEW    | reject |
       | s6 respawn of the gateway only | same    | same       | SAME   | honour |
-      | host ``hermes gateway restart``| same    | same(init) | SAME   | honour |
+      | host ``alex gateway restart``| same    | same(init) | SAME   | honour |
 
     The last row is intentional: a host install has no durable-volume drain
     bug, and honouring a drain across a deliberate process restart is the
@@ -127,8 +127,8 @@ def current_instantiation_epoch() -> str:
 
 
 def drain_request_path(home: Optional[Path] = None) -> Path:
-    """Absolute path to the drain-request marker, respecting HERMES_HOME."""
-    base = home if home is not None else get_hermes_home()
+    """Absolute path to the drain-request marker, respecting ALEX_HOME."""
+    base = home if home is not None else get_alex_home()
     return Path(base) / _DRAIN_REQUEST_FILENAME
 
 
@@ -142,7 +142,7 @@ def write_drain_request(
     ``requested_at`` (harmless — the watcher keys off presence, not content).
 
     Stamps the marker with :func:`current_instantiation_epoch` so a marker that
-    later survives a machine restart on the durable HERMES_HOME volume can be
+    later survives a machine restart on the durable ALEX_HOME volume can be
     recognised as stale and ignored (NS-570).
     """
     payload = {
@@ -196,8 +196,8 @@ def drain_requested(*, home: Optional[Path] = None) -> bool:
     """True iff a begin-drain marker for THIS instantiation is present.
 
     A marker whose ``epoch`` does not match the current instantiation epoch is
-    treated as absent: it survived a container/VM restart (HERMES_HOME is a
-    durable Fly volume on Hermes Cloud) and the lifecycle action that triggered
+    treated as absent: it survived a container/VM restart (ALEX_HOME is a
+    durable Fly volume on Alex Cloud) and the lifecycle action that triggered
     the drain has already completed — honouring it would wedge the
     freshly-restarted gateway in ``draining`` (NS-570). The staleness check is
     lenient (see :func:`_marker_epoch_is_stale`): a legacy/corrupt marker with

@@ -26,15 +26,15 @@ from nexus.evolver.rollback import RollbackManager
 
 @pytest.fixture
 def temp_home():
-    """Create a temporary HERMES_HOME context for isolating tests."""
+    """Create a temporary ALEX_HOME context for isolating tests."""
     with tempfile.TemporaryDirectory() as tmpdir:
-        old_env = os.environ.get("HERMES_HOME")
-        os.environ["HERMES_HOME"] = tmpdir
+        old_env = os.environ.get("ALEX_HOME")
+        os.environ["ALEX_HOME"] = tmpdir
         yield Path(tmpdir)
         if old_env:
-            os.environ["HERMES_HOME"] = old_env
+            os.environ["ALEX_HOME"] = old_env
         else:
-            os.environ.pop("HERMES_HOME", None)
+            os.environ.pop("ALEX_HOME", None)
 
 
 def test_knowledge_base_crud(temp_home):

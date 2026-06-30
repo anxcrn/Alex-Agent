@@ -7,7 +7,7 @@ Storage format is ``.jsonl`` (JSON Lines) — one JSON object per line —
 which is naturally append-friendly and survives partial writes (the
 worst case is a truncated last line, easily detected).
 
-The file lives at ``<hermes_home>/nexus/changelog.jsonl``.
+The file lives at ``<alex_home>/nexus/changelog.jsonl``.
 
 Thread-safe.  Uses both an in-process ``threading.RLock`` and a
 cross-process advisory file lock so concurrent gateway processes,
@@ -29,7 +29,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 
 logger = logging.getLogger(__name__)
 
@@ -268,7 +268,7 @@ class Changelog:
 
 def _changelog_dir() -> Path:
     """Return the nexus data directory."""
-    return get_hermes_home() / "nexus"
+    return get_alex_home() / "nexus"
 
 
 def _changelog_path() -> Path:

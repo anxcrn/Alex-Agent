@@ -1,6 +1,6 @@
 """Nexus configuration manager — thread-safe singleton access.
 
-Reads configuration from ``<hermes_home>/nexus.yaml``, creating a sensible
+Reads configuration from ``<alex_home>/nexus.yaml``, creating a sensible
 default file on first run.  All access goes through ``load_config()`` which
 returns a frozen snapshot; mutations go through ``save_config()`` which does
 an atomic YAML write.
@@ -20,7 +20,7 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 
 logger = logging.getLogger(__name__)
 
@@ -115,7 +115,7 @@ class NexusConfig:
 
 def _config_path() -> Path:
     """Return the canonical path to ``nexus.yaml``."""
-    return get_hermes_home() / "nexus.yaml"
+    return get_alex_home() / "nexus.yaml"
 
 
 # ---------------------------------------------------------------------------
@@ -234,7 +234,7 @@ _DEFAULT_YAML_HEADER = """\
 # Nexus — Self-Evolution Engine Configuration
 # ──────────────────────────────────────────────────────────────────────
 # This file controls the Nexus autonomous discovery-and-evolution system.
-# Edit this file or use `hermes nexus config` to change settings.
+# Edit this file or use `alex nexus config` to change settings.
 #
 # Modes:
 #   full_auto  — Nexus discovers, builds, verifies, and merges autonomously.

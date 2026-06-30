@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from nexus.crawlers.base import Discovery
 from nexus.learner.analyzer import AnalysisResult
 
@@ -30,9 +30,9 @@ class ToolBuilder:
     """Builds Python tool files registered in staging."""
 
     def __init__(self) -> None:
-        self._staging_dir = get_hermes_home() / "nexus" / "staging" / "tools"
+        self._staging_dir = get_alex_home() / "nexus" / "staging" / "tools"
         self._staging_dir.mkdir(parents=True, exist_ok=True)
-        self.api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("HERMES_LLM_API_KEY")
+        self.api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("ALEX_LLM_API_KEY")
 
     def build(self, analysis: AnalysisResult, discovery: Discovery) -> ToolBuildResult:
         """Generate executable python file for a tool."""

@@ -111,7 +111,7 @@ export interface Translations {
       loadingSettings: string
       loadingSessions: string
       startingDesktopConnection: string
-      startingHermesDesktop: string
+      startingAlexDesktop: string
     }
     errors: {
       backgroundExited: string
@@ -158,7 +158,7 @@ export interface Translations {
     copyDetailFailed: string
     backendOutOfDateTitle: string
     backendOutOfDateMessage: string
-    updateHermes: string
+    updateAlex: string
     updateReadyTitle: string
     updateReadyMessage: (count: number) => string
     seeWhatsNew: string
@@ -766,10 +766,10 @@ export interface Translations {
     noSessions: string
     gatewayRunning: string
     gatewayStopped: string
-    hermesActiveSessions: (version: string, count: number) => string
+    alexActiveSessions: (version: string, count: number) => string
     restartGateway: string
     gatewayRestartFailed: string
-    updateHermes: string
+    updateAlex: string
     actionRunning: string
     actionDone: string
     actionFailed: string

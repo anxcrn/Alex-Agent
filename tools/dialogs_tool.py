@@ -4,10 +4,10 @@ import time
 import uuid
 from pathlib import Path
 from tools.registry import registry
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 
 def _get_dialogs_dir() -> Path:
-    home = get_hermes_home()
+    home = get_alex_home()
     dialogs_dir = Path(home) / "dialogs"
     dialogs_dir.mkdir(parents=True, exist_ok=True)
     return dialogs_dir

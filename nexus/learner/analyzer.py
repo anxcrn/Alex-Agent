@@ -20,7 +20,7 @@ class AnalysisResult:
     what_is_it: str              # 'skill', 'tool', 'mcp_server', 'technique', 'api', 'library'
     what_does_it_do: str         # Summary of capability
     how_to_use: str              # Install or configuration description
-    relevance_to_hermes: float   # 0.0 to 10.0 relevance score
+    relevance_to_alex: float   # 0.0 to 10.0 relevance score
     actionable: bool             # Can we build this automatically?
     actionable_items: List[str] = field(default_factory=list)
 
@@ -29,7 +29,7 @@ class KnowledgeAnalyzer:
     """Analyzes raw crawl discoveries to extract structured AI-actionable knowledge."""
 
     def __init__(self) -> None:
-        self.api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("HERMES_LLM_API_KEY")
+        self.api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("ALEX_LLM_API_KEY")
 
     def analyze(self, discovery: Discovery) -> AnalysisResult:
         """Analyze a discovery to determine relevance, type, and usage instructions."""
@@ -51,7 +51,7 @@ class KnowledgeAnalyzer:
                 f"- what_is_it: one of 'skill', 'tool', 'mcp_server', 'technique', 'api', 'library'\n"
                 f"- what_does_it_do: brief description of functionality\n"
                 f"- how_to_use: code snippets, shell commands or configs required to use it\n"
-                f"- relevance_to_hermes: score from 0.0 to 10.0 (how useful is this for an AI coder agent?)\n"
+                f"- relevance_to_alex: score from 0.0 to 10.0 (how useful is this for an AI coder agent?)\n"
                 f"- actionable: boolean (can we auto-generate a Python tool, SKILL.md or MCP config for this?)\n"
                 f"- actionable_items: list of files to modify/add or commands to run\n"
                 f"Respond ONLY with valid JSON."
@@ -73,7 +73,7 @@ class KnowledgeAnalyzer:
                 what_is_it=str(res_dict.get("what_is_it", "technique")),
                 what_does_it_do=str(res_dict.get("what_does_it_do", "")),
                 how_to_use=str(res_dict.get("how_to_use", "")),
-                relevance_to_hermes=float(res_dict.get("relevance_to_hermes", 5.0)),
+                relevance_to_alex=float(res_dict.get("relevance_to_alex", 5.0)),
                 actionable=bool(res_dict.get("actionable", False)),
                 actionable_items=list(res_dict.get("actionable_items", []))
             )
@@ -117,7 +117,7 @@ class KnowledgeAnalyzer:
             what_is_it=what_is_it,
             what_does_it_do=f"Discovered {discovery.title}. Appears to be a {what_is_it}.",
             how_to_use=discovery.content[:1000],
-            relevance_to_hermes=relevance,
+            relevance_to_alex=relevance,
             actionable=actionable,
             actionable_items=actionable_items
         )

@@ -42,17 +42,17 @@ import uuid
 
 _IS_WINDOWS = platform.system() == "Windows"
 from tools.environments.local import _find_shell, _resolve_safe_cwd, _sanitize_subprocess_env
-from hermes_cli._subprocess_compat import windows_hide_flags
+from alex_cli._subprocess_compat import windows_hide_flags
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
-from hermes_cli.config import get_hermes_home
+from alex_cli.config import get_alex_home
 
 logger = logging.getLogger(__name__)
 
 
 # Checkpoint file for crash recovery (gateway only)
-CHECKPOINT_PATH = get_hermes_home() / "processes.json"
+CHECKPOINT_PATH = get_alex_home() / "processes.json"
 
 # Limits
 MAX_OUTPUT_CHARS = 200_000      # 200KB rolling output buffer
@@ -506,7 +506,7 @@ class ProcessRegistry:
         config is unreadable, so callers always get a sane number.
         """
         try:
-            from hermes_cli.config import read_raw_config, cfg_get, DEFAULT_CONFIG
+            from alex_cli.config import read_raw_config, cfg_get, DEFAULT_CONFIG
             cfg = read_raw_config()
             val = cfg_get(cfg, "terminal", "daemon_term_grace_seconds")
             if val is None:
@@ -830,9 +830,9 @@ class ProcessRegistry:
 
         # Run the command in the sandbox with output capture
         temp_dir = self._env_temp_dir(env)
-        log_path = f"{temp_dir}/hermes_bg_{session.id}.log"
-        pid_path = f"{temp_dir}/hermes_bg_{session.id}.pid"
-        exit_path = f"{temp_dir}/hermes_bg_{session.id}.exit"
+        log_path = f"{temp_dir}/alex_bg_{session.id}.log"
+        pid_path = f"{temp_dir}/alex_bg_{session.id}.pid"
+        exit_path = f"{temp_dir}/alex_bg_{session.id}.exit"
         quoted_command = shlex.quote(command)
         quoted_temp_dir = shlex.quote(temp_dir)
         quoted_log_path = shlex.quote(log_path)
@@ -1058,7 +1058,7 @@ class ProcessRegistry:
     def is_session_waiting(self, session_id: str) -> bool:
         """Whether a goal loop parked on this session should still be parked.
 
-        Used by the goal-loop wait barrier (``hermes_cli.goals``) to support
+        Used by the goal-loop wait barrier (``alex_cli.goals``) to support
         waiting on a process's OWN trigger, not just its exit. A session is
         "still waiting" when:
           - it is still running, AND
@@ -1137,7 +1137,7 @@ class ProcessRegistry:
         The reader thread (`_reader_loop`) sets `session.exited = True` only
         in its `finally` block, which runs when `stdout.read()` returns EOF.
         If the direct `Popen` child has exited but a descendant process (e.g.
-        a daemon spawned by `hermes update` restarting the gateway) is still
+        a daemon spawned by `alex update` restarting the gateway) is still
         holding the stdout pipe open, the reader blocks forever and poll()
         keeps returning "running" indefinitely (issue #17327 — 74 polls over
         7 minutes on Feishu).
@@ -1977,7 +1977,7 @@ def format_process_notification(evt: dict) -> "str | None":
     if _exit in {-15, 143, "-15", "143"}:
         _signal = ", SIGTERM"
     if _reason == "killed":
-        _status = f"terminated by {_source or 'Hermes'}"
+        _status = f"terminated by {_source or 'Alex'}"
     elif _reason == "lost":
         _status = "marked lost because the process backend disappeared"
     elif _reason == "failed_start":

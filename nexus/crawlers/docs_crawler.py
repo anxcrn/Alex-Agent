@@ -7,7 +7,7 @@ import json
 import logging
 from typing import Any, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from nexus.crawlers.base import BaseCrawler, CrawlResult, Discovery, DiscoveryCategory, SourceType
 
 logger = logging.getLogger(__name__)
@@ -18,7 +18,7 @@ class DocsCrawler(BaseCrawler):
 
     def __init__(self, max_pages: int = 20) -> None:
         super().__init__(max_pages=max_pages, request_delay=2.0)
-        self._hash_store_path = get_hermes_home() / "nexus" / "docs_hashes.json"
+        self._hash_store_path = get_alex_home() / "nexus" / "docs_hashes.json"
 
     @property
     def name(self) -> str:

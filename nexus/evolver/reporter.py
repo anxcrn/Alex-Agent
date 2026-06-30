@@ -10,7 +10,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from nexus.knowledge_base import KnowledgeBase
 from nexus.changelog import Changelog
 
@@ -23,7 +23,7 @@ class EvolutionReporter:
     def __init__(self, kb: Optional[KnowledgeBase] = None, changelog: Optional[Changelog] = None) -> None:
         self.kb = kb or KnowledgeBase()
         self.changelog = changelog or Changelog()
-        self._reports_dir = get_hermes_home() / "nexus" / "reports"
+        self._reports_dir = get_alex_home() / "nexus" / "reports"
         self._reports_dir.mkdir(parents=True, exist_ok=True)
 
     def daily_digest(self) -> str:

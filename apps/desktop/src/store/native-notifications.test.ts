@@ -12,8 +12,8 @@ import {
 import { $approvalRequest, setApprovalRequest } from './prompts'
 import { $activeSessionId, setActiveSessionId } from './session'
 
-const desktopWindow = window as unknown as { hermesDesktop?: Window['hermesDesktop'] }
-const initialHermesDesktop = desktopWindow.hermesDesktop
+const desktopWindow = window as unknown as { alexDesktop?: Window['alexDesktop'] }
+const initialAlexDesktop = desktopWindow.alexDesktop
 
 const notify = vi.fn().mockResolvedValue(true)
 
@@ -34,7 +34,7 @@ function freshSession(): string {
 
 beforeEach(() => {
   notify.mockClear()
-  desktopWindow.hermesDesktop = { notify } as unknown as Window['hermesDesktop']
+  desktopWindow.alexDesktop = { notify } as unknown as Window['alexDesktop']
   setNativeNotifyEnabled(true)
 
   for (const kind of NATIVE_NOTIFICATION_KINDS) {
@@ -46,10 +46,10 @@ beforeEach(() => {
 })
 
 afterEach(() => {
-  if (initialHermesDesktop) {
-    desktopWindow.hermesDesktop = initialHermesDesktop
+  if (initialAlexDesktop) {
+    desktopWindow.alexDesktop = initialAlexDesktop
   } else {
-    delete desktopWindow.hermesDesktop
+    delete desktopWindow.alexDesktop
   }
 })
 
@@ -153,7 +153,7 @@ describe('sendTestNativeNotification', () => {
   it('fires regardless of focus or active session', () => {
     setWindowState({ focused: true, hidden: false })
     setActiveSessionId('on-screen')
-    sendTestNativeNotification('Hermes', 'works')
+    sendTestNativeNotification('Alex', 'works')
     expect(notify).toHaveBeenCalledTimes(1)
   })
 })

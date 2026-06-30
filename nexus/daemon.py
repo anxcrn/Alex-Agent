@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 from nexus.config import load_config
 from nexus.knowledge_base import KnowledgeBase
 from nexus.changelog import Changelog
@@ -39,7 +39,7 @@ class NexusDaemon:
         self._lock = threading.Lock()
         
         # Paths
-        self._nexus_dir = get_hermes_home() / "nexus"
+        self._nexus_dir = get_alex_home() / "nexus"
         self._nexus_dir.mkdir(parents=True, exist_ok=True)
         self._pid_path = self._nexus_dir / "daemon.pid"
         self._status_path = self._nexus_dir / "daemon_status.json"

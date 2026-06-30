@@ -20,12 +20,12 @@ def server():
     with patch.dict(
         "sys.modules",
         {
-            "hermes_constants": MagicMock(
-                get_hermes_home=MagicMock(return_value="/tmp/hermes_test_compaction")
+            "alex_constants": MagicMock(
+                get_alex_home=MagicMock(return_value="/tmp/alex_test_compaction")
             ),
-            "hermes_cli.env_loader": MagicMock(),
-            "hermes_cli.banner": MagicMock(),
-            "hermes_state": MagicMock(),
+            "alex_cli.env_loader": MagicMock(),
+            "alex_cli.banner": MagicMock(),
+            "alex_state": MagicMock(),
         },
     ):
         yield importlib.import_module("tui_gateway.server")

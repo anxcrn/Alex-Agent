@@ -3,10 +3,10 @@ import json
 from pathlib import Path
 from typing import Optional
 from tools.registry import registry
-from hermes_constants import get_hermes_home
+from alex_constants import get_alex_home
 
 def _get_artifacts_dir() -> Path:
-    home = get_hermes_home()
+    home = get_alex_home()
     artifacts_dir = Path(home) / "artifacts"
     artifacts_dir.mkdir(parents=True, exist_ok=True)
     return artifacts_dir

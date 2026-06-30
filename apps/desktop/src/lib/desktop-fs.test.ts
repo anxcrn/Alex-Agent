@@ -44,7 +44,7 @@ const api = vi.fn(async ({ path }: { path: string }) => {
 
 function stubBridge() {
   vi.stubGlobal('window', {
-    hermesDesktop: {
+    alexDesktop: {
       api,
       gitRoot,
       readDir,
