@@ -29,7 +29,8 @@ console.log(`🔌 Launching Alex Backend Gateway: ${pythonCmd} cli.py gateway...
 const backend = spawn(pythonCmd, [cliPath, "gateway"], {
   cwd: WORKSPACE_DIR,
   stdio: "inherit",
-  env: { ...process.env, PYTHONPATH: WORKSPACE_DIR }
+  env: { ...process.env, PYTHONPATH: WORKSPACE_DIR },
+  shell: true
 });
 
 backend.on("error", (err) => {
@@ -42,7 +43,8 @@ setTimeout(() => {
   const npxCmd = process.platform === "win32" ? "npx.cmd" : "npx";
   const frontend = spawn(npxCmd, ["vite"], {
     cwd: __dirname,
-    stdio: "inherit"
+    stdio: "inherit",
+    shell: true
   });
 
   frontend.on("error", (err) => {
