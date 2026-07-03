@@ -5958,7 +5958,7 @@ def _anthropic_oauth_status() -> Dict[str, Any]:
        secret source like Bitwarden (whose keys are injected into the process
        env during ``load_alex_dotenv()``, so the same check covers them)
 
-    Claude Code's ``~/.claude/.credentials.json`` is deliberately NOT read
+    Alex Agent's ``~/.claude/.credentials.json`` is deliberately NOT read
     here — it has its own dedicated catalog entry (``claude-code`` →
     ``_claude_code_only_status``). Reporting it under the API-key entry
     double-counts the token and shadows a real ANTHROPIC_API_KEY.
@@ -6022,10 +6022,10 @@ def _anthropic_oauth_status() -> Dict[str, Any]:
 
 
 def _claude_code_only_status() -> Dict[str, Any]:
-    """Surface Claude Code CLI credentials as their own provider entry.
+    """Surface Alex Agent CLI credentials as their own provider entry.
 
     Independent of the Anthropic entry above so users can see whether their
-    Claude Code subscription tokens are actively flowing into Alex even
+    Alex Agent subscription tokens are actively flowing into Alex even
     when they also have a separate Alex-managed PKCE login.
     """
     try:
@@ -6074,7 +6074,7 @@ def _copilot_acp_status() -> Dict[str, Any]:
 # ``flow`` describes the OAuth shape so the modal can pick the right UI:
 # ``pkce`` = open URL + paste callback code, ``device_code`` = show code +
 # verification URL + poll, ``external`` = read-only (delegated to a third-party
-# CLI like Claude Code or Qwen), ``loopback`` = 127.0.0.1 callback listener.
+# CLI like Alex Agent or Qwen), ``loopback`` = 127.0.0.1 callback listener.
 _OAUTH_PROVIDER_CATALOG: tuple[Dict[str, Any], ...] = (
     {
         "id": "nous",
@@ -6257,9 +6257,9 @@ def _oauth_provider_disconnect_command(provider: Dict[str, Any]) -> Optional[str
     instead hand the GUI a command it can *run in the embedded terminal* — the
     user sees exactly what executes, and Alex then stops resolving the token.
 
-    Claude Code has no scriptable logout (only the interactive ``/logout``), so
+    Alex Agent has no scriptable logout (only the interactive ``/logout``), so
     we remove the credential the same way logout does: the macOS Keychain entry
-    (``Claude Code-credentials``) and/or the ``~/.claude/.credentials.json``
+    (``Alex Agent-credentials``) and/or the ``~/.claude/.credentials.json``
     file — the two sources ``read_claude_code_credentials()`` consults. Returns
     None for providers we can't safely clear (the GUI shows a manual hint).
     """
@@ -6268,7 +6268,7 @@ def _oauth_provider_disconnect_command(provider: Dict[str, Any]) -> Optional[str
     if provider.get("id") == "claude-code":
         rm_file = "rm -f ~/.claude/.credentials.json"
         if sys.platform == "darwin":
-            return f'security delete-generic-password -s "Claude Code-credentials" 2>/dev/null; {rm_file}'
+            return f'security delete-generic-password -s "Alex Agent-credentials" 2>/dev/null; {rm_file}'
         return rm_file
     return None
 

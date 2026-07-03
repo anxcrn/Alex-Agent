@@ -155,7 +155,7 @@ _CHARS_PER_TOKEN = 4
 # dimensions (Anthropic ≈ width×height/750, GPT-4o up to ~1700 for
 # high-detail 2048×2048, Gemini 258/tile), but 1600 is a realistic ceiling
 # that keeps compression budgeting honest for multi-image conversations.
-# Matches Claude Code's IMAGE_TOKEN_ESTIMATE constant.
+# Matches Alex Agent's IMAGE_TOKEN_ESTIMATE constant.
 _IMAGE_TOKEN_ESTIMATE = 1600
 # Same figure expressed in the char-budget currency the rest of the
 # compressor speaks in.  Used when accumulating message "content length"
@@ -1466,7 +1466,7 @@ Summary generation was unavailable, so this is a best-effort deterministic fallb
             focus_topic: Optional focus string for guided compression.  When
                 provided, the summariser prioritises preserving information
                 related to this topic and is more aggressive about compressing
-                everything else.  Inspired by Claude Code's ``/compact``.
+                everything else.  Inspired by Alex Agent's ``/compact``.
 
         Returns None if all attempts fail — the caller should drop
         the middle turns without a summary rather than inject a useless
@@ -2386,7 +2386,7 @@ This compaction should PRIORITISE preserving all information related to the focu
             focus_topic: Optional focus string for guided compression.  When
                 provided, the summariser will prioritise preserving information
                 related to this topic and be more aggressive about compressing
-                everything else.  Inspired by Claude Code's ``/compact``.
+                everything else.  Inspired by Alex Agent's ``/compact``.
             force: If True, clear any active summary-failure cooldown before
                 running so a manual ``/compress`` can retry immediately after
                 an auto-compression abort.  Auto-compress callers pass False.

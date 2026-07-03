@@ -2764,7 +2764,7 @@ class GatewaySlashCommandsMixin:
 
         Also accepts the boundary-aware form ``/compress here [N]``:
         summarize everything except the most recent ``N`` exchanges
-        (default 2), kept verbatim. Inspired by Claude Code's Rewind
+        (default 2), kept verbatim. Inspired by Alex Agent's Rewind
         "Summarize up to here" action (v2.1.139, May 2026,
         https://code.claude.com/docs/en/whats-new/2026-w20).
         """
@@ -3312,7 +3312,7 @@ class GatewaySlashCommandsMixin:
 
         Copies conversation history to a new session so the user can explore
         a different approach without losing the original.
-        Inspired by Claude Code's /branch command.
+        Inspired by Alex Agent's /branch command.
         """
         import uuid as _uuid
 

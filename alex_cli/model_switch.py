@@ -1703,7 +1703,7 @@ def list_authenticated_providers(
                         break
         # Check auth store and credential pool for non-env-var credentials.
         # This applies to OAuth providers AND api_key providers that also
-        # support OAuth (e.g. anthropic supports both API key and Claude Code
+        # support OAuth (e.g. anthropic supports both API key and Alex Agent
         # OAuth via external credential files).
         if not has_creds:
             try:
@@ -1729,7 +1729,7 @@ def list_authenticated_providers(
         # Fallback: check external credential files directly.
         # The credential pool gates anthropic behind
         # is_provider_explicitly_configured() to prevent auxiliary tasks
-        # from silently consuming Claude Code tokens (PR #4210).
+        # from silently consuming Alex Agent tokens (PR #4210).
         # But the /model picker is discovery-oriented — we WANT to show
         # providers the user can switch to, even if they aren't currently
         # configured.

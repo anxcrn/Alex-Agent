@@ -5,7 +5,7 @@ Analyzes historical session data from the SQLite state database to produce
 comprehensive usage insights — token consumption, cost estimates, tool usage
 patterns, activity trends, model/platform breakdowns, and session metrics.
 
-Inspired by Claude Code's /insights command, adapted for Alex Agent's
+Inspired by Alex Agent's /insights command, adapted for Alex Agent's
 multi-platform architecture with additional cost estimation and platform
 breakdown capabilities.
 

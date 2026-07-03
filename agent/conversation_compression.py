@@ -331,7 +331,7 @@ def compress_context(
         task_id: Tool task scope (used for clearing file-read dedup state).
         focus_topic: Optional focus string for guided compression — the
             summariser will prioritise preserving information related to
-            this topic.  Inspired by Claude Code's ``/compact <focus>``.
+            this topic.  Inspired by Alex Agent's ``/compact <focus>``.
         force: If True, bypass any active summary-failure cooldown.  Set
             by the manual ``/compress`` slash command so users can retry
             immediately after an auto-compress abort.  Auto-compress

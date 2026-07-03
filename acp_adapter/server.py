@@ -1142,7 +1142,7 @@ class AlexACPAgent(acp.Agent):
         # Per ACP spec, `session/load` must stream the prior conversation back
         # to the client via `session/update` notifications BEFORE responding,
         # so the client receives the full transcript within the load request's
-        # lifetime. Awaiting the replay here matches Codex / Claude Code /
+        # lifetime. Awaiting the replay here matches Codex / Alex Agent /
         # OpenCode / Pi and the Zed client (which registers the session-update
         # routing entry before awaiting the loadSession RPC specifically so
         # in-call history replay updates can find the thread). Deferring this

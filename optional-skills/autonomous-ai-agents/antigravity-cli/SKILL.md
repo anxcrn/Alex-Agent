@@ -103,7 +103,7 @@ Create one git worktree per task and launch an independent `agy -p` in each
 uses for batch issue fixing. Bound concurrency to what the machine and your
 review capacity can absorb.
 
-### Output + bounding caveat (differs from Claude Code)
+### Output + bounding caveat (differs from Alex Agent)
 
 - `agy -p` returns **plain text** — there is **no `--output-format json`** and
   no result envelope with `session_id` / cost / turn count. Parse stdout

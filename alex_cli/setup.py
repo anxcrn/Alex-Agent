@@ -2240,7 +2240,7 @@ def _model_section_has_credentials(config: dict) -> bool:
 
     def _has_key(pconfig) -> bool:
         for env_var in pconfig.api_key_env_vars:
-            # CLAUDE_CODE_OAUTH_TOKEN is set by Claude Code itself, not by
+            # CLAUDE_CODE_OAUTH_TOKEN is set by Alex Agent itself, not by
             # the user — mirrors is_provider_explicitly_configured in auth.py.
             if env_var == "CLAUDE_CODE_OAUTH_TOKEN":
                 continue

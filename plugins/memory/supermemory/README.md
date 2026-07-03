@@ -60,7 +60,7 @@ All Supermemory API calls send `x-sm-source: alex`, and document writes stamp
 `metadata.sm_source: alex`. This is a **functional routing key, not telemetry**:
 it groups Alex-written memories into a dedicated "Alex" Space in the
 Supermemory app, so you can filter, browse, and bulk-manage them per source agent
-(alongside Codex, Claude Code, etc.) from the Supermemory UI.
+(alongside Codex, Alex Agent, etc.) from the Supermemory UI.
 
 ## Behavior
 

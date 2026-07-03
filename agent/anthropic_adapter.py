@@ -7,7 +7,7 @@ adapter — all provider-specific logic is isolated here.
 Auth supports:
   - Regular API keys (sk-ant-api*) → x-api-key header
   - OAuth setup-tokens (sk-ant-oat*) → Bearer auth + beta header
-  - Claude Code credentials (~/.claude.json or ~/.claude/.credentials.json) → Bearer auth
+  - Alex Agent credentials (~/.claude.json or ~/.claude/.credentials.json) → Bearer auth
 """
 
 import copy
@@ -332,13 +332,13 @@ _CONTEXT_1M_BETA = "context-1m-2025-08-07"
 _FAST_MODE_BETA = "fast-mode-2026-02-01"
 
 # Additional beta headers required for OAuth/subscription auth.
-# Matches what Claude Code (and pi-ai / OpenCode) send.
+# Matches what Alex Agent (and pi-ai / OpenCode) send.
 _OAUTH_ONLY_BETAS = [
     "claude-code-20250219",
     "oauth-2025-04-20",
 ]
 
-# Claude Code identity — required for OAuth requests to be routed correctly.
+# Alex Agent identity — required for OAuth requests to be routed correctly.
 # Without these, Anthropic's infrastructure intermittently 500s OAuth traffic.
 # The version must stay reasonably current — Anthropic rejects OAuth requests
 # when the spoofed user-agent version is too far behind the actual release.
@@ -347,11 +347,11 @@ _claude_code_version_cache: Optional[str] = None
 
 
 def _detect_claude_code_version() -> str:
-    """Detect the installed Claude Code version, fall back to a static constant.
+    """Detect the installed Alex Agent version, fall back to a static constant.
 
     Anthropic's OAuth infrastructure validates the user-agent version and may
     reject requests with a version that's too old.  Detecting dynamically means
-    users who keep Claude Code updated never hit stale-version 400s.
+    users who keep Alex Agent updated never hit stale-version 400s.
     """
     import subprocess as _sp
 
@@ -362,7 +362,7 @@ def _detect_claude_code_version() -> str:
                 capture_output=True, text=True, timeout=5,
             )
             if result.returncode == 0 and result.stdout.strip():
-                # Output is like "2.1.74 (Claude Code)" or just "2.1.74"
+                # Output is like "2.1.74 (Alex Agent)" or just "2.1.74"
                 version = result.stdout.strip().split()[0]
                 if version and version[0].isdigit():
                     return version
@@ -371,12 +371,12 @@ def _detect_claude_code_version() -> str:
     return _CLAUDE_CODE_VERSION_FALLBACK
 
 
-_CLAUDE_CODE_SYSTEM_PREFIX = "You are Claude Code, Anthropic's official CLI for Claude."
+_CLAUDE_CODE_SYSTEM_PREFIX = "You are Alex Agent, Anthropic's official CLI for Claude."
 _MCP_TOOL_PREFIX = "mcp__"
 
 
 def _get_claude_code_version() -> str:
-    """Lazily detect the installed Claude Code version when OAuth headers need it."""
+    """Lazily detect the installed Alex Agent version when OAuth headers need it."""
     global _claude_code_version_cache
     if _claude_code_version_cache is None:
         _claude_code_version_cache = _detect_claude_code_version()
@@ -389,7 +389,7 @@ def _is_oauth_token(key: str) -> bool:
     Positively identifies Anthropic OAuth tokens by their key format:
     - ``sk-ant-`` prefix (but NOT ``sk-ant-api``) → setup tokens, managed keys
     - ``eyJ`` prefix → JWTs from the Anthropic OAuth flow
-    - ``cc-`` prefix → Claude Code OAuth access tokens (from CLAUDE_CODE_OAUTH_TOKEN)
+    - ``cc-`` prefix → Alex Agent OAuth access tokens (from CLAUDE_CODE_OAUTH_TOKEN)
 
     Non-Anthropic keys (MiniMax, Alibaba, etc.) don't match any pattern
     and correctly return False.
@@ -405,7 +405,7 @@ def _is_oauth_token(key: str) -> bool:
     # JWTs from Anthropic OAuth flow
     if key.startswith("eyJ"):
         return True
-    # Claude Code OAuth access tokens (opaque, from CLAUDE_CODE_OAUTH_TOKEN)
+    # Alex Agent OAuth access tokens (opaque, from CLAUDE_CODE_OAUTH_TOKEN)
     if key.startswith("cc-"):
         return True
     return False
@@ -801,9 +801,9 @@ def build_anthropic_client(
         if common_betas:
             kwargs["default_headers"] = {"anthropic-beta": ",".join(common_betas)}
     elif _is_oauth_token(api_key):
-        # OAuth access token / setup-token → Bearer auth + Claude Code identity.
+        # OAuth access token / setup-token → Bearer auth + Alex Agent identity.
         # Anthropic routes OAuth requests based on user-agent and headers;
-        # without Claude Code's fingerprint, requests get intermittent 500s.
+        # without Alex Agent's fingerprint, requests get intermittent 500s.
         all_betas = common_betas + _OAUTH_ONLY_BETAS
         kwargs["auth_token"] = api_key
         kwargs["default_headers"] = {
@@ -857,10 +857,10 @@ def build_anthropic_bedrock_client(region: str):
 
 
 def _read_claude_code_credentials_from_keychain() -> Optional[Dict[str, Any]]:
-    """Read Claude Code OAuth credentials from the macOS Keychain.
+    """Read Alex Agent OAuth credentials from the macOS Keychain.
 
-    Claude Code >=2.1.114 stores credentials in the macOS Keychain under the
-    service name "Claude Code-credentials" rather than (or in addition to)
+    Alex Agent >=2.1.114 stores credentials in the macOS Keychain under the
+    service name "Alex Agent-credentials" rather than (or in addition to)
     the JSON file at ~/.claude/.credentials.json.
 
     The password field contains a JSON string with the same claudeAiOauth
@@ -872,10 +872,10 @@ def _read_claude_code_credentials_from_keychain() -> Optional[Dict[str, Any]]:
         return None
 
     try:
-        # Read the "Claude Code-credentials" generic password entry
+        # Read the "Alex Agent-credentials" generic password entry
         result = subprocess.run(
             ["security", "find-generic-password",
-             "-s", "Claude Code-credentials",
+             "-s", "Alex Agent-credentials",
              "-w"],
             capture_output=True,
             text=True,
@@ -887,7 +887,7 @@ def _read_claude_code_credentials_from_keychain() -> Optional[Dict[str, Any]]:
         return None
 
     if result.returncode != 0:
-        logger.debug("Keychain: no entry found for 'Claude Code-credentials'")
+        logger.debug("Keychain: no entry found for 'Alex Agent-credentials'")
         return None
 
     raw = result.stdout.strip()
@@ -915,10 +915,10 @@ def _read_claude_code_credentials_from_keychain() -> Optional[Dict[str, Any]]:
 
 
 def read_claude_code_credentials() -> Optional[Dict[str, Any]]:
-    """Read refreshable Claude Code OAuth credentials.
+    """Read refreshable Alex Agent OAuth credentials.
 
     Checks two sources in order:
-      1. macOS Keychain (Darwin only) — "Claude Code-credentials" entry
+      1. macOS Keychain (Darwin only) — "Alex Agent-credentials" entry
       2. ~/.claude/.credentials.json file
 
     This intentionally excludes ~/.claude.json primaryApiKey. Opencode's
@@ -928,7 +928,7 @@ def read_claude_code_credentials() -> Optional[Dict[str, Any]]:
 
     Returns dict with {accessToken, refreshToken?, expiresAt?} or None.
     """
-    # Try macOS Keychain first (covers Claude Code >=2.1.114)
+    # Try macOS Keychain first (covers Alex Agent >=2.1.114)
     kc_creds = _read_claude_code_credentials_from_keychain()
     if kc_creds:
         return kc_creds
@@ -955,7 +955,7 @@ def read_claude_code_credentials() -> Optional[Dict[str, Any]]:
 
 
 def is_claude_code_token_valid(creds: Dict[str, Any]) -> bool:
-    """Check if Claude Code credentials have a non-expired access token."""
+    """Check if Alex Agent credentials have a non-expired access token."""
     import time
 
     expires_at = creds.get("expiresAt", 0)
@@ -1034,7 +1034,7 @@ def refresh_anthropic_oauth_pure(refresh_token: str, *, use_json: bool = False) 
 
 
 def _refresh_oauth_token(creds: Dict[str, Any]) -> Optional[str]:
-    """Attempt to refresh an expired Claude Code OAuth token."""
+    """Attempt to refresh an expired Alex Agent OAuth token."""
     refresh_token = creds.get("refreshToken", "")
     if not refresh_token:
         logger.debug("No refresh token available — cannot refresh")
@@ -1047,10 +1047,10 @@ def _refresh_oauth_token(creds: Dict[str, Any]) -> Optional[str]:
             refreshed["refresh_token"],
             refreshed["expires_at_ms"],
         )
-        logger.debug("Successfully refreshed Claude Code OAuth token")
+        logger.debug("Successfully refreshed Alex Agent OAuth token")
         return refreshed["access_token"]
     except Exception as e:
-        logger.debug("Failed to refresh Claude Code token: %s", e)
+        logger.debug("Failed to refresh Alex Agent token: %s", e)
         return None
 
 
@@ -1064,8 +1064,8 @@ def _write_claude_code_credentials(
     """Write refreshed credentials back to ~/.claude/.credentials.json.
 
     The optional *scopes* list (e.g. ``["user:inference", "user:profile", ...]``)
-    is persisted so that Claude Code's own auth check recognises the credential
-    as valid.  Claude Code >=2.1.81 gates on the presence of ``"user:inference"``
+    is persisted so that Alex Agent's own auth check recognises the credential
+    as valid.  Alex Agent >=2.1.81 gates on the presence of ``"user:inference"``
     in the stored scopes before it will use the token.
     """
     cred_path = Path.home() / ".claude" / ".credentials.json"
@@ -1098,10 +1098,10 @@ def _write_claude_code_credentials(
             # write_text + post-replace chmod opened a TOCTOU window where
             # both the temp file and the destination briefly inherited the
             # process umask (commonly 0o644 = world-readable), exposing
-            # Claude Code OAuth tokens to other local users between create
+            # Alex Agent OAuth tokens to other local users between create
             # and chmod. Mirrors agent/google_oauth.py (#19673) and
             # tools/mcp_oauth.py (#21148). Parent dir (~/.claude/) is
-            # owned by Claude Code itself, so we leave its mode alone.
+            # owned by Alex Agent itself, so we leave its mode alone.
             fd = os.open(
                 str(_tmp_cred),
                 os.O_WRONLY | os.O_CREAT | os.O_EXCL,
@@ -1123,13 +1123,13 @@ def _write_claude_code_credentials(
 
 
 def _resolve_claude_code_token_from_credentials(creds: Optional[Dict[str, Any]] = None) -> Optional[str]:
-    """Resolve a token from Claude Code credential files, refreshing if needed."""
+    """Resolve a token from Alex Agent credential files, refreshing if needed."""
     creds = creds or read_claude_code_credentials()
     if creds and is_claude_code_token_valid(creds):
-        logger.debug("Using Claude Code credentials (auto-detected)")
+        logger.debug("Using Alex Agent credentials (auto-detected)")
         return creds["accessToken"]
     if creds:
-        logger.debug("Claude Code credentials expired — attempting refresh")
+        logger.debug("Alex Agent credentials expired — attempting refresh")
         refreshed = _refresh_oauth_token(creds)
         if refreshed:
             return refreshed
@@ -1138,12 +1138,12 @@ def _resolve_claude_code_token_from_credentials(creds: Optional[Dict[str, Any]] 
 
 
 def _prefer_refreshable_claude_code_token(env_token: str, creds: Optional[Dict[str, Any]]) -> Optional[str]:
-    """Prefer Claude Code creds when a persisted env OAuth token would shadow refresh.
+    """Prefer Alex Agent creds when a persisted env OAuth token would shadow refresh.
 
     Alex historically persisted setup tokens into ANTHROPIC_TOKEN. That makes
     later refresh impossible because the static env token wins before we ever
-    inspect Claude Code's refreshable credential file. If we have a refreshable
-    Claude Code credential record, prefer it over the static env OAuth token.
+    inspect Alex Agent's refreshable credential file. If we have a refreshable
+    Alex Agent credential record, prefer it over the static env OAuth token.
     """
     if not env_token or not _is_oauth_token(env_token) or not isinstance(creds, dict):
         return None
@@ -1153,7 +1153,7 @@ def _prefer_refreshable_claude_code_token(env_token: str, creds: Optional[Dict[s
     resolved = _resolve_claude_code_token_from_credentials(creds)
     if resolved and resolved != env_token:
         logger.debug(
-            "Preferring Claude Code credential file over static env OAuth token so refresh can proceed"
+            "Preferring Alex Agent credential file over static env OAuth token so refresh can proceed"
         )
         return resolved
     return None
@@ -1205,7 +1205,7 @@ def resolve_anthropic_token() -> Optional[str]:
     Priority:
       1. ANTHROPIC_TOKEN env var (OAuth/setup token saved by Alex)
       2. CLAUDE_CODE_OAUTH_TOKEN env var
-      3. Claude Code credentials (~/.claude.json or ~/.claude/.credentials.json)
+      3. Alex Agent credentials (~/.claude.json or ~/.claude/.credentials.json)
          — with automatic refresh if expired and a refresh token is available
       4. Anthropic credential_pool OAuth entry (~/.alex/auth.json)
       5. ANTHROPIC_API_KEY env var (regular API key, or legacy fallback)
@@ -1222,7 +1222,7 @@ def resolve_anthropic_token() -> Optional[str]:
             return preferred
         return token
 
-    # 2. CLAUDE_CODE_OAUTH_TOKEN (used by Claude Code for setup-tokens)
+    # 2. CLAUDE_CODE_OAUTH_TOKEN (used by Alex Agent for setup-tokens)
     cc_token = os.getenv("CLAUDE_CODE_OAUTH_TOKEN", "").strip()
     if cc_token:
         preferred = _prefer_refreshable_claude_code_token(cc_token, creds)
@@ -1230,7 +1230,7 @@ def resolve_anthropic_token() -> Optional[str]:
             return preferred
         return cc_token
 
-    # 3. Claude Code credential file
+    # 3. Alex Agent credential file
     resolved_claude_token = _resolve_claude_code_token_from_credentials(creds)
     if resolved_claude_token:
         return resolved_claude_token
@@ -1253,7 +1253,7 @@ def run_oauth_setup_token() -> Optional[str]:
     """Run 'claude setup-token' interactively and return the resulting token.
 
     Checks multiple sources after the subprocess completes:
-      1. Claude Code credential files (may be written by the subprocess)
+      1. Alex Agent credential files (may be written by the subprocess)
       2. CLAUDE_CODE_OAUTH_TOKEN / ANTHROPIC_TOKEN env vars
 
     Returns the token string, or None if no credentials were obtained.
@@ -1278,7 +1278,7 @@ def run_oauth_setup_token() -> Optional[str]:
     except (KeyboardInterrupt, EOFError):
         return None
 
-    # Check if credentials were saved to Claude Code's config files
+    # Check if credentials were saved to Alex Agent's config files
     creds = read_claude_code_credentials()
     if creds and is_claude_code_token_valid(creds):
         return creds["accessToken"]
@@ -1293,7 +1293,7 @@ def run_oauth_setup_token() -> Optional[str]:
 
 
 # ── Alex-native PKCE OAuth flow ────────────────────────────────────────
-# Mirrors the flow used by Claude Code, pi-ai, and OpenCode.
+# Mirrors the flow used by Alex Agent, pi-ai, and OpenCode.
 # Stores credentials in ~/.alex/.anthropic_oauth.json (our own file).
 
 _OAUTH_CLIENT_ID = "9d1c250a-e61b-44d9-88ed-5944d1962f5e"
@@ -2361,7 +2361,7 @@ def build_anthropic_kwargs(
     "max_tokens too large given prompt" errors and retry with a smaller cap
     (see parse_available_output_tokens_from_error + _ephemeral_max_output_tokens).
 
-    When *is_oauth* is True, applies Claude Code compatibility transforms:
+    When *is_oauth* is True, applies Alex Agent compatibility transforms:
     system prompt prefix, tool name prefixing, and prompt sanitization.
 
     When *preserve_dots* is True, model name dots are not converted to hyphens
@@ -2397,9 +2397,9 @@ def build_anthropic_kwargs(
     if context_length and effective_max_tokens > context_length:
         effective_max_tokens = max(context_length - 1, 1)
 
-    # ── OAuth: Claude Code identity ──────────────────────────────────
+    # ── OAuth: Alex Agent identity ──────────────────────────────────
     if is_oauth:
-        # 1. Prepend Claude Code system prompt identity
+        # 1. Prepend Alex Agent system prompt identity
         cc_block = {"type": "text", "text": _CLAUDE_CODE_SYSTEM_PREFIX}
         if isinstance(system, list):
             system = [cc_block] + system
@@ -2413,8 +2413,8 @@ def build_anthropic_kwargs(
         for block in system:
             if isinstance(block, dict) and block.get("type") == "text":
                 text = block.get("text", "")
-                text = text.replace("Alex Agent", "Claude Code")
-                text = text.replace("Alex agent", "Claude Code")
+                text = text.replace("Alex Agent", "Alex Agent")
+                text = text.replace("Alex agent", "Alex Agent")
                 text = text.replace("alex-agent", "claude-code")
                 text = text.replace("charan vankudoth", "Anthropic")
                 block["text"] = text

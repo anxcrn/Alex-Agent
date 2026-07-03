@@ -1663,9 +1663,9 @@ def resolve_runtime_provider(
         base_url = cfg_base_url or "https://api.anthropic.com"
 
         # For Microsoft Foundry endpoints, use ANTHROPIC_API_KEY directly —
-        # Claude Code OAuth tokens (sk-ant-oat01) are not accepted by Azure.
+        # Alex Agent OAuth tokens (sk-ant-oat01) are not accepted by Azure.
         # Azure keys don't start with "sk-ant-" so resolve_anthropic_token()
-        # would find the Claude Code OAuth token first (priority 3) and return
+        # would find the Alex Agent OAuth token first (priority 3) and return
         # that instead, causing 401s. Detect Azure endpoints and use the env
         # key directly to bypass the OAuth priority chain.
         _is_azure_endpoint = "azure.com" in base_url.lower() or (

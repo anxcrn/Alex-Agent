@@ -782,7 +782,7 @@ def _has_any_provider_configured() -> bool:
 
     # Determine whether Alex itself has been explicitly configured (model
     # in config that isn't the hardcoded default). Used below to gate external
-    # tool credentials (Claude Code, Codex CLI) that shouldn't silently skip
+    # tool credentials (Alex Agent, Codex CLI) that shouldn't silently skip
     # the setup wizard on a fresh install.
     from alex_cli.config import DEFAULT_CONFIG
 
@@ -868,8 +868,8 @@ def _has_any_provider_configured() -> bool:
         if cfg_provider or cfg_base_url or cfg_api_key:
             return True
 
-    # Check for Claude Code OAuth credentials (~/.claude/.credentials.json)
-    # Only count these if Alex has been explicitly configured — Claude Code
+    # Check for Alex Agent OAuth credentials (~/.claude/.credentials.json)
+    # Only count these if Alex has been explicitly configured — Alex Agent
     # being installed doesn't mean the user wants Alex to use their tokens.
     if _has_alex_config:
         try:
@@ -2319,7 +2319,7 @@ def cmd_chat(args):
         os.environ["ALEX_YOLO_MODE"] = "1"
 
     # --safe-mode: troubleshooting mode that disables ALL customizations.
-    # Inspired by Claude Code v2.1.169's --safe-mode (June 2026): run with a
+    # Inspired by Alex Agent v2.1.169's --safe-mode (June 2026): run with a
     # pristine environment to isolate whether a problem comes from the user's
     # setup (config, rules files, plugins, MCP servers) or from Alex itself.
     # Implemented as a superset of --ignore-user-config + --ignore-rules plus
@@ -4097,7 +4097,7 @@ def _run_anthropic_oauth_flow(save_env_value):
             is_claude_code_token_valid(creds) or bool(creds.get("refreshToken"))
         ):
             use_anthropic_claude_code_credentials(save_fn=save_env_value)
-            print("  ✓ Claude Code credentials linked.")
+            print("  ✓ Alex Agent credentials linked.")
             from alex_constants import display_alex_home as _dhh_fn
 
             print(
@@ -4147,7 +4147,7 @@ def _run_anthropic_oauth_flow(save_env_value):
         print()
         print("  To install and authenticate:")
         print()
-        print("    1. Install Claude Code:  npm install -g @anthropic-ai/claude-code")
+        print("    1. Install Alex Agent:  npm install -g @anthropic-ai/claude-code")
         print("    2. Run:                  claude setup-token")
         print("    3. Follow the browser prompts to authorize")
         print("    4. Re-run:               alex model")
@@ -4165,7 +4165,7 @@ def _run_anthropic_oauth_flow(save_env_value):
             save_anthropic_oauth_token(token, save_fn=save_env_value)
             print("  ✓ Setup-token saved.")
             return True
-        print("  Cancelled — install Claude Code and try again.")
+        print("  Cancelled — install Alex Agent and try again.")
         return False
 
 

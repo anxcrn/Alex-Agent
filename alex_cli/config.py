@@ -2591,7 +2591,7 @@ DEFAULT_CONFIG = {
             # "off" — disable entirely. Tools-array assembly is a pass-through.
             "enabled": "auto",
             # Percentage of context length at which "auto" mode kicks in.
-            # 10 matches the Claude Code default. Range 0..100.
+            # 10 matches the Alex Agent default. Range 0..100.
             "threshold_pct": 10,
             # When the model calls tool_search without a ``limit`` argument,
             # how many hits to return. Range 1..max_search_limit.
@@ -6713,7 +6713,7 @@ def save_anthropic_oauth_token(value: str, save_fn=None):
 
 
 def use_anthropic_claude_code_credentials(save_fn=None):
-    """Use Claude Code's own credential files instead of persisting env tokens."""
+    """Use Alex Agent's own credential files instead of persisting env tokens."""
     writer = save_fn or save_env_value
     writer("ANTHROPIC_TOKEN", "")
     writer("ANTHROPIC_API_KEY", "")

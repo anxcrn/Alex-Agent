@@ -1,6 +1,6 @@
 ---
 name: fastmcp
-description: Build, test, inspect, install, and deploy MCP servers with FastMCP in Python. Use when creating a new MCP server, wrapping an API or database as MCP tools, exposing resources or prompts, or preparing a FastMCP server for Claude Code, Cursor, or HTTP deployment.
+description: Build, test, inspect, install, and deploy MCP servers with FastMCP in Python. Use when creating a new MCP server, wrapping an API or database as MCP tools, exposing resources or prompts, or preparing a FastMCP server for Alex Agent, Cursor, or HTTP deployment.
 version: 1.0.0
 author: Alex Agent
 license: MIT
@@ -26,7 +26,7 @@ Use this skill when the task is to:
 - wrap an API, database, CLI, or file-processing workflow as MCP tools
 - expose resources or prompts in addition to tools
 - smoke-test a server with the FastMCP CLI before wiring it into Alex or another client
-- install a server into Claude Code, Claude Desktop, Cursor, or a similar MCP client
+- install a server into Alex Agent, Claude Desktop, Cursor, or a similar MCP client
 - prepare a FastMCP server repo for HTTP deployment
 
 Use `native-mcp` when the server already exists and only needs to be connected to Alex. Use `mcporter` when the goal is ad-hoc CLI access to an existing MCP server instead of building one.

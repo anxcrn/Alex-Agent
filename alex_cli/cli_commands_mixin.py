@@ -816,7 +816,7 @@ class CLICommandsMixin:
 
         Copies the full conversation history to a new session so the user can
         explore a different approach without losing the original session state.
-        Inspired by Claude Code's /branch command.
+        Inspired by Alex Agent's /branch command.
         """
         from cli import _cprint, _sync_process_session_id
         if not self.conversation_history:

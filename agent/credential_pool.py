@@ -601,7 +601,7 @@ class CredentialPool:
         """Sync a claude_code pool entry from ~/.claude/.credentials.json if tokens differ.
 
         OAuth refresh tokens are single-use. When something external (e.g.
-        Claude Code CLI, or another profile's pool) refreshes the token, it
+        Alex Agent CLI, or another profile's pool) refreshes the token, it
         writes the new pair to ~/.claude/.credentials.json. The pool entry's
         refresh token becomes stale. This method detects that and syncs.
         """
@@ -1323,7 +1323,7 @@ class CredentialPool:
         for entry in self._entries:
             # For anthropic claude_code entries, sync from the credentials file
             # before any status/refresh checks. This picks up tokens refreshed
-            # by other processes (Claude Code CLI, other Alex profiles).
+            # by other processes (Alex Agent CLI, other Alex profiles).
             if (self.provider == "anthropic" and entry.source == "claude_code"
                     and entry.last_status in {STATUS_EXHAUSTED, STATUS_DEAD}):
                 synced = self._sync_anthropic_entry_from_credentials_file(entry)
@@ -1721,7 +1721,7 @@ def _seed_from_singletons(provider: str, entries: List[PooledCredential]) -> Tup
             return False
 
     if provider == "anthropic":
-        # Only auto-discover external credentials (Claude Code, Alex PKCE)
+        # Only auto-discover external credentials (Alex Agent, Alex PKCE)
         # when the user has explicitly configured anthropic as their provider.
         # Without this gate, auxiliary client fallback chains silently read
         # ~/.claude/.credentials.json without user consent.  See PR #4210.
@@ -1739,7 +1739,7 @@ def _seed_from_singletons(provider: str, entries: List[PooledCredential]) -> Tup
         # API key and zeros ANTHROPIC_TOKEN; `save_anthropic_oauth_token()`
         # does the inverse.  When that signal is present we MUST NOT seed
         # autodiscovered OAuth tokens (~/.claude/.credentials.json from the
-        # Claude Code CLI, alex_pkce creds from a previous OAuth login)
+        # Alex Agent CLI, alex_pkce creds from a previous OAuth login)
         # into the anthropic pool — otherwise rotation on a 401/429 silently
         # flips the session onto an OAuth credential, which forces the Claude
         # Code identity injection, `mcp_` tool-name rewrite, and claude-cli

@@ -897,7 +897,7 @@ def drop_thinking_only_and_merge_users(
       and makes future turns see model output the model didn't emit.
     - Dropping the turn preserves honesty; merging adjacent user messages
       preserves the provider's role-alternation invariant.
-    - This is the pattern used by Claude Code's ``normalizeMessagesForAPI``
+    - This is the pattern used by Alex Agent's ``normalizeMessagesForAPI``
       (filterOrphanedThinkingOnlyMessages + mergeAdjacentUserMessages).
     """
     if not messages:

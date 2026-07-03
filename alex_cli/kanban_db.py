@@ -5626,7 +5626,7 @@ class DispatchResult:
     rather than on explicit per-task assignments."""
     skipped_nonspawnable: list[str] = field(default_factory=list)
     """Ready task ids skipped because their assignee names a control-plane
-    lane (a Claude Code terminal like ``orion-cc``) rather than a Alex
+    lane (a Alex Agent terminal like ``orion-cc``) rather than a Alex
     profile. Expected steady-state on multi-lane setups; NOT an
     operator-actionable failure. Tracked separately so health telemetry
     can distinguish "real stuck" (nothing spawned but spawnable work
@@ -7108,7 +7108,7 @@ def _dispatch_once_locked(
         # Skip ready tasks whose assignee is not a real Alex profile.
         # `_default_spawn` invokes ``alex -p <assignee>`` which fails
         # with "Profile 'X' does not exist" when the assignee names a
-        # control-plane lane (e.g. an interactive Claude Code terminal
+        # control-plane lane (e.g. an interactive Alex Agent terminal
         # like ``orion-cc`` / ``orion-research``) rather than a Alex
         # profile. Those task lanes are pulled by terminals via
         # ``claim_task`` directly and should NEVER auto-spawn — the

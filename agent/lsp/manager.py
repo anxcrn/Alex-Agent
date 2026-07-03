@@ -21,7 +21,7 @@ Design choices:
 - A **delta baseline** map keeps "diagnostics-as-of-the-last-snapshot"
   per file.  ``snapshot_baseline()`` is called BEFORE a write; the
   next ``get_diagnostics_sync()`` returns only diagnostics that
-  weren't in the baseline.  This is the lift from Claude Code's
+  weren't in the baseline.  This is the lift from Alex Agent's
   ``beforeFileEdited`` / ``getNewDiagnostics`` pattern, except wired
   to the local LSP layer instead of MCP IDE RPC.
 

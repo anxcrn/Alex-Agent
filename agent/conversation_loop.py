@@ -2516,7 +2516,7 @@ def run_conversation(
                     print(f"{agent.log_prefix}     • Check ANTHROPIC_TOKEN in {_dhh}/.env for Alex-managed OAuth/setup tokens")
                     print(f"{agent.log_prefix}     • Check ANTHROPIC_API_KEY in {_dhh}/.env for API keys or legacy token values")
                     print(f"{agent.log_prefix}     • For API keys: verify at https://platform.claude.com/settings/keys")
-                    print(f"{agent.log_prefix}     • For Claude Code: run 'claude /login' to refresh, then retry")
+                    print(f"{agent.log_prefix}     • For Alex Agent: run 'claude /login' to refresh, then retry")
                     print(f"{agent.log_prefix}     • Legacy cleanup: alex config set ANTHROPIC_TOKEN \"\"")
                     print(f"{agent.log_prefix}     • Clear stale keys: alex config set ANTHROPIC_API_KEY \"\"")
 

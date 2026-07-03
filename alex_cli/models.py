@@ -1007,7 +1007,7 @@ CANONICAL_PROVIDERS: list[ProviderEntry] = [
     ProviderEntry("moa",            "Mixture of Agents",        "Mixture of Agents (named presets; aggregator acts after reference models)"),
     ProviderEntry("novita",         "NovitaAI",                 "NovitaAI (Cloud: Model API, Agent Sandbox, GPU Cloud)"),
     ProviderEntry("lmstudio",       "LM Studio",                "LM Studio (Local desktop app with built-in model server)"),
-    ProviderEntry("anthropic",      "Anthropic",                "Anthropic (Claude models via API key or Claude Code)"),
+    ProviderEntry("anthropic",      "Anthropic",                "Anthropic (Claude models via API key or Alex Agent)"),
     ProviderEntry("openai-codex",   "OpenAI Codex",             "OpenAI Codex (Codex CLI via ChatGPT subscription or API key)"),
     ProviderEntry("openai-api",     "OpenAI API",               "OpenAI API (api.openai.com, API key)"),
     ProviderEntry("alibaba",        "Qwen Cloud",               "Qwen Cloud / DashScope (Qwen + multi-provider)"),
@@ -2655,7 +2655,7 @@ def _fetch_anthropic_models(
     """Fetch available models from the Anthropic /v1/models endpoint.
 
     Uses resolve_anthropic_token() to find credentials (env vars or
-    Claude Code auto-discovery) unless api_key is provided explicitly.
+    Alex Agent auto-discovery) unless api_key is provided explicitly.
     Returns sorted model IDs or None.
     """
     try:

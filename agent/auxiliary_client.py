@@ -1567,7 +1567,7 @@ def _resolve_api_key_provider() -> Tuple[Optional[OpenAI], Optional[str]]:
             continue
         if provider_id == "anthropic":
             # Only try anthropic when the user has explicitly configured it.
-            # Without this gate, Claude Code credentials get silently used
+            # Without this gate, Alex Agent credentials get silently used
             # as auxiliary fallback when the user's primary provider fails.
             try:
                 from alex_cli.auth import is_provider_explicitly_configured

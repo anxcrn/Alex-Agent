@@ -1356,7 +1356,7 @@ def is_provider_explicitly_configured(provider_id: str) -> bool:
       3. Provider-specific env vars are set (e.g. ANTHROPIC_API_KEY)
 
     This is used to gate auto-discovery of external credentials (e.g.
-    Claude Code's ~/.claude/.credentials.json) so they are never used
+    Alex Agent's ~/.claude/.credentials.json) so they are never used
     without the user's explicit choice.  See PR #4210 for the same
     pattern applied to the setup wizard gate.
     """
@@ -1384,7 +1384,7 @@ def is_provider_explicitly_configured(provider_id: str) -> bool:
         pass
 
     # 3. Check provider-specific env vars
-    # Exclude CLAUDE_CODE_OAUTH_TOKEN — it's set by Claude Code itself,
+    # Exclude CLAUDE_CODE_OAUTH_TOKEN — it's set by Alex Agent itself,
     # not by the user explicitly configuring anthropic in Alex.
     _IMPLICIT_ENV_VARS = {"CLAUDE_CODE_OAUTH_TOKEN"}
     pconfig = PROVIDER_REGISTRY.get(normalized)

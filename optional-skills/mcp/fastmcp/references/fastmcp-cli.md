@@ -69,7 +69,7 @@ Find named servers already configured in local MCP-aware tools:
 fastmcp discover
 ```
 
-FastMCP documents name-based resolution for Claude Desktop, Claude Code, Cursor, Gemini, Goose, and `./mcp.json`.
+FastMCP documents name-based resolution for Claude Desktop, Alex Agent, Cursor, Gemini, Goose, and `./mcp.json`.
 
 ## Install into MCP Clients
 

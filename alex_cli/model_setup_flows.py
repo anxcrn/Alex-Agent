@@ -2580,7 +2580,7 @@ def _model_flow_api_key_provider(config, provider_id, current_model=""):
         print("No change.")
 
 def _model_flow_anthropic(config, current_model=""):
-    """Flow for Anthropic provider — OAuth subscription, API key, or Claude Code creds."""
+    """Flow for Anthropic provider — OAuth subscription, API key, or Alex Agent creds."""
     from alex_cli.main import _run_anthropic_oauth_flow
     from alex_cli.auth import (
         _prompt_model_selection,
@@ -2643,7 +2643,7 @@ def _model_flow_anthropic(config, current_model=""):
                 f"  Anthropic credentials: {existing_key[:12]}... ✓{source_suffix}"
             )
         elif cc_available:
-            print("  Claude Code credentials: ✓ (auto-detected)")
+            print("  Alex Agent credentials: ✓ (auto-detected)")
         print()
         choice = _prompt_auth_credentials_choice("Anthropic credentials:")
 

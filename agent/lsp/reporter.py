@@ -2,7 +2,7 @@
 
 The model sees a compact, severity-filtered, line-bounded summary of
 diagnostics introduced by the latest edit.  Format matches what
-OpenCode's ``lsp/diagnostic.ts`` and Claude Code's
+OpenCode's ``lsp/diagnostic.ts`` and Alex Agent's
 ``formatDiagnosticsSummary`` produce — ``<diagnostics>`` blocks with
 1-indexed line/column, capped at ``MAX_PER_FILE`` errors.
 """

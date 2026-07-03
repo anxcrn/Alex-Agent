@@ -1393,7 +1393,7 @@ def _query_anthropic_context_length(model: str, base_url: str, api_key: str) -> 
     """Query Anthropic's /v1/models endpoint for context length.
 
     Only works with regular ANTHROPIC_API_KEY (sk-ant-api*).
-    OAuth tokens (sk-ant-oat*) from Claude Code return 401.
+    OAuth tokens (sk-ant-oat*) from Alex Agent return 401.
     """
     if not api_key or api_key.startswith("sk-ant-oat"):
         return None  # OAuth tokens can't access /v1/models

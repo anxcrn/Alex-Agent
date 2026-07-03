@@ -29,7 +29,7 @@ for interactive sessions.
 - Refactoring
 - PR reviews
 - Batch issue fixing
-- Any task where you'd otherwise reach for Codex / Claude Code but want Grok
+- Any task where you'd otherwise reach for Codex / Alex Agent but want Grok
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ for interactive sessions.
   - In the TUI, `/logout` signs out and `/login` (or relaunching) signs back in.
 - **No git repo required** — unlike Codex, Grok runs fine outside a git
   directory (good for scratch/throwaway tasks).
-- **Claude Code / AGENTS.md compatible with zero config** — Grok auto-reads
+- **Alex Agent / AGENTS.md compatible with zero config** — Grok auto-reads
   `CLAUDE.md`, `.claude/` (skills, agents, MCPs, hooks, rules), and the
   `AGENTS.md` family. Existing project context just works.
 
@@ -178,7 +178,7 @@ Obsidian or a repo) without mutating anything:
 grok --no-auto-update -p "Read /tmp/current.md and /tmp/inventory.md. Produce markdown only, no preamble. Output a clean note titled 'Cleanup Review'." --output-format plain
 ```
 
-**Pitfall (same as Claude Code):** for document rewrites, a loose "rewrite this"
+**Pitfall (same as Alex Agent):** for document rewrites, a loose "rewrite this"
 prompt may return a change summary instead of the full file. Instead: pipe the
 file in, and demand `Return ONLY the full revised markdown document. No intro,
 no explanation, no code fences. Start immediately with '# Title'.` Verify the
@@ -276,7 +276,7 @@ Put global preferences in `~/.grok/config.toml` (not project-scoped
    runs may stall waiting on tool-approval prompts. Omit it deliberately for
    read-only review/audit work so Grok can't mutate files.
 6. **Headless `-p` skips TUI dialogs**; the TUI needs `pty=true` (+ tmux for
-   monitoring), just like Claude Code.
+   monitoring), just like Alex Agent.
 7. **Use `--no-alt-screen`** if you run the TUI inline and the fullscreen
    alt-screen takeover garbles captured output.
 8. **No git repo needed**, but for PR/commit workflows you still want one — use

@@ -14,7 +14,7 @@ metadata:
 
 # Alex Agent
 
-Alex Agent is an open-source AI agent framework by charan vankudoth that runs in your terminal, a native desktop app, messaging platforms, and IDEs. It's in the same category as Claude Code (Anthropic), Codex (OpenAI), and OpenClaw — autonomous coding and task-execution agents that use tool calling to interact with your system. Alex works with any LLM provider (OpenRouter, Anthropic, OpenAI, Google, DeepSeek, xAI, local models, and 20+ others) and runs on Linux, macOS, Windows, and WSL.
+Alex Agent is an open-source AI agent framework by charan vankudoth that runs in your terminal, a native desktop app, messaging platforms, and IDEs. It's in the same category as Alex Agent (Anthropic), Codex (OpenAI), and OpenClaw — autonomous coding and task-execution agents that use tool calling to interact with your system. Alex works with any LLM provider (OpenRouter, Anthropic, OpenAI, Google, DeepSeek, xAI, local models, and 20+ others) and runs on Linux, macOS, Windows, and WSL.
 
 What makes Alex different:
 
@@ -480,7 +480,7 @@ Alex injects project-level instructions into the system prompt by reading contex
 | File (in priority order) | Discovery | Use when |
 |---|---|---|
 | `.alex.md` / `ALEX.md` | Walks parents up to the git root, stops at git root | You want hierarchical project rules (root + per-package overrides) |
-| `AGENTS.md` / `agents.md` | **Cwd only** — subdirectory and parent copies are ignored | You want portable agent instructions that work the same in Alex, Claude Code, Codex, etc. |
+| `AGENTS.md` / `agents.md` | **Cwd only** — subdirectory and parent copies are ignored | You want portable agent instructions that work the same in Alex, Alex Agent, Codex, etc. |
 | `CLAUDE.md` / `claude.md` | Cwd only | Same as AGENTS.md, Claude-flavored |
 | `.cursorrules` / `.cursor/rules/*.mdc` | Cwd only | Migrating from Cursor |
 
@@ -489,7 +489,7 @@ Alex injects project-level instructions into the system prompt by reading contex
 ### Pick the right one
 
 - **Use `.alex.md`** when you want Alex-specific behavior that lives above the cwd (root + subtree), or when you want rules to inherit from a parent directory. The parent walk stops at the git root, so a home-level `.alex.md` won't leak into every project (a git repo's root is the boundary).
-- **Use `AGENTS.md`** when the same project will also be worked on by other agents (Codex, Claude Code, OpenCode). Those tools all have their own conventions for `AGENTS.md`, and the "cwd only" contract keeps the file portable.
+- **Use `AGENTS.md`** when the same project will also be worked on by other agents (Codex, Alex Agent, OpenCode). Those tools all have their own conventions for `AGENTS.md`, and the "cwd only" contract keeps the file portable.
 - **Don't put project rules in `~/.alex/AGENTS.md`** (or any other home-level location). When Alex runs with that directory as cwd, the file loads — but only for that one directory. For cross-project context, use `SOUL.md` (in `$ALEX_HOME`, identity-only) or install a skill via `alex skills install`.
 
 ### Size and truncation

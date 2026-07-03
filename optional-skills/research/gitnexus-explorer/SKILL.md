@@ -83,7 +83,7 @@ cd "$GITNEXUS_DIR/gitnexus-web" && npx vite build
 ```bash
 cd /path/to/target-repo
 npx gitnexus analyze --skip-agents-md
-rm -rf .claude/    # remove Claude Code-specific artifacts
+rm -rf .claude/    # remove Alex Agent-specific artifacts
 ```
 
 Add `--embeddings` for semantic search (slower — minutes instead of seconds).
@@ -200,7 +200,7 @@ rm -rf .claude/
 
 - **The web UI does NOT create `.claude/` or `CLAUDE.md`.** Those are created by
   `npx gitnexus analyze`. Use `--skip-agents-md` to suppress the markdown files,
-  then `rm -rf .claude/` for the rest. These are Claude Code integrations that
+  then `rm -rf .claude/` for the rest. These are Alex Agent integrations that
   alex-agent users don't need.
 
 - **Browser memory limit.** The web UI loads the entire graph into browser memory.

@@ -61,7 +61,7 @@ class RemovalResult:
             Printed as plain lines to the user.
         hints: Diagnostic lines ABOUT state the user may need to clean up
             themselves or is deliberately left intact (shell-exported env
-            var, Claude Code credential file we don't delete, etc.).
+            var, Alex Agent credential file we don't delete, etc.).
             Printed as plain lines to the user.  Always non-destructive.
         suppress: Whether to call ``suppress_credential_source`` after
             cleanup so future ``load_pool`` calls skip this source.
@@ -192,14 +192,14 @@ def _remove_env_source(provider: str, removed) -> RemovalResult:
 
 
 def _remove_claude_code(provider: str, removed) -> RemovalResult:
-    """~/.claude/.credentials.json is owned by Claude Code itself.
+    """~/.claude/.credentials.json is owned by Alex Agent itself.
 
-    We don't delete it — the user's Claude Code install still needs to
+    We don't delete it — the user's Alex Agent install still needs to
     work.  We just suppress it so Alex stops reading it.
     """
     return RemovalResult(hints=[
         "Suppressed claude_code credential — it will not be re-seeded.",
-        "Note: Claude Code credentials still live in ~/.claude/.credentials.json",
+        "Note: Alex Agent credentials still live in ~/.claude/.credentials.json",
         "Run `alex auth add anthropic` to re-enable if needed.",
     ])
 

@@ -862,7 +862,7 @@ def _rule_stranded_in_ready(task, events, runs, now, cfg) -> list[Diagnostic]:
 
     * Operator typo'd the assignee — no profile or external worker matches.
     * Profile was deleted, leaving its tasks stranded.
-    * External worker pool (Codex CLI, Claude Code lane, custom daemon)
+    * External worker pool (Codex CLI, Alex Agent lane, custom daemon)
       is down, hung, or wasn't started.
     * Dispatcher is misconfigured (wrong board, wrong ALEX_HOME).
 

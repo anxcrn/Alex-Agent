@@ -36,7 +36,7 @@ Implementation notes:
   doesn't strictly require it.
 
 - ``ContentModified`` (-32801) errors get retried with exponential
-  backoff up to 3 times.  This matches Claude Code's
+  backoff up to 3 times.  This matches Alex Agent's
   ``LSPServerInstance.sendRequest``.
 """
 from __future__ import annotations
@@ -480,7 +480,7 @@ class LSPClient:
     async def _send_request_with_retry(self, method: str, params: Any, *, timeout: float) -> Any:
         """Send a request, retrying on ``ContentModified`` (-32801).
 
-        Other errors propagate.  The retry policy matches Claude Code's
+        Other errors propagate.  The retry policy matches Alex Agent's
         ``LSPServerInstance.sendRequest`` — 3 attempts with delays
         0.5s, 1.0s, 2.0s.
         """
