@@ -2177,7 +2177,7 @@ export interface OAuthProvider {
   id: string;
   name: string;
   /** "pkce" (browser redirect + paste code), "device_code" (show code + URL),
-   *  or "external" (delegated to a separate CLI like Claude Code or Qwen). */
+   *  or "external" (delegated to a separate CLI like Alex Agent or Qwen). */
   flow: "pkce" | "device_code" | "external";
   cli_command: string;
   docs_url: string;

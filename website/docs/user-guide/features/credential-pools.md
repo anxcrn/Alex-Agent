@@ -179,7 +179,7 @@ Alex automatically discovers credentials from multiple sources and seeds the poo
 |--------|---------|-------------|
 | Environment variables | `OPENROUTER_API_KEY`, `ANTHROPIC_API_KEY` | Yes |
 | OAuth tokens (auth.json) | Codex device code, Nous device code | Yes |
-| Claude Code credentials | `~/.claude/.credentials.json` | Yes (Anthropic) |
+| Alex Agent credentials | `~/.claude/.credentials.json` | Yes (Anthropic) |
 | Alex PKCE OAuth | `~/.alex/auth.json` | Yes (Anthropic) |
 | Custom endpoint config | `model.api_key` in config.yaml | Yes (custom endpoints) |
 | Manual entries | Added via `alex auth add` | Persisted in auth.json |

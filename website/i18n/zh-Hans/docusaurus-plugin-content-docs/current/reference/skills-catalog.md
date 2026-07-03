@@ -26,7 +26,7 @@ Alex 在执行 `alex update` 时也会同步内置技能，但同步清单会尊
 
 | 技能 | 描述 | 路径 |
 |-------|-------------|------|
-| [`claude-code`](/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-claude-code) | 将编码任务委托给 Claude Code CLI（功能开发、PR）。 | `autonomous-ai-agents/claude-code` |
+| [`claude-code`](/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-claude-code) | 将编码任务委托给 Alex Agent CLI（功能开发、PR）。 | `autonomous-ai-agents/claude-code` |
 | [`codex`](/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-codex) | 将编码任务委托给 OpenAI Codex CLI（功能开发、PR）。 | `autonomous-ai-agents/codex` |
 | [`alex-agent`](/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-alex-agent) | 配置、扩展或贡献 Alex Agent。 | `autonomous-ai-agents/alex-agent` |
 | [`opencode`](/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-opencode) | 将编码任务委托给 OpenCode CLI（功能开发、PR 审查）。 | `autonomous-ai-agents/opencode` |

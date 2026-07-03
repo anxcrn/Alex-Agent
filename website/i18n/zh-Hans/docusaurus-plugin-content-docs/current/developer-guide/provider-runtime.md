@@ -123,9 +123,9 @@ Anthropic 不再仅限于"通过 OpenRouter"访问。
 - 原生 Anthropic Messages API
 - `agent/anthropic_adapter.py` 进行转换
 
-原生 Anthropic 的凭据解析现在在两者同时存在时，优先使用可刷新的 Claude Code 凭据，而非复制的环境变量 token。实际效果为：
+原生 Anthropic 的凭据解析现在在两者同时存在时，优先使用可刷新的 Alex Agent 凭据，而非复制的环境变量 token。实际效果为：
 
-- 包含可刷新认证的 Claude Code 凭据文件被视为首选来源
+- 包含可刷新认证的 Alex Agent 凭据文件被视为首选来源
 - 手动设置的 `ANTHROPIC_TOKEN` / `CLAUDE_CODE_OAUTH_TOKEN` 值仍可作为显式覆盖
 - Alex 在调用原生 Messages API 前会预检 Anthropic 凭据刷新
 - Alex 在重建 Anthropic 客户端后，仍会在收到 401 时重试一次，作为回退路径

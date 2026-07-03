@@ -61,7 +61,7 @@ NODE_VERSION="22"
 
 # FHS-style root install layout (set by resolve_install_layout when applicable):
 #   code at /usr/local/lib/alex-agent, command at /usr/local/bin/alex,
-#   data still at /root/.alex (ALEX_HOME).  Matches Claude Code / Codex CLI
+#   data still at /root/.alex (ALEX_HOME).  Matches Alex Agent / Codex CLI
 #   and keeps Docker bind-mounted /root/ volumes lean.
 ROOT_FHS_LAYOUT=false
 DETECTED_BROWSER_EXECUTABLE=""
@@ -182,7 +182,7 @@ while [[ $# -gt 0 ]]; do
             echo "Notes:"
             echo "  When running as root on Linux, Alex installs the code under"
             echo "  /usr/local/lib/alex-agent and links the command into"
-            echo "  /usr/local/bin/alex (FHS layout — matches Claude Code / Codex CLI)."
+            echo "  /usr/local/bin/alex (FHS layout — matches Alex Agent / Codex CLI)."
             echo "  Data, config, sessions, and logs still live in \$ALEX_HOME"
             echo "  (default /root/.alex).  This keeps Docker bind-mounted volumes"
             echo "  small and ensures the command is on PATH for all shells."

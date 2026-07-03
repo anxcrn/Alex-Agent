@@ -22,7 +22,7 @@ go through `get_manager()`.
 
 Design reference:
 
-- Claude Code's ``invalidateOAuthCacheIfDiskChanged``
+- Alex Agent's ``invalidateOAuthCacheIfDiskChanged``
   (``claude-code/src/utils/auth.ts:1320``, CC-1096 / GH#24317). Identical
   external-refresh staleness bug class.
 - Codex's ``refresh_oauth_if_needed`` / ``persist_if_needed``
@@ -86,7 +86,7 @@ class _ProviderEntry:
             whichever asyncio loop first awaits it (the MCP event loop).
         pending_401: In-flight 401-handler futures keyed by the failed
             access_token, for deduplicating thundering-herd 401s. Mirrors
-            Claude Code's ``pending401Handlers`` map.
+            Alex Agent's ``pending401Handlers`` map.
     """
 
     server_url: str
@@ -124,7 +124,7 @@ def _make_alex_provider_class() -> Optional[type]:
         This makes external-process refreshes (cron, another CLI instance)
         visible to the running MCP session without requiring a restart.
 
-        Reference: Claude Code's ``invalidateOAuthCacheIfDiskChanged``
+        Reference: Alex Agent's ``invalidateOAuthCacheIfDiskChanged``
         (``src/utils/auth.ts:1320``, CC-1096 / GH#24317).
         """
 

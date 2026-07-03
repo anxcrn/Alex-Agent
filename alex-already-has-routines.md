@@ -1,6 +1,6 @@
 # Alex Agent Has Had "Routines" Since March
 
-Anthropic just announced [Claude Code Routines](https://claude.com/blog/introducing-routines-in-claude-code) — scheduled tasks, GitHub event triggers, and API-triggered agent runs. Bundled prompt + repo + connectors, running on their infrastructure.
+Anthropic just announced [Alex Agent Routines](https://claude.com/blog/introducing-routines-in-claude-code) — scheduled tasks, GitHub event triggers, and API-triggered agent runs. Bundled prompt + repo + connectors, running on their infrastructure.
 
 It's a good feature. We shipped it two months ago.
 
@@ -8,7 +8,7 @@ It's a good feature. We shipped it two months ago.
 
 ## The Three Trigger Types — Side by Side
 
-Claude Code Routines offers three ways to trigger an automation:
+Alex Agent Routines offers three ways to trigger an automation:
 
 **1. Scheduled (cron)**
 > "Every night at 2am: pull the top bug from Linear, attempt a fix, and open a draft PR."
@@ -48,7 +48,7 @@ Every use case in their blog post — backlog triage, docs drift, deploy verific
 
 ## What's Different
 
-| | Claude Code Routines | Alex Agent |
+| | Alex Agent Routines | Alex Agent |
 |---|---|---|
 | **Scheduled tasks** | ✅ Schedule-based | ✅ Any cron expression + human-readable intervals |
 | **GitHub triggers** | ✅ PR, issue, push events | ✅ Any GitHub event via webhook subscriptions |
@@ -114,7 +114,7 @@ Your nightly triage can run on Claude. Your deploy verification can run on GPT. 
 
 ## The Limits Tell the Story
 
-Claude Code Routines: **5 routines per day** on Pro. **25 on Enterprise.** That's their ceiling.
+Alex Agent Routines: **5 routines per day** on Pro. **25 on Enterprise.** That's their ceiling.
 
 Alex has no daily limit. Run 500 automations a day if you want. The only constraint is your API budget, and you choose which models to use for which tasks.
 

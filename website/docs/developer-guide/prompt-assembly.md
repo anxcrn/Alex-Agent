@@ -227,7 +227,7 @@ def build_context_files_prompt(cwd=None, skip_soul=False):
 |----------|-------|-------------|-------|
 | 1 | `.alex.md`, `ALEX.md` | CWD up to git root | Alex-native project config |
 | 2 | `AGENTS.md` | CWD only | Common agent instruction file |
-| 3 | `CLAUDE.md` | CWD only | Claude Code compatibility |
+| 3 | `CLAUDE.md` | CWD only | Alex Agent compatibility |
 | 4 | `.cursorrules`, `.cursor/rules/*.mdc` | CWD only | Cursor compatibility |
 
 All context files are:

@@ -102,7 +102,7 @@ class TestHandleFunctionCall:
     def test_post_tool_call_receives_non_negative_integer_duration_ms(self):
         """Regression: post_tool_call and transform_tool_result hooks must
         receive a non-negative integer ``duration_ms`` kwarg measuring
-        dispatch latency.  Inspired by Claude Code 2.1.119, which added
+        dispatch latency.  Inspired by Alex Agent 2.1.119, which added
         ``duration_ms`` to its PostToolUse hook inputs.
         """
         with (

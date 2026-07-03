@@ -2,7 +2,7 @@
 """
 Alex Agent CLI - Interactive Terminal Interface
 
-A beautiful command-line interface for the Alex Agent, inspired by Claude Code.
+A beautiful command-line interface for the Alex Agent, inspired by Alex Agent.
 Features ASCII art branding, interactive REPL, toolset selection, and rich formatting.
 
 Usage:
@@ -5850,7 +5850,7 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
             pass
 
     def show_banner(self):
-        """Display the welcome banner in Claude Code style."""
+        """Display the welcome banner in Alex Agent style."""
         self.console.clear()
         ctx_len = None
         if hasattr(self, 'agent') and self.agent and hasattr(self.agent, 'context_compressor'):
@@ -8997,11 +8997,11 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
         * ``/compress [<focus>]`` — compress the *whole* history. An
           optional focus topic guides the summariser to preserve
           information related to *focus* while being more aggressive
-          about discarding everything else.  Inspired by Claude Code's
+          about discarding everything else.  Inspired by Alex Agent's
           ``/compact <focus>`` feature.
         * ``/compress here [N]`` — boundary-aware compression. Summarize
           everything *except* the most recent ``N`` exchanges (default
-          2), which are preserved verbatim. Inspired by Claude Code's
+          2), which are preserved verbatim. Inspired by Alex Agent's
           Rewind "Summarize up to here" action (v2.1.139, May 2026,
           https://code.claude.com/docs/en/whats-new/2026-w20). Lets the
           user pick the compression boundary instead of leaving it to
@@ -12215,7 +12215,7 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
             logger.debug("Could not persist active CLI session before close: %s", e)
 
     def _print_exit_summary(self):
-        """Print session resume info on exit, similar to Claude Code."""
+        """Print session resume info on exit, similar to Alex Agent."""
         # Clear the screen + scrollback before printing the summary so the
         # live bottom chrome (status bar, input box, separator rules) and the
         # rest of the session transcript don't get stranded above the exit
@@ -14797,7 +14797,7 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
             #
             # The handler is a silent no-op. Real user Ctrl+C still works
             # because prompt_toolkit binds c-c at the TUI layer and never
-            # reaches this OS-signal path. This matches how Claude Code
+            # reaches this OS-signal path. This matches how Alex Agent
             # handles the same Windows quirk (cancellation is driven by
             # the TUI key handler, not by OS signals).
             #
@@ -14811,7 +14811,7 @@ class AlexCLI(CLIAgentSetupMixin, CLICommandsMixin):
                     # interrupt() would inject a fake user message each
                     # time. Real user Ctrl+C routes through prompt_toolkit's
                     # own c-c key binding at the TUI layer (same pattern as
-                    # Claude Code's Windows handling).
+                    # Alex Agent's Windows handling).
                     return
                 _signal.signal(_signal.SIGINT, _sigint_absorb)
         except Exception:

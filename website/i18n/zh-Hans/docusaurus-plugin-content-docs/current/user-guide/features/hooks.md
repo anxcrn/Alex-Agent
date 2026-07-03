@@ -1277,7 +1277,7 @@ else
 fi
 ```
 
-Claude Code 的 `UserPromptSubmit` 事件在 Alex 中没有对应的独立事件——`pre_llm_call` 在相同位置触发，且已支持上下文注入。在此使用即可。
+Alex Agent 的 `UserPromptSubmit` 事件在 Alex 中没有对应的独立事件——`pre_llm_call` 在相同位置触发，且已支持上下文注入。在此使用即可。
 
 #### 4. 记录每次子 agent 完成
 

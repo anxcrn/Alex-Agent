@@ -52,7 +52,7 @@ Each entry requires both `provider` and `model`. Entries missing either field ar
 | OpenAI Codex | `openai-codex` | `alex model` (ChatGPT OAuth) |
 | GitHub Copilot | `copilot` | `COPILOT_GITHUB_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN` |
 | GitHub Copilot ACP | `copilot-acp` | External process (editor integration) |
-| Anthropic | `anthropic` | `ANTHROPIC_API_KEY` or Claude Code credentials |
+| Anthropic | `anthropic` | `ANTHROPIC_API_KEY` or Alex Agent credentials |
 | z.ai / GLM | `zai` | `GLM_API_KEY` |
 | Kimi / Moonshot | `kimi-coding` | `KIMI_API_KEY` |
 | MiniMax | `minimax` | `MINIMAX_API_KEY` |
@@ -285,7 +285,7 @@ These options apply to `auxiliary:`, `compression:`, and `fallback_providers:` e
 | `"nous"` | Force Nous Portal | `alex auth` |
 | `"codex"` | Force Codex OAuth | `alex model` → Codex |
 | `"main"` | Use whatever provider the main agent uses (auxiliary tasks only) | Active main provider configured |
-| `"anthropic"` | Force Anthropic native | `ANTHROPIC_API_KEY` or Claude Code credentials |
+| `"anthropic"` | Force Anthropic native | `ANTHROPIC_API_KEY` or Alex Agent credentials |
 
 ### Direct Endpoint Override
 

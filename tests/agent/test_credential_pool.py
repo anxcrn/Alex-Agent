@@ -1668,8 +1668,8 @@ def test_load_pool_api_key_path_skips_oauth_autodiscovery(tmp_path, monkeypatch)
     `save_anthropic_api_key()` writes ANTHROPIC_API_KEY and zeros
     ANTHROPIC_TOKEN.  That env-var pattern is the explicit signal that the
     user opted into the API-key path and explicitly OUT of the OAuth
-    masquerade (Claude Code identity injection + `mcp_` tool-name rewrite
-    + claude-cli user-agent).  Autodiscovered Claude Code / Alex PKCE
+    masquerade (Alex Agent identity injection + `mcp_` tool-name rewrite
+    + claude-cli user-agent).  Autodiscovered Alex Agent / Alex PKCE
     tokens from other tools' credential files must NOT be silently mixed
     into the anthropic pool — otherwise rotation on a 401/429 could flip
     the session onto OAuth credentials mid-conversation.
@@ -1772,7 +1772,7 @@ def test_load_pool_oauth_path_still_autodiscovers(tmp_path, monkeypatch):
 
     Regression guard: the API-key gate must not affect users who chose the
     OAuth path at `alex setup`.  When ANTHROPIC_TOKEN is set (and
-    ANTHROPIC_API_KEY is empty), autodiscovered Claude Code creds should
+    ANTHROPIC_API_KEY is empty), autodiscovered Alex Agent creds should
     still be seeded into the pool as before.
     """
     monkeypatch.setenv("ALEX_HOME", str(tmp_path / "alex"))
@@ -1800,7 +1800,7 @@ def test_load_pool_oauth_path_still_autodiscovers(tmp_path, monkeypatch):
     pool = load_pool("anthropic")
     sources = {entry.source for entry in pool.entries()}
 
-    # Both env OAuth token and autodiscovered Claude Code creds should be there.
+    # Both env OAuth token and autodiscovered Alex Agent creds should be there.
     assert "env:ANTHROPIC_TOKEN" in sources
     assert "claude_code" in sources
 
@@ -2248,11 +2248,11 @@ def test_release_lease_decrements_counter(tmp_path, monkeypatch):
 
 
 def test_load_pool_does_not_seed_claude_code_when_anthropic_not_configured(tmp_path, monkeypatch):
-    """Claude Code credentials must not be auto-seeded when the user never selected anthropic."""
+    """Alex Agent credentials must not be auto-seeded when the user never selected anthropic."""
     monkeypatch.setenv("ALEX_HOME", str(tmp_path / "alex"))
     _write_auth_store(tmp_path, {"version": 1, "credential_pool": {}})
 
-    # Claude Code credentials exist on disk
+    # Alex Agent credentials exist on disk
     monkeypatch.setattr(
         "agent.anthropic_adapter.read_claude_code_credentials",
         lambda: {"accessToken": "sk-ant...oken", "refreshToken": "rt", "expiresAt": 9999999999999},

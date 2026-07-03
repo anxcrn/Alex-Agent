@@ -88,7 +88,7 @@ description: "Alex Agent 使用的所有环境变量完整参考"
 | `OPENCODE_ZEN_BASE_URL` | 覆盖 OpenCode Zen base URL |
 | `OPENCODE_GO_API_KEY` | OpenCode Go API 密钥——$10/月订阅开源模型（[opencode.ai](https://opencode.ai/auth)） |
 | `OPENCODE_GO_BASE_URL` | 覆盖 OpenCode Go base URL |
-| `CLAUDE_CODE_OAUTH_TOKEN` | 手动导出时的显式 Claude Code token 覆盖 |
+| `CLAUDE_CODE_OAUTH_TOKEN` | 手动导出时的显式 Alex Agent token 覆盖 |
 | `ALEX_MODEL` | 在进程级别覆盖模型名称（供 cron 调度器使用；正常使用请优先在 `config.yaml` 中配置） |
 | `VOICE_TOOLS_OPENAI_KEY` | OpenAI 语音转文字和文字转语音提供商的首选 OpenAI 密钥 |
 | `ALEX_LOCAL_STT_COMMAND` | 可选的本地语音转文字命令模板。支持 `{input_path}`、`{output_dir}`、`{language}` 和 `{model}` 占位符 |
@@ -104,7 +104,7 @@ description: "Alex Agent 使用的所有环境变量完整参考"
 
 ## 提供商认证（OAuth）
 
-对于原生 Anthropic 认证，Alex 在 Claude Code 自身凭证文件存在时优先使用，因为这些凭证可以自动刷新。**针对 Anthropic 的 OAuth 需要购买了额外使用额度的 Claude Max 计划**——Alex 以 Claude Code 身份路由，仅消耗 Max 计划的额外/超额额度，不消耗基础 Max 配额，且不适用于 Claude Pro。没有 Max + 额外额度时，请改用 API 密钥。`ANTHROPIC_TOKEN` 等环境变量作为手动覆盖仍然有用，但不再是 Claude Max 登录的首选路径。
+对于原生 Anthropic 认证，Alex 在 Alex Agent 自身凭证文件存在时优先使用，因为这些凭证可以自动刷新。**针对 Anthropic 的 OAuth 需要购买了额外使用额度的 Claude Max 计划**——Alex 以 Alex Agent 身份路由，仅消耗 Max 计划的额外/超额额度，不消耗基础 Max 配额，且不适用于 Claude Pro。没有 Max + 额外额度时，请改用 API 密钥。`ANTHROPIC_TOKEN` 等环境变量作为手动覆盖仍然有用，但不再是 Claude Max 登录的首选路径。
 
 | 变量 | 描述 |
 |----------|-------------|

@@ -366,6 +366,100 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* ── CORE CAPABILITIES GRID (Chats, Apps, MCPs, Skills, Customizations, Desktop App Teaser) ── */}
+        <section className="mt-32 space-y-16">
+          <div className="text-center space-y-3">
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#00F0FF]">
+              SYSTEM ENGINE CAPABILITIES
+            </span>
+            <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tight text-white leading-none">
+              ALL-IN-ONE AGENT WORKSPACE
+            </h2>
+            <p className="text-white/50 max-w-2xl mx-auto font-light text-sm sm:text-base">
+              Alex Agent acts as a central workspace for advanced development, equipped with tools, skills, and model integrations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            {/* Feature 1: ChatGPT-Style Chat */}
+            <div className="border border-white/5 bg-black/40 p-8 rounded-2xl backdrop-blur-md hover:border-[#00F0FF]/30 transition-all duration-300 group space-y-4">
+              <div className="size-10 rounded-sm bg-[#00F0FF]/10 border border-[#00F0FF]/30 flex items-center justify-center text-[#00F0FF]">
+                <MessageSquare className="size-5" />
+              </div>
+              <h3 className="text-lg font-bold uppercase tracking-wider text-white">ChatGPT-Style Chat</h3>
+              <p className="text-xs text-white/50 leading-relaxed font-light">
+                An interactive chat workspace designed for natural language instructions. Seamlessly handles streaming, agent reasoning steps, and prompts. Connects automatically or runs in simulated Demo Mode.
+              </p>
+            </div>
+
+            {/* Feature 2: Website & App Creation */}
+            <div className="border border-white/5 bg-black/40 p-8 rounded-2xl backdrop-blur-md hover:border-[#BF5FFF]/30 transition-all duration-300 group space-y-4">
+              <div className="size-10 rounded-sm bg-[#BF5FFF]/10 border border-[#BF5FFF]/30 flex items-center justify-center text-[#BF5FFF]">
+                <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 00-2 2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold uppercase tracking-wider text-white">App & Website Creation</h3>
+              <p className="text-xs text-white/50 leading-relaxed font-light">
+                Generates responsive static websites and fullstack applications with one click. Spawns template runtimes, structures code blocks, installs dependencies, and runs live local preview servers.
+              </p>
+            </div>
+
+            {/* Feature 3: Model Context Protocol (MCP) */}
+            <div className="border border-white/5 bg-black/40 p-8 rounded-2xl backdrop-blur-md hover:border-[#FF007F]/30 transition-all duration-300 group space-y-4">
+              <div className="size-10 rounded-sm bg-[#FF007F]/10 border border-[#FF007F]/30 flex items-center justify-center text-[#FF007F]">
+                <Database className="size-5" />
+              </div>
+              <h3 className="text-lg font-bold uppercase tracking-wider text-white">MCP Integrations</h3>
+              <p className="text-xs text-white/50 leading-relaxed font-light">
+                Integrate custom Model Context Protocol servers (like StitchMCP, SQLite, and Git tools) directly. Streamline file reads, structural queries, databases, and secure third-party credentials.
+              </p>
+            </div>
+
+            {/* Feature 4: Custom Skills & Rules */}
+            <div className="border border-white/5 bg-black/40 p-8 rounded-2xl backdrop-blur-md hover:border-[#FF007F]/30 transition-all duration-300 group space-y-4">
+              <div className="size-10 rounded-sm bg-[#FF007F]/10 border border-[#FF007F]/30 flex items-center justify-center text-[#FF007F]">
+                <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold uppercase tracking-wider text-white">Customization Engine</h3>
+              <p className="text-xs text-white/50 leading-relaxed font-light">
+                Inject custom instructions, style guides, and rulesets using `AGENTS.md` and standard Markdown files. Define custom coding behaviors and keep your agent tailored to your workflow.
+              </p>
+            </div>
+
+            {/* Feature 5: Advanced Coding Personas */}
+            <div className="border border-white/5 bg-black/40 p-8 rounded-2xl backdrop-blur-md hover:border-[#00F0FF]/30 transition-all duration-300 group space-y-4">
+              <div className="size-10 rounded-sm bg-[#00F0FF]/10 border border-[#00F0FF]/30 flex items-center justify-center text-[#00F0FF]">
+                <TerminalSquare className="size-5" />
+              </div>
+              <h3 className="text-lg font-bold uppercase tracking-wider text-white">Advanced Agent Runtimes</h3>
+              <p className="text-xs text-white/50 leading-relaxed font-light">
+                Orchestrates multi-agent coordinate graphs including Project Planner, Code Architect, DevOps, QA, and closed-loop Debugger personas, executing complex tasks with automated verification.
+              </p>
+            </div>
+
+            {/* Feature 6: Desktop App Roadmap */}
+            <div className="border border-[#BF5FFF]/20 bg-gradient-to-br from-[#BF5FFF]/5 to-transparent p-8 rounded-2xl backdrop-blur-md hover:border-[#BF5FFF]/50 transition-all duration-300 group space-y-4 relative overflow-hidden">
+              <div className="absolute top-2 right-2 px-2 py-0.5 text-[8px] font-mono tracking-widest text-[#BF5FFF] border border-[#BF5FFF]/30 bg-[#BF5FFF]/10 uppercase rounded">
+                Roadmap
+              </div>
+              <div className="size-10 rounded-sm bg-[#BF5FFF]/10 border border-[#BF5FFF]/30 flex items-center justify-center text-[#BF5FFF]">
+                <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-bold uppercase tracking-wider text-white">Native Desktop App</h3>
+              <p className="text-xs text-white/50 leading-relaxed font-light">
+                A native Tauri desktop application is planned to launch later! Features deep operating system terminal binds, local file listeners, automated sandboxes, and secure credential managers.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
         {/* ── SAAS METRICS AND SPEED ── */}
         <section className="mt-32 space-y-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

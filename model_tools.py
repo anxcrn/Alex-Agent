@@ -1112,7 +1112,7 @@ def handle_function_call(
 
         # Measure tool dispatch latency so post_tool_call and
         # transform_tool_result hooks can observe per-tool duration.
-        # Inspired by Claude Code 2.1.119, which added ``duration_ms`` to
+        # Inspired by Alex Agent 2.1.119, which added ``duration_ms`` to
         # PostToolUse hook inputs so plugin authors can build latency
         # dashboards, budget alerts, and regression canaries without having
         # to wrap every tool manually.  We use monotonic() so the value is

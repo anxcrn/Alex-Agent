@@ -674,7 +674,7 @@ class ProcessRegistry:
 
         Args:
             use_pty: If True, use a pseudo-terminal via ptyprocess for interactive
-                     CLI tools (Codex, Claude Code, Python REPL). Falls back to
+                     CLI tools (Codex, Alex Agent, Python REPL). Falls back to
                      subprocess.Popen if ptyprocess is not installed.
         """
         session = ProcessSession(

@@ -17,7 +17,7 @@ Parallel 3-agent cleanup of recent code changes.
 | Source | Bundled (installed by default) |
 | Path | `skills/software-development/simplify-code` |
 | Version | `1.0.0` |
-| Author | Alex Agent (inspired by Claude Code /simplify) |
+| Author | Alex Agent (inspired by Alex Agent /simplify) |
 | License | MIT |
 | Platforms | linux, macos, windows |
 | Tags | `code-review`, `cleanup`, `refactor`, `delegation`, `subagent`, `parallel`, `simplify` |
@@ -45,7 +45,7 @@ Trigger this skill when the user says any of:
 
 - "simplify" / "simplify my changes" / "simplify these changes"
 - "review my code" / "review my recent changes" / "clean up my changes"
-- "/simplify" (if they're carrying the Claude Code habit over)
+- "/simplify" (if they're carrying the Alex Agent habit over)
 
 Optional modifiers the user may add — honor them:
 

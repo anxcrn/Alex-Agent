@@ -247,7 +247,7 @@ model:
 - **`api-version` 通过 `default_query` 传递，而非追加到 URL。** Azure Anthropic 要求 `api-version` 查询字符串。将其嵌入 base URL 会产生类似 `/anthropic?api-version=.../v1/messages` 的畸形路径并返回 404。Alex 通过 Anthropic SDK 的 `default_query` 传递 `api-version=2025-04-15`。
 - **使用 Bearer 认证而非 `x-api-key`。** Azure 的 Anthropic 兼容路由要求 `Authorization: Bearer <key>`，而非 Anthropic 原生的 `x-api-key` 头。Alex 检测到 base URL 中包含 `azure.com` 时，通过 SDK 的 `auth_token` 字段路由 API 密钥，确保正确的头部到达上游。
 - **保留 1M 上下文窗口 beta 头。** Azure 仍通过 `anthropic-beta: context-1m-2025-08-07` 头控制 1M token Claude 上下文（Opus 4.6/4.7、Sonnet 4.6）的访问。Alex 在 Azure 路径上保留该 beta 头（在原生 Anthropic OAuth 请求中会被去除，因为某些订阅会拒绝它，但 Azure 要求它）。
-- **禁用 OAuth 令牌刷新。** Azure 部署使用静态 API 密钥。适用于 Anthropic Console 的 `~/.claude/.credentials.json` OAuth 令牌刷新循环对 Azure 端点明确跳过，以防止 Claude Code OAuth 令牌在会话中途覆盖你的 Azure 密钥。
+- **禁用 OAuth 令牌刷新。** Azure 部署使用静态 API 密钥。适用于 Anthropic Console 的 `~/.claude/.credentials.json` OAuth 令牌刷新循环对 Azure 端点明确跳过，以防止 Alex Agent OAuth 令牌在会话中途覆盖你的 Azure 密钥。
 
 ## 替代方案：`provider: anthropic` + Azure base URL
 
@@ -261,7 +261,7 @@ model:
   default: claude-sonnet-4-6
 ```
 
-在 `~/.alex/.env` 中设置 `AZURE_ANTHROPIC_KEY`。Alex 检测到 base URL 中包含 `azure.com` 时，会绕过 Claude Code OAuth 令牌链，直接使用 Azure 密钥进行 `x-api-key` 认证。
+在 `~/.alex/.env` 中设置 `AZURE_ANTHROPIC_KEY`。Alex 检测到 base URL 中包含 `azure.com` 时，会绕过 Alex Agent OAuth 令牌链，直接使用 Azure 密钥进行 `x-api-key` 认证。
 
 `key_env` 是规范的 snake_case 字段名；`api_key_env`（以及驼峰式 `keyEnv` / `apiKeyEnv`）作为别名被接受。如果同时设置了 `key_env` 和 `AZURE_ANTHROPIC_KEY`/`ANTHROPIC_API_KEY`，`key_env` 指定的环境变量优先。
 

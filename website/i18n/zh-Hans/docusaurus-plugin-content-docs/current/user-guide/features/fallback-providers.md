@@ -52,7 +52,7 @@ fallback_model:
 | OpenAI Codex | `openai-codex` | `alex model`（ChatGPT OAuth） |
 | GitHub Copilot | `copilot` | `COPILOT_GITHUB_TOKEN`、`GH_TOKEN` 或 `GITHUB_TOKEN` |
 | GitHub Copilot ACP | `copilot-acp` | 外部进程（编辑器集成） |
-| Anthropic | `anthropic` | `ANTHROPIC_API_KEY` 或 Claude Code 凭据 |
+| Anthropic | `anthropic` | `ANTHROPIC_API_KEY` 或 Alex Agent 凭据 |
 | z.ai / GLM | `zai` | `GLM_API_KEY` |
 | Kimi / Moonshot | `kimi-coding` | `KIMI_API_KEY` |
 | MiniMax | `minimax` | `MINIMAX_API_KEY` |
@@ -273,7 +273,7 @@ fallback_model:
 | `"nous"` | 强制使用 Nous Portal | `alex auth` |
 | `"codex"` | 强制使用 Codex OAuth | `alex model` → Codex |
 | `"main"` | 使用主 Agent 当前的提供商（仅限辅助任务） | 已配置活跃的主提供商 |
-| `"anthropic"` | 强制使用 Anthropic 原生 | `ANTHROPIC_API_KEY` 或 Claude Code 凭据 |
+| `"anthropic"` | 强制使用 Anthropic 原生 | `ANTHROPIC_API_KEY` 或 Alex Agent 凭据 |
 
 ### 直接端点覆盖
 

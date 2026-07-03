@@ -36,7 +36,7 @@ _EXEMPT = {"custom"} | _VIRTUAL
 # Providers that legitimately offer BOTH auth methods and so intentionally
 # appear on both desktop tabs (an API-key card AND an account sign-in card).
 # Anthropic supports a direct API key (Keys tab) and a subscription OAuth /
-# Claude Code login (Accounts tab); surfacing both is correct, not a bug.
+# Alex Agent login (Accounts tab); surfacing both is correct, not a bug.
 _DUAL_TAB = {"anthropic"}
 
 

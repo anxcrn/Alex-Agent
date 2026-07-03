@@ -679,11 +679,11 @@ mcp_servers:
 
 ## Running Alex as an MCP server
 
-In addition to connecting **to** MCP servers, Alex can also **be** an MCP server. This lets other MCP-capable agents (Claude Code, Cursor, Codex, or any MCP client) use Alex's messaging capabilities — list conversations, read message history, and send messages across all your connected platforms.
+In addition to connecting **to** MCP servers, Alex can also **be** an MCP server. This lets other MCP-capable agents (Alex Agent, Cursor, Codex, or any MCP client) use Alex's messaging capabilities — list conversations, read message history, and send messages across all your connected platforms.
 
 ### When to use this
 
-- You want Claude Code, Cursor, or another coding agent to send and read Telegram/Discord/Slack messages through Alex
+- You want Alex Agent, Cursor, or another coding agent to send and read Telegram/Discord/Slack messages through Alex
 - You want a single MCP server that bridges to all of Alex's connected messaging platforms at once
 - You already have a running Alex gateway with connected platforms
 
@@ -697,7 +697,7 @@ This starts a stdio MCP server. The MCP client (not you) manages the process lif
 
 ### MCP client configuration
 
-Add Alex to your MCP client config. For example, in Claude Code's `~/.claude/claude_desktop_config.json`:
+Add Alex to your MCP client config. For example, in Alex Agent's `~/.claude/claude_desktop_config.json`:
 
 ```json
 {

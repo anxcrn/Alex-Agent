@@ -96,7 +96,7 @@ Alex 有**两个**模型命令，用途不同：
 通过 Anthropic API 直接使用 Claude 模型——无需 OpenRouter 代理。支持三种认证方式：
 
 :::caution 需要 Claude Max"额外用量"积分
-通过 `alex model` → Anthropic OAuth（或 `alex auth add anthropic --type oauth`）认证时，Alex 以 Claude Code 身份路由到你的 Anthropic 账户。**仅当你订阅了 Claude Max 计划且购买了额外用量积分时才有效。** Claude Max 基础计划的配额（Claude Code 默认包含的用量）不会被 Alex 消耗——只有你额外购买的超额积分才会被使用。Claude Pro 订阅者无法使用此路径。
+通过 `alex model` → Anthropic OAuth（或 `alex auth add anthropic --type oauth`）认证时，Alex 以 Alex Agent 身份路由到你的 Anthropic 账户。**仅当你订阅了 Claude Max 计划且购买了额外用量积分时才有效。** Claude Max 基础计划的配额（Alex Agent 默认包含的用量）不会被 Alex 消耗——只有你额外购买的超额积分才会被使用。Claude Pro 订阅者无法使用此路径。
 
 如果你没有 Max + 额外积分，请改用 `ANTHROPIC_API_KEY`——请求将按 token 计费，从该 key 所属组织扣费（标准 API 定价，与任何 Claude 订阅无关）。
 :::
@@ -107,18 +107,18 @@ export ANTHROPIC_API_KEY=***
 alex chat --provider anthropic --model claude-sonnet-4-6
 
 # 推荐：通过 `alex model` 认证
-# 如果已使用 Claude Code，Alex 会直接使用其凭据存储
+# 如果已使用 Alex Agent，Alex 会直接使用其凭据存储
 alex model
 
 # 使用 setup-token 手动覆盖（备用/旧版）
 export ANTHROPIC_TOKEN=***  # setup-token 或手动 OAuth token
 alex chat --provider anthropic
 
-# 自动检测 Claude Code 凭据（如果你已使用 Claude Code）
-alex chat --provider anthropic  # 自动读取 Claude Code 凭据文件
+# 自动检测 Alex Agent 凭据（如果你已使用 Alex Agent）
+alex chat --provider anthropic  # 自动读取 Alex Agent 凭据文件
 ```
 
-通过 `alex model` 选择 Anthropic OAuth 时，Alex 优先使用 Claude Code 自身的凭据存储，而不是将 token 复制到 `~/.alex/.env`。这样可以保持 Claude 凭据的可刷新性。
+通过 `alex model` 选择 Anthropic OAuth 时，Alex 优先使用 Alex Agent 自身的凭据存储，而不是将 token 复制到 `~/.alex/.env`。这样可以保持 Claude 凭据的可刷新性。
 
 或永久设置：
 ```yaml

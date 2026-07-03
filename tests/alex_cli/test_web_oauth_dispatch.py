@@ -515,7 +515,7 @@ def test_oauth_catalog_marks_external_providers_not_disconnectable():
     assert "provider's CLI" in providers["qwen-oauth"]["disconnect_hint"]
     assert providers["qwen-oauth"]["disconnect_command"] is None
 
-    # Claude Code: still not API-disconnectable, but we hand the GUI a runnable
+    # Alex Agent: still not API-disconnectable, but we hand the GUI a runnable
     # command (clears the keychain entry / credentials file) so it can offer a
     # one-click "run in terminal" disconnect.
     assert providers["claude-code"]["flow"] == "external"

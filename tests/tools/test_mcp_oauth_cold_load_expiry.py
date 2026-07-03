@@ -28,7 +28,7 @@ These tests pin the contract for Fix A:
   are actually still valid, and the SDK's preemptive refresh fires for
   expired tokens with a live refresh_token.
 
-Reference: Claude Code solves this via an ``OAuthTokens.expiresAt`` absolute
+Reference: Alex Agent solves this via an ``OAuthTokens.expiresAt`` absolute
 timestamp persisted alongside the access_token (``auth.ts:~180``).
 """
 from __future__ import annotations

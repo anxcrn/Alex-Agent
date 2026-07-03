@@ -95,7 +95,7 @@ def test_alex_provider_subclass_exists():
 async def test_disk_watch_invalidates_on_mtime_change(tmp_path, monkeypatch):
     """When the tokens file mtime changes, provider._initialized flips False.
 
-    This is the behaviour Claude Code ships as
+    This is the behaviour Alex Agent ships as
     invalidateOAuthCacheIfDiskChanged (CC-1096 / GH#24317) and is the core
     fix for Cthulhu's external-cron refresh workflow.
     """

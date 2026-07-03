@@ -105,7 +105,7 @@ async def test_external_refresh_picked_up_without_restart(tmp_path, monkeypatch)
 async def test_handle_401_deduplicates_concurrent_callers(tmp_path, monkeypatch):
     """Ten concurrent 401 handlers for the same token should fire one recovery.
 
-    Mirrors Claude Code's pending401Handlers dedup pattern — prevents N MCP
+    Mirrors Alex Agent's pending401Handlers dedup pattern — prevents N MCP
     tool calls hitting 401 simultaneously from all independently clearing
     caches and re-reading the keychain (which thrashes the storage and
     bogs down startup per CC-1096).

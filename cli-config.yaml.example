@@ -983,7 +983,7 @@ delegation:
 # Runs alongside USER.md — additive, not a replacement.
 #
 # Requires: pip install honcho-ai
-# Config: ~/.honcho/config.json (shared with Claude Code, Cursor, etc.)
+# Config: ~/.honcho/config.json (shared with Alex Agent, Cursor, etc.)
 # API key: HONCHO_API_KEY in ~/.alex/.env or ~/.honcho/config.json
 #
 # Alex-specific overrides (optional — most config comes from ~/.honcho/config.json):

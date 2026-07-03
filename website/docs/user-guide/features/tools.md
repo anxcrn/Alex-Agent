@@ -167,7 +167,7 @@ process(action="kill", session_id="proc_abc123")   # Terminate
 process(action="write", session_id="proc_abc123", data="y")  # Send input
 ```
 
-PTY mode (`pty=true`) enables interactive CLI tools like Codex and Claude Code.
+PTY mode (`pty=true`) enables interactive CLI tools like Codex and Alex Agent.
 
 ## Sudo Support
 

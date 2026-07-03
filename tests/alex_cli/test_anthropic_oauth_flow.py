@@ -31,7 +31,7 @@ def test_run_anthropic_oauth_flow_prefers_claude_code_credentials(tmp_path, monk
     assert env_vars["ANTHROPIC_TOKEN"] == ""
     assert env_vars["ANTHROPIC_API_KEY"] == ""
     output = capsys.readouterr().out
-    assert "Claude Code credentials linked" in output
+    assert "Alex Agent credentials linked" in output
 
 
 def test_run_anthropic_oauth_flow_manual_token_still_persists(tmp_path, monkeypatch, capsys):

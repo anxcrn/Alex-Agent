@@ -1353,7 +1353,7 @@ else
 fi
 ```
 
-Claude Code's `UserPromptSubmit` event is intentionally not a separate Alex event — `pre_llm_call` fires at the same place and already supports context injection. Use it here.
+Alex Agent's `UserPromptSubmit` event is intentionally not a separate Alex event — `pre_llm_call` fires at the same place and already supports context injection. Use it here.
 
 #### 4. Log every subagent completion
 

@@ -2,7 +2,7 @@
 
 Covers:
  - Normal path (tokens already in Alex auth store)
- - Claude Code fallback (tokens only in ~/.claude/.credentials.json)
+ - Alex Agent fallback (tokens only in ~/.claude/.credentials.json)
  - Negative case (no credentials anywhere)
 
 Note: auto-import from ~/.codex/auth.json was removed in #12360 — Alex
@@ -106,7 +106,7 @@ def test_codex_picker_uses_live_codex_catalog(alex_auth_only_env, tmp_path, monk
 @pytest.fixture()
 def claude_code_only_env(tmp_path, monkeypatch):
     """Set up an environment where Anthropic credentials only exist in
-    ~/.claude/.credentials.json (Claude Code) — not in env vars or Alex
+    ~/.claude/.credentials.json (Alex Agent) — not in env vars or Alex
     auth store."""
     alex_home = tmp_path / ".alex"
     alex_home.mkdir()
@@ -119,7 +119,7 @@ def claude_code_only_env(tmp_path, monkeypatch):
         json.dumps({"version": 2, "providers": {}})
     )
 
-    # Claude Code credentials in the correct format
+    # Alex Agent credentials in the correct format
     claude_dir = tmp_path / ".claude"
     claude_dir.mkdir()
     (claude_dir / ".credentials.json").write_text(json.dumps({

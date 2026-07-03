@@ -190,7 +190,7 @@ def build_context_files_prompt(cwd=None, skip_soul=False):
 |--------|------|----------|------|
 | 1 | `.alex.md`、`ALEX.md` | 从 CWD 向上至 git 根目录 | Alex 原生项目配置 |
 | 2 | `AGENTS.md` | 仅 CWD | 常见 agent 指令文件 |
-| 3 | `CLAUDE.md` | 仅 CWD | Claude Code 兼容性 |
+| 3 | `CLAUDE.md` | 仅 CWD | Alex Agent 兼容性 |
 | 4 | `.cursorrules`、`.cursor/rules/*.mdc` | 仅 CWD | Cursor 兼容性 |
 
 所有上下文文件均会：

@@ -2,7 +2,7 @@
 
 Bug 3: `alex model` with `provider=anthropic` skips OAuth re-authentication
 when a stale ANTHROPIC_TOKEN exists in ~/.alex/.env but no valid
-Claude Code credentials are available. The fast-path silently proceeds to
+Alex Agent credentials are available. The fast-path silently proceeds to
 model selection with a broken token instead of offering re-auth.
 """
 
@@ -16,7 +16,7 @@ class TestStaleOAuthTokenDetection:
     def test_stale_oauth_token_triggers_reauth(self, tmp_path, monkeypatch, capsys):
         """
         Scenario: ANTHROPIC_TOKEN is an expired OAuth token and there are no
-        valid Claude Code credentials anywhere. The flow MUST offer re-auth
+        valid Alex Agent credentials anywhere. The flow MUST offer re-auth
         instead of silently skipping to model selection.
         """
         monkeypatch.setenv("ALEX_HOME", str(tmp_path))
@@ -25,7 +25,7 @@ class TestStaleOAuthTokenDetection:
         save_env_value("ANTHROPIC_TOKEN", "sk-ant-oat-ExpiredToken00000")
         save_env_value("ANTHROPIC_API_KEY", "")
 
-        # No valid Claude Code credentials available (expired, no refresh token)
+        # No valid Alex Agent credentials available (expired, no refresh token)
         monkeypatch.setattr(
             "agent.anthropic_adapter.read_claude_code_credentials",
             lambda: {
@@ -111,7 +111,7 @@ class TestStaleOAuthTokenDetection:
         save_env_value("ANTHROPIC_TOKEN", "sk-ant-oat-GoodOAuthToken")
         save_env_value("ANTHROPIC_API_KEY", "")
 
-        # Valid Claude Code credentials with refresh token
+        # Valid Alex Agent credentials with refresh token
         monkeypatch.setattr(
             "agent.anthropic_adapter.read_claude_code_credentials",
             lambda: {

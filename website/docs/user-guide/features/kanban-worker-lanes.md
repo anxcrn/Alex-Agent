@@ -5,7 +5,7 @@ A **worker lane** is a class of process that the kanban dispatcher can route tas
 This page is the contract. It exists for two audiences:
 
 - **Operators** picking which lanes to wire into a board (which profiles to create, which assignees to use).
-- **Plugin / integration authors** wanting to add a new lane shape (a CLI worker that wraps Codex / Claude Code / OpenCode, a containerised review worker, a non-Alex service that pulls tasks via the API).
+- **Plugin / integration authors** wanting to add a new lane shape (a CLI worker that wraps Codex / Alex Agent / OpenCode, a containerised review worker, a non-Alex service that pulls tasks via the API).
 
 If you're writing the worker code itself — the agent that runs *inside* a lane — the kanban lifecycle and reference details are injected into the worker's system prompt automatically (the `KANBAN_GUIDANCE` block in [`agent/prompt_builder.py`](https://github.com/charan vankudoth/alex-agent/blob/main/agent/prompt_builder.py)).
 
@@ -90,7 +90,7 @@ A specialisation of the profile lane: an orchestrator is a Alex profile whose to
 
 ## Adding an external CLI worker lane
 
-Wiring a non-Alex CLI tool (Codex CLI, Claude Code CLI, OpenCode CLI, a local coding-model runner, etc.) as a kanban worker lane is *not yet a paved path*. The dispatcher's spawn function is pluggable (`spawn_fn` is a parameter on `dispatch_once`), and a plugin could register its own `spawn_fn` for a non-Alex assignee, but the surrounding integration work — wrapping the CLI's exit code into `kanban_complete` / `kanban_block` calls, mapping the CLI's workspace/sandbox conventions onto the dispatcher's `ALEX_KANBAN_WORKSPACE` env, handling auth and per-CLI policy — is still per-integration design work.
+Wiring a non-Alex CLI tool (Codex CLI, Alex Agent CLI, OpenCode CLI, a local coding-model runner, etc.) as a kanban worker lane is *not yet a paved path*. The dispatcher's spawn function is pluggable (`spawn_fn` is a parameter on `dispatch_once`), and a plugin could register its own `spawn_fn` for a non-Alex assignee, but the surrounding integration work — wrapping the CLI's exit code into `kanban_complete` / `kanban_block` calls, mapping the CLI's workspace/sandbox conventions onto the dispatcher's `ALEX_KANBAN_WORKSPACE` env, handling auth and per-CLI policy — is still per-integration design work.
 
 If you're considering adding a CLI lane, open an issue describing the specific CLI and the workflow you're trying to enable. The contract above is the constraints any such lane must satisfy; the implementation shape (one plugin per CLI vs a generic CLI-runner plugin parameterised by config) is open.
 

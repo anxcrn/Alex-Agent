@@ -520,7 +520,7 @@ class TestGetSectionConfigSummary:
         assert result is None
 
     def test_model_ignores_claude_code_oauth_token(self):
-        """CLAUDE_CODE_OAUTH_TOKEN is set by Claude Code itself and must not
+        """CLAUDE_CODE_OAUTH_TOKEN is set by Alex Agent itself and must not
         trigger skip — mirrors the _IMPLICIT_ENV_VARS guard in
         is_provider_explicitly_configured()."""
         def env_side(key):

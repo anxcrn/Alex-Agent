@@ -123,9 +123,9 @@ When provider resolution selects `anthropic`, Alex uses:
 - the native Anthropic Messages API
 - `agent/anthropic_adapter.py` for translation
 
-Credential resolution for native Anthropic now prefers refreshable Claude Code credentials over copied env tokens when both are present. In practice that means:
+Credential resolution for native Anthropic now prefers refreshable Alex Agent credentials over copied env tokens when both are present. In practice that means:
 
-- Claude Code credential files are treated as the preferred source when they include refreshable auth
+- Alex Agent credential files are treated as the preferred source when they include refreshable auth
 - manual `ANTHROPIC_TOKEN` / `CLAUDE_CODE_OAUTH_TOKEN` values still work as explicit overrides
 - Alex preflights Anthropic credential refresh before native Messages API calls
 - Alex still retries once on a 401 after rebuilding the Anthropic client, as a fallback path

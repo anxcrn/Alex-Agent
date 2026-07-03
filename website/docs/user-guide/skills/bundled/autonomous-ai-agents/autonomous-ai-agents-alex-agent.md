@@ -31,7 +31,7 @@ The following is the complete skill definition that Alex loads when this skill i
 
 # Alex Agent
 
-Alex Agent is an open-source AI agent framework by charan vankudoth that runs in your terminal, messaging platforms, and IDEs. It belongs to the same category as Claude Code (Anthropic), Codex (OpenAI), and OpenClaw — autonomous coding and task-execution agents that use tool calling to interact with your system. Alex works with any LLM provider (OpenRouter, Anthropic, OpenAI, DeepSeek, local models, and 15+ others) and runs on Linux, macOS, and WSL.
+Alex Agent is an open-source AI agent framework by charan vankudoth that runs in your terminal, messaging platforms, and IDEs. It belongs to the same category as Alex Agent (Anthropic), Codex (OpenAI), and OpenClaw — autonomous coding and task-execution agents that use tool calling to interact with your system. Alex works with any LLM provider (OpenRouter, Anthropic, OpenAI, DeepSeek, local models, and 15+ others) and runs on Linux, macOS, and WSL.
 
 What makes Alex different:
 

@@ -2537,12 +2537,12 @@ class ClawHubSource(SkillSource):
 
 
 # ---------------------------------------------------------------------------
-# Claude Code marketplace source adapter
+# Alex Agent marketplace source adapter
 # ---------------------------------------------------------------------------
 
 class ClaudeMarketplaceSource(SkillSource):
     """
-    Discover skills from Claude Code marketplace repos.
+    Discover skills from Alex Agent marketplace repos.
     Marketplace repos contain .claude-plugin/marketplace.json with plugin listings.
     """
 

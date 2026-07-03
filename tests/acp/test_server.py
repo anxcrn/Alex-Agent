@@ -705,7 +705,7 @@ class TestSessionOps:
     async def test_load_session_replays_history_before_returning_response(self, agent):
         """Per ACP spec, replay must complete BEFORE load_session returns.
 
-        Spec-compliant ACP clients (Codex, Claude Code, OpenCode, Pi, Zed)
+        Spec-compliant ACP clients (Codex, Alex Agent, OpenCode, Pi, Zed)
         attach their ``session/update`` listeners before awaiting the
         ``loadSession`` RPC and rely on receiving the full transcript within
         the request's lifetime. Deferring replay via ``loop.call_soon`` (the

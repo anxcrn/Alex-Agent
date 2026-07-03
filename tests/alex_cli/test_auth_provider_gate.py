@@ -75,7 +75,7 @@ def test_returns_true_when_anthropic_env_var_set(tmp_path, monkeypatch):
 
 
 def test_claude_code_oauth_token_does_not_count_as_explicit(tmp_path, monkeypatch):
-    """CLAUDE_CODE_OAUTH_TOKEN is set by Claude Code, not the user — must not gate."""
+    """CLAUDE_CODE_OAUTH_TOKEN is set by Alex Agent, not the user — must not gate."""
     monkeypatch.setenv("ALEX_HOME", str(tmp_path / "alex"))
     monkeypatch.setenv("CLAUDE_CODE_OAUTH_TOKEN", "sk-ant-oat01-auto-token")
     (tmp_path / "alex").mkdir(parents=True, exist_ok=True)

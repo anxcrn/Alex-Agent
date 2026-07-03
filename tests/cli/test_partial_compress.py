@@ -1,7 +1,7 @@
 """Tests for alex_cli.partial_compress — the pure split/parse helpers
 behind ``/compress here [N]`` (boundary-aware "summarize up to here").
 
-Inspired by Claude Code's Rewind "Summarize up to here" action.
+Inspired by Alex Agent's Rewind "Summarize up to here" action.
 """
 
 from alex_cli.partial_compress import (

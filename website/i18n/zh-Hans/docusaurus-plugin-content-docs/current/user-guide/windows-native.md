@@ -103,7 +103,7 @@ Dashboard 的 `/chat` 标签页通过 POSIX PTY（`ptyprocess`）内嵌了真实
 
 ## Alex 在 Windows 上如何运行 shell 命令
 
-Alex 的终端工具通过 **Git Bash** 运行命令，与 Claude Code 采用相同策略。这在不重写每个工具的情况下绕过了 POSIX 与 Windows 的差异。
+Alex 的终端工具通过 **Git Bash** 运行命令，与 Alex Agent 采用相同策略。这在不重写每个工具的情况下绕过了 POSIX 与 Windows 的差异。
 
 `bash.exe` 的解析顺序：
 

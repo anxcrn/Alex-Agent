@@ -722,7 +722,7 @@ class TestHasAnyProviderConfigured:
         assert _has_any_provider_configured() is True
 
     def test_claude_code_creds_ignored_on_fresh_install(self, monkeypatch, tmp_path):
-        """Claude Code credentials should NOT skip the wizard when Alex is unconfigured."""
+        """Alex Agent credentials should NOT skip the wizard when Alex is unconfigured."""
         from alex_cli import config as config_module
         from alex_cli.auth import PROVIDER_REGISTRY
         alex_home = tmp_path / ".alex"
@@ -740,7 +740,7 @@ class TestHasAnyProviderConfigured:
             monkeypatch.delenv(var, raising=False)
         # Prevent gh-cli / copilot auth fallback from leaking in
         monkeypatch.setattr("alex_cli.auth.get_auth_status", lambda _pid: {})
-        # Simulate valid Claude Code credentials
+        # Simulate valid Alex Agent credentials
         monkeypatch.setattr(
             "agent.anthropic_adapter.read_claude_code_credentials",
             lambda: {"accessToken": "sk-ant-test", "refreshToken": "ref-tok"},
@@ -838,7 +838,7 @@ class TestHasAnyProviderConfigured:
         assert _has_any_provider_configured() is False
 
     def test_claude_code_creds_counted_when_alex_configured(self, monkeypatch, tmp_path):
-        """Claude Code credentials should count when Alex has been explicitly configured."""
+        """Alex Agent credentials should count when Alex has been explicitly configured."""
         import yaml
         from alex_cli import config as config_module
         alex_home = tmp_path / ".alex"
@@ -853,7 +853,7 @@ class TestHasAnyProviderConfigured:
         for var in ("OPENROUTER_API_KEY", "OPENAI_API_KEY", "ANTHROPIC_API_KEY",
                      "ANTHROPIC_TOKEN", "OPENAI_BASE_URL"):
             monkeypatch.delenv(var, raising=False)
-        # Simulate valid Claude Code credentials
+        # Simulate valid Alex Agent credentials
         monkeypatch.setattr(
             "agent.anthropic_adapter.read_claude_code_credentials",
             lambda: {"accessToken": "sk-ant-test", "refreshToken": "ref-tok"},

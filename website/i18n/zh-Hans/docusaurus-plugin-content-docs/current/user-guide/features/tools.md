@@ -167,7 +167,7 @@ process(action="kill", session_id="proc_abc123")   # 终止进程
 process(action="write", session_id="proc_abc123", data="y")  # 发送输入
 ```
 
-PTY 模式（`pty=true`）可启用 Codex 和 Claude Code 等交互式 CLI 工具。
+PTY 模式（`pty=true`）可启用 Codex 和 Alex Agent 等交互式 CLI 工具。
 
 ## Sudo 支持
 

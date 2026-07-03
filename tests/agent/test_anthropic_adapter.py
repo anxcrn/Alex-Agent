@@ -336,7 +336,7 @@ class TestResolveAnthropicToken:
         monkeypatch.delenv("ANTHROPIC_TOKEN", raising=False)
         monkeypatch.delenv("CLAUDE_CODE_OAUTH_TOKEN", raising=False)
         monkeypatch.setattr("agent.anthropic_adapter.Path.home", lambda: tmp_path)
-        # Isolate source #4 (credential_pool): ensure source #3 (Claude Code
+        # Isolate source #4 (credential_pool): ensure source #3 (Alex Agent
         # creds, incl. the macOS keychain read which Path.home does not cover)
         # returns nothing, mirroring a Alex-PKCE-only setup.
         monkeypatch.setattr("agent.anthropic_adapter.read_claude_code_credentials", lambda: None)
@@ -358,7 +358,7 @@ class TestResolveAnthropicToken:
         monkeypatch.delenv("CLAUDE_CODE_OAUTH_TOKEN", raising=False)
         monkeypatch.setattr("agent.anthropic_adapter.Path.home", lambda: tmp_path)
         # Pool (source #4) must win over ANTHROPIC_API_KEY (source #5); also
-        # isolate source #3 so a machine-local Claude Code creds / keychain
+        # isolate source #3 so a machine-local Alex Agent creds / keychain
         # entry can't short-circuit before the pool.
         monkeypatch.setattr("agent.anthropic_adapter.read_claude_code_credentials", lambda: None)
 
@@ -557,7 +557,7 @@ class TestWriteClaudeCodeCredentials:
 
     @pytest.mark.skipif(sys.platform.startswith("win"), reason="POSIX mode bits not enforced on Windows")
     def test_credentials_file_created_with_0o600(self, tmp_path, monkeypatch):
-        """Refreshed Claude Code credentials must land on disk at 0o600.
+        """Refreshed Alex Agent credentials must land on disk at 0o600.
 
         Regression for the TOCTOU race where ``write_text`` + ``replace``
         + post-write ``chmod`` left both the temp file and the destination
@@ -628,7 +628,7 @@ class TestRunOauthSetupToken:
             run_oauth_setup_token()
 
     def test_returns_token_from_credential_files(self, monkeypatch, tmp_path):
-        """After subprocess completes, reads credentials from Claude Code files."""
+        """After subprocess completes, reads credentials from Alex Agent files."""
         monkeypatch.setattr("shutil.which", lambda _: "/usr/bin/claude")
         monkeypatch.delenv("CLAUDE_CODE_OAUTH_TOKEN", raising=False)
         monkeypatch.delenv("ANTHROPIC_TOKEN", raising=False)

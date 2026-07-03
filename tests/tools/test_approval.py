@@ -1459,7 +1459,7 @@ class TestDetectSudoStdin:
 
 
 class TestMacOSPrivateSystemPaths:
-    """Inspired by Claude Code 2.1.113 "dangerous path protection".
+    """Inspired by Alex Agent 2.1.113 "dangerous path protection".
 
     On macOS, /etc, /var, /tmp, /home are symlinks to
     /private/{etc,var,tmp,home}. A command that writes to
@@ -1541,7 +1541,7 @@ class TestMacOSPrivateSystemPaths:
 
 
 class TestKillallKillSignals:
-    """Inspired by Claude Code 2.1.113 expanded deny rules.
+    """Inspired by Alex Agent 2.1.113 expanded deny rules.
 
     The existing pattern caught `pkill -9` but not the equivalent
     `killall -9` / `-KILL` / `-s KILL` / `-r <regex>` broad sweeps that
@@ -1590,7 +1590,7 @@ class TestKillallKillSignals:
 
 
 class TestFindExecdir:
-    """Inspired by Claude Code 2.1.113 tightening of find rules.
+    """Inspired by Alex Agent 2.1.113 tightening of find rules.
 
     `find -execdir rm` has the same destructive effect as `find -exec rm`
     but ran in each match's directory. Previously missed because the

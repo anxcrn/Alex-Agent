@@ -1,6 +1,6 @@
 """Tests for /compress <focus> — guided compression with focus topic.
 
-Inspired by Claude Code's /compact <focus> feature.
+Inspired by Alex Agent's /compact <focus> feature.
 """
 
 from unittest.mock import MagicMock, patch

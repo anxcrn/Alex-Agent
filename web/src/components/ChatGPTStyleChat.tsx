@@ -238,7 +238,7 @@ export function ChatGPTStyleChat({ sessionId, profile }: ChatGPTStyleChatProps) 
   }, [sessionId, profile, loadMessages]);
 
   const handleSend = () => {
-    if (!inputText.trim() || !sessionId || connectionState !== "live" || streaming) return;
+    if (!inputText.trim() || streaming) return;
 
     const userMsg: Message = {
       role: "user",
@@ -249,17 +249,59 @@ export function ChatGPTStyleChat({ sessionId, profile }: ChatGPTStyleChatProps) 
     setMessages((prev) => [...prev, userMsg]);
     setInputText("");
 
-    wsRef.current?.send(
-      JSON.stringify({
-        jsonrpc: "2.0",
-        id: messageIdCounterRef.current++,
-        method: "prompt.submit",
-        params: {
-          session_id: sessionId,
-          text: userMsg.content
+    if (connectionState === "live" && sessionId) {
+      wsRef.current?.send(
+        JSON.stringify({
+          jsonrpc: "2.0",
+          id: messageIdCounterRef.current++,
+          method: "prompt.submit",
+          params: {
+            session_id: sessionId,
+            text: userMsg.content
+          }
+        })
+      );
+    } else {
+      setStreaming(true);
+      
+      const thinkingSteps = [
+        "Analyzing prompt query...",
+        "Searching local knowledge base for: " + userMsg.content.substring(0, 30) + "...",
+        "Generating optimized response structure..."
+      ];
+      
+      let stepIndex = 0;
+      setCurrentThinking(thinkingSteps[0]);
+      setIsThinkingExpanded(true);
+      
+      const thinkingInterval = setInterval(() => {
+        stepIndex++;
+        if (stepIndex < thinkingSteps.length) {
+          setCurrentThinking((prev) => prev + "\n" + thinkingSteps[stepIndex]);
+        } else {
+          clearInterval(thinkingInterval);
+          setStreaming(false);
+          setCurrentThinking("");
+          
+          let reply = "";
+          const lower = userMsg.content.toLowerCase();
+          if (lower.includes("hello") || lower.includes("hi")) {
+            reply = "Hello! I am **Alex Agent**, your autonomous coding assistant. How can I help you build, debug, or research today?";
+          } else if (lower.includes("help") || lower.includes("features")) {
+            reply = "I can help you with:\n1. **Web Dev**: Creating responsive React/Vue/Tauri applications.\n2. **Debugging**: Automatically tracing compilation errors and self-healing them.\n3. **Git**: Committing, staging, and pushing changes directly to your repositories.\n4. **MCP integrations**: Instantly adding and running Model Context Protocol servers.";
+          } else {
+            reply = `I received your prompt: "${userMsg.content}".\n\nI am currently running in **Local Demo Mode** (Backend offline). To execute your request on your actual files and system, please start the Python gateway by running:\n\`\`\`bash\nnpm run dev\n\`\`\`\nThis will link me directly to your workspace and model APIs!`;
+          }
+          
+          const botMsg: Message = {
+            role: "assistant",
+            content: reply,
+            id: `msg-${messageIdCounterRef.current++}`
+          };
+          setMessages((prev) => [...prev, botMsg]);
         }
-      })
-    );
+      }, 800);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -299,17 +341,16 @@ export function ChatGPTStyleChat({ sessionId, profile }: ChatGPTStyleChatProps) 
         <div className="flex items-center gap-2">
           <Sparkles className="size-4 text-[#BF5FFF] animate-pulse" />
           <span className="text-xs font-mono tracking-wider text-white/50 uppercase">
-            Model: <span className="text-[#00F0FF]">{activeModel || "Loading..."}</span>
+            Model: <span className="text-[#00F0FF]">{activeModel || "Alex-Local-Demo"}</span>
           </span>
         </div>
         <div className="flex items-center gap-2">
           <div className={cn(
             "size-2 rounded-full",
-            connectionState === "live" ? "bg-green-500 animate-pulse" : 
-            connectionState === "connecting" ? "bg-yellow-500" : "bg-red-500"
+            connectionState === "live" ? "bg-green-500 animate-pulse" : "bg-cyan-500 animate-pulse"
           )} />
           <span className="text-[10px] uppercase font-mono tracking-widest text-white/40">
-            {connectionState}
+            {connectionState === "live" ? "Live" : "Demo Mode"}
           </span>
         </div>
       </div>
@@ -458,9 +499,8 @@ export function ChatGPTStyleChat({ sessionId, profile }: ChatGPTStyleChatProps) 
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={handleKeyDown}
-            disabled={connectionState !== "live" || streaming}
+            disabled={streaming}
             placeholder={
-              connectionState !== "live" ? "Reconnecting to backend..." : 
               streaming ? "Alex is thinking..." : "Message Alex Agent..."
             }
             className="flex-1 max-h-40 bg-transparent text-sm text-white/90 placeholder:text-white/30 resize-none outline-none border-none pl-2 py-2 pr-12 min-h-[36px]"
@@ -469,7 +509,7 @@ export function ChatGPTStyleChat({ sessionId, profile }: ChatGPTStyleChatProps) 
 
           <button
             onClick={handleSend}
-            disabled={!inputText.trim() || connectionState !== "live" || streaming}
+            disabled={!inputText.trim() || streaming}
             className="absolute right-3 bottom-3 size-8 flex items-center justify-center rounded-sm bg-[#BF5FFF]/20 border border-[#BF5FFF]/50 hover:bg-[#BF5FFF] disabled:opacity-30 disabled:hover:bg-[#BF5FFF]/20 text-white transition-all duration-300"
           >
             <Send className="size-4" />

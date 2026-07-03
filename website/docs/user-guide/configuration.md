@@ -145,7 +145,7 @@ terminal:
 ```
 
 By default, local tool subprocesses keep your real OS-user `HOME`. This lets
-external CLIs such as `git`, `ssh`, `gh`, `az`, `npm`, Claude Code, and Codex
+external CLIs such as `git`, `ssh`, `gh`, `az`, `npm`, Alex Agent, and Codex
 find the credentials and config they already use in your normal shell. Alex
 state is still profile-scoped through `ALEX_HOME`; `HOME` is not how profiles
 select config, memory, sessions, or skills.
@@ -1903,7 +1903,7 @@ Alex uses two different context scopes:
 | `SOUL.md` | **Primary agent identity** — defines who the agent is (slot #1 in the system prompt) | `~/.alex/SOUL.md` or `$ALEX_HOME/SOUL.md` |
 | `.alex.md` / `ALEX.md` | Project-specific instructions (highest priority) | Walks to git root |
 | `AGENTS.md` | Project-specific instructions, coding conventions | Recursive directory walk |
-| `CLAUDE.md` | Claude Code context files (also detected) | Working directory only |
+| `CLAUDE.md` | Alex Agent context files (also detected) | Working directory only |
 | `.cursorrules` | Cursor IDE rules (also detected) | Working directory only |
 | `.cursor/rules/*.mdc` | Cursor rule files (also detected) | Working directory only |
 

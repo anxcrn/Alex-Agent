@@ -1,6 +1,6 @@
 """Tests for `alex chat --safe-mode` — pristine troubleshooting runs.
 
-Inspired by Claude Code v2.1.169's ``--safe-mode`` flag (June 2026), which
+Inspired by Alex Agent v2.1.169's ``--safe-mode`` flag (June 2026), which
 disables all customizations (CLAUDE.md, plugins, skills, hooks, MCP) for
 troubleshooting. The Alex equivalent:
 

@@ -6,7 +6,7 @@ drops assistant turns that contain only reasoning (no visible content, no
 tool_calls). Adjacent user messages left behind are merged so role
 alternation is preserved for the provider.
 
-Claude Code uses this exact pattern (filterOrphanedThinkingOnlyMessages +
+Alex Agent uses this exact pattern (filterOrphanedThinkingOnlyMessages +
 mergeAdjacentUserMessages in src/utils/messages.ts). See #16823 for the
 backstory on why the alternative — fabricating "." stub text — was rejected.
 """

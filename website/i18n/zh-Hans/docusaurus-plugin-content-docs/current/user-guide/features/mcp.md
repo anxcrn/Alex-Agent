@@ -486,11 +486,11 @@ mcp_servers:
 
 ## 将 Alex 作为 MCP 服务器运行
 
-除了连接**到** MCP 服务器，Alex 也可以**作为** MCP 服务器运行。这让其他支持 MCP 的 agent（Claude Code、Cursor、Codex 或任何 MCP 客户端）能够使用 Alex 的消息能力——列出会话、读取消息历史，以及跨所有已连接平台发送消息。
+除了连接**到** MCP 服务器，Alex 也可以**作为** MCP 服务器运行。这让其他支持 MCP 的 agent（Alex Agent、Cursor、Codex 或任何 MCP 客户端）能够使用 Alex 的消息能力——列出会话、读取消息历史，以及跨所有已连接平台发送消息。
 
 ### 适用场景
 
-- 你希望 Claude Code、Cursor 或其他编程 agent 通过 Alex 发送和读取 Telegram/Discord/Slack 消息
+- 你希望 Alex Agent、Cursor 或其他编程 agent 通过 Alex 发送和读取 Telegram/Discord/Slack 消息
 - 你需要一个单一的 MCP 服务器，同时桥接 Alex 所有已连接的消息平台
 - 你已经有一个运行中的 Alex gateway，并已连接各平台
 
@@ -504,7 +504,7 @@ alex mcp serve
 
 ### MCP 客户端配置
 
-将 Alex 添加到你的 MCP 客户端配置中。例如，在 Claude Code 的 `~/.claude/claude_desktop_config.json` 中：
+将 Alex 添加到你的 MCP 客户端配置中。例如，在 Alex Agent 的 `~/.claude/claude_desktop_config.json` 中：
 
 ```json
 {

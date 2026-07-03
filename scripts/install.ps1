@@ -840,7 +840,7 @@ function Install-Git {
         Write-Info ""
         Write-Info "Fallback: install Git manually from https://git-scm.com/download/win"
         Write-Info "then re-run this installer.  Alex needs Git Bash on Windows to run"
-        Write-Info "shell commands (same as Claude Code and other coding agents)."
+        Write-Info "shell commands (same as Alex Agent and other coding agents)."
         return $false
     }
 }

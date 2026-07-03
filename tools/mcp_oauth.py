@@ -314,7 +314,7 @@ class AlexTokenStorage:
         # ``_initialize`` reloads a relative ``expires_in`` which has no
         # wall-clock reference, leaving ``context.token_expiry_time=None``
         # and ``is_token_valid()`` falsely reporting True. See Fix A in
-        # ``mcp-oauth-token-diagnosis`` skill + Claude Code's
+        # ``mcp-oauth-token-diagnosis`` skill + Alex Agent's
         # ``OAuthTokens.expiresAt`` persistence (auth.ts ~180).
         expires_in = payload.get("expires_in")
         if expires_in is not None:

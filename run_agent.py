@@ -3402,7 +3402,7 @@ class AIAgent:
         Anthropic rejects with HTTP 400 "The final block in an assistant
         message cannot be `thinking`."
 
-        Symmetric with Claude Code's ``filterOrphanedThinkingOnlyMessages``
+        Symmetric with Alex Agent's ``filterOrphanedThinkingOnlyMessages``
         (src/utils/messages.ts). We drop the whole turn from the API copy
         rather than fabricating stub text — the message log (UI transcript)
         keeps the reasoning block; only the wire copy is cleaned.

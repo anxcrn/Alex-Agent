@@ -108,7 +108,7 @@ If you're trying to switch to a provider you haven't set up yet (e.g. you only h
 Use Claude models directly through the Anthropic API — no OpenRouter proxy needed. Supports three auth methods:
 
 :::caution Requires Claude Max "extra usage" credits
-When you authenticate via `alex model` → Anthropic OAuth (or via `alex auth add anthropic --type oauth`), Alex routes as Claude Code against your Anthropic account. **It only works if you're on a Claude Max plan and have purchased extra usage credits.** The base Max plan allowance (the usage included in Claude Code by default) is not consumed by Alex — only the extra/overage credits you've added on top are. Claude Pro subscribers cannot use this path.
+When you authenticate via `alex model` → Anthropic OAuth (or via `alex auth add anthropic --type oauth`), Alex routes as Alex Agent against your Anthropic account. **It only works if you're on a Claude Max plan and have purchased extra usage credits.** The base Max plan allowance (the usage included in Alex Agent by default) is not consumed by Alex — only the extra/overage credits you've added on top are. Claude Pro subscribers cannot use this path.
 
 If you don't have Max + extra credits, use an `ANTHROPIC_API_KEY` instead — requests are billed pay-per-token against that key's organization (standard API pricing, independent of any Claude subscription).
 :::
@@ -119,18 +119,18 @@ export ANTHROPIC_API_KEY=***
 alex chat --provider anthropic --model claude-sonnet-4-6
 
 # Preferred: authenticate through `alex model`
-# Alex will use Claude Code's credential store directly when available
+# Alex will use Alex Agent's credential store directly when available
 alex model
 
 # Manual override with a setup-token (fallback / legacy)
 export ANTHROPIC_TOKEN=***  # setup-token or manual OAuth token
 alex chat --provider anthropic
 
-# Auto-detect Claude Code credentials (if you already use Claude Code)
-alex chat --provider anthropic  # reads Claude Code credential files automatically
+# Auto-detect Alex Agent credentials (if you already use Alex Agent)
+alex chat --provider anthropic  # reads Alex Agent credential files automatically
 ```
 
-When you choose Anthropic OAuth through `alex model`, Alex prefers Claude Code's own credential store over copying the token into `~/.alex/.env`. That keeps refreshable Claude credentials refreshable.
+When you choose Anthropic OAuth through `alex model`, Alex prefers Alex Agent's own credential store over copying the token into `~/.alex/.env`. That keeps refreshable Claude credentials refreshable.
 
 Or set it permanently:
 ```yaml

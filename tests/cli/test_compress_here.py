@@ -1,7 +1,7 @@
 """Tests for /compress here [N] — boundary-aware partial compression.
 
 Verifies the CLI handler (_manual_compress) splits the history, compresses
-only the head, and re-appends the verbatim tail. Inspired by Claude Code's
+only the head, and re-appends the verbatim tail. Inspired by Alex Agent's
 Rewind "Summarize up to here" action (v2.1.139, May 2026).
 """
 

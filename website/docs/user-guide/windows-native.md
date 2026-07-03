@@ -103,7 +103,7 @@ The dashboard's `/chat` tab embeds a real terminal via a POSIX PTY (`ptyprocess`
 
 ## How Alex runs shell commands on Windows
 
-Alex's terminal tool runs commands through **Git Bash**, same strategy Claude Code uses. This sidesteps the POSIX-vs-Windows gap without rewriting every tool.
+Alex's terminal tool runs commands through **Git Bash**, same strategy Alex Agent uses. This sidesteps the POSIX-vs-Windows gap without rewriting every tool.
 
 Resolution order for `bash.exe`:
 

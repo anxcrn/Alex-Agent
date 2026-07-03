@@ -1,7 +1,7 @@
 """
 Alex MCP Server — expose messaging conversations as MCP tools.
 
-Starts a stdio MCP server that lets any MCP client (Claude Code, Cursor, Codex,
+Starts a stdio MCP server that lets any MCP client (Alex Agent, Cursor, Codex,
 etc.) list conversations, read message history, send messages, poll for live
 events, and manage approval requests across all connected platforms.
 

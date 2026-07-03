@@ -11,7 +11,7 @@ from agent.anthropic_adapter import (
 
 
 class TestReadClaudeCodeCredentialsFromKeychain:
-    """Bug 4: macOS Keychain support for Claude Code >=2.1.114."""
+    """Bug 4: macOS Keychain support for Alex Agent >=2.1.114."""
 
     def test_returns_none_on_linux(self):
         """Keychain reading is Darwin-only; must return None on other platforms."""

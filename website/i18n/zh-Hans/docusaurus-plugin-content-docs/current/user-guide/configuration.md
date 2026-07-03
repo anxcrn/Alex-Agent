@@ -1662,7 +1662,7 @@ Alex 使用两种不同的上下文范围：
 | `SOUL.md` | **主要 agent 身份** —— 定义 agent 是谁（系统提示词第 #1 槽位） | `~/.alex/SOUL.md` 或 `$ALEX_HOME/SOUL.md` |
 | `.alex.md` / `ALEX.md` | 项目特定指令（最高优先级） | 向上走到 git 根目录 |
 | `AGENTS.md` | 项目特定指令、编码规范 | 递归目录遍历 |
-| `CLAUDE.md` | Claude Code 上下文文件（也会检测） | 仅工作目录 |
+| `CLAUDE.md` | Alex Agent 上下文文件（也会检测） | 仅工作目录 |
 | `.cursorrules` | Cursor IDE 规则（也会检测） | 仅工作目录 |
 | `.cursor/rules/*.mdc` | Cursor 规则文件（也会检测） | 仅工作目录 |
 

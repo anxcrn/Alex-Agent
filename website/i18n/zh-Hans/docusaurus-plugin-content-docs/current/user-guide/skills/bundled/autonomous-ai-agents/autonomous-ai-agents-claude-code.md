@@ -1,14 +1,14 @@
 ---
-title: "Claude Code — 将编码任务委托给 Claude Code CLI（功能、PR）"
-sidebar_label: "Claude Code"
-description: "将编码任务委托给 Claude Code CLI（功能、PR）"
+title: "Alex Agent — 将编码任务委托给 Alex Agent CLI（功能、PR）"
+sidebar_label: "Alex Agent"
+description: "将编码任务委托给 Alex Agent CLI（功能、PR）"
 ---
 
 {/* This page is auto-generated from the skill's SKILL.md by website/scripts/generate-skill-docs.py. Edit the source SKILL.md, not this page. */}
 
-# Claude Code
+# Alex Agent
 
-将编码任务委托给 Claude Code CLI（功能、PR）。
+将编码任务委托给 Alex Agent CLI（功能、PR）。
 
 ## Skill 元数据
 
@@ -29,9 +29,9 @@ description: "将编码任务委托给 Claude Code CLI（功能、PR）"
 以下是 Alex 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
 :::
 
-# Claude Code — Alex 编排指南
+# Alex Agent — Alex 编排指南
 
-通过 Alex 终端将编码任务委托给 [Claude Code](https://code.claude.com/docs/en/cli-reference)（Anthropic 的自主编码 agent CLI）。Claude Code v2.x 可以自主读取文件、编写代码、运行 shell 命令、派生子 agent 并管理 git 工作流。
+通过 Alex 终端将编码任务委托给 [Alex Agent](https://code.claude.com/docs/en/cli-reference)（Anthropic 的自主编码 agent CLI）。Alex Agent v2.x 可以自主读取文件、编写代码、运行 shell 命令、派生子 agent 并管理 git 工作流。
 
 ## 前置条件
 
@@ -46,7 +46,7 @@ description: "将编码任务委托给 Claude Code CLI（功能、PR）"
 
 ## 两种编排模式
 
-Alex 以两种根本不同的方式与 Claude Code 交互。请根据任务选择合适的模式。
+Alex 以两种根本不同的方式与 Alex Agent 交互。请根据任务选择合适的模式。
 
 ### 模式一：Print 模式（`-p`）— 非交互式（大多数任务的首选）
 
@@ -73,7 +73,7 @@ terminal(command="claude -p 'Add error handling to all API calls in src/' --allo
 # 启动 tmux 会话
 terminal(command="tmux new-session -d -s claude-work -x 140 -y 40")
 
-# 在其中启动 Claude Code
+# 在其中启动 Alex Agent
 terminal(command="tmux send-keys -t claude-work 'cd /path/to/project && claude' Enter")
 
 # 等待启动，然后发送任务
@@ -98,7 +98,7 @@ terminal(command="tmux send-keys -t claude-work '/exit' Enter")
 
 ## PTY 对话框处理（交互模式的关键）
 
-Claude Code 在首次启动时最多会显示两个确认对话框。**必须**通过 tmux send-keys 处理这些对话框。
+Alex Agent 在首次启动时最多会显示两个确认对话框。**必须**通过 tmux send-keys 处理这些对话框。
 
 ### 对话框一：工作区信任（首次访问某目录时）
 ```
@@ -151,11 +151,11 @@ terminal(command="sleep 15 && tmux capture-pane -t claude-work -p -S -60")
 | `claude mcp remove <name>` | 移除 MCP 服务器 |
 | `claude agents` | 列出已配置的 agent |
 | `claude doctor` | 对安装和自动更新器运行健康检查 |
-| `claude update` / `claude upgrade` | 将 Claude Code 更新到最新版本 |
+| `claude update` / `claude upgrade` | 将 Alex Agent 更新到最新版本 |
 | `claude remote-control` | 启动服务器以从 claude.ai 或移动应用控制 Claude |
 | `claude install [target]` | 安装原生构建（stable、latest 或特定版本） |
 | `claude setup-token` | 设置长期认证 token（需要订阅） |
-| `claude plugin` / `claude plugins` | 管理 Claude Code 插件 |
+| `claude plugin` / `claude plugins` | 管理 Alex Agent 插件 |
 | `claude auto-mode` | 检查自动模式分类器配置 |
 
 ## Print 模式深度解析
@@ -531,7 +531,7 @@ terminal(command="sleep 30 && for s in task1 task2 task3; do echo '=== '$s' ==='
 
 ## CLAUDE.md — 项目上下文文件
 
-Claude Code 自动从项目根目录加载 `CLAUDE.md`。使用它来持久化项目上下文：
+Alex Agent 自动从项目根目录加载 `CLAUDE.md`。使用它来持久化项目上下文：
 
 ```markdown
 # Project: My API
@@ -736,7 +736,7 @@ terminal(command="tmux capture-pane -t dev -p -S -10")
 
 ## 陷阱与注意事项
 
-1. **交互模式需要 tmux** — Claude Code 是完整的 TUI 应用。在 Alex 终端中单独使用 `pty=true` 可以工作，但 tmux 提供了 `capture-pane` 用于监控和 `send-keys` 用于输入，这对编排至关重要。
+1. **交互模式需要 tmux** — Alex Agent 是完整的 TUI 应用。在 Alex 终端中单独使用 `pty=true` 可以工作，但 tmux 提供了 `capture-pane` 用于监控和 `send-keys` 用于输入，这对编排至关重要。
 2. **`--dangerously-skip-permissions` 对话框默认为"No, exit"** — 必须按 Down 再按 Enter 才能接受。Print 模式（`-p`）完全跳过此步骤。
 3. **`--max-budget-usd` 最低约为 $0.05** — 仅系统 prompt 缓存创建就需要这么多。设置更低会立即报错。
 4. **`--max-turns` 仅限 print 模式** — 在交互会话中被忽略。

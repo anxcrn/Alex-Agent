@@ -286,7 +286,7 @@ This means two things that are easy to mix up:
   data.
 - `HOME` is the operating-system/user home that external CLIs expect. On host
   installs, Alex keeps it as the real user home by default so tools like
-  `git`, `ssh`, `gh`, `az`, `npm`, Claude Code, and Codex find the same
+  `git`, `ssh`, `gh`, `az`, `npm`, Alex Agent, and Codex find the same
   credentials they use in your normal shell.
 
 The tradeoff is that host profiles share normal user-level CLI state by default.

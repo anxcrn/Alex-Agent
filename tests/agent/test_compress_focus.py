@@ -1,7 +1,7 @@
 """Tests for focus_topic flowing through the compressor.
 
 Verifies that _generate_summary and compress accept and use the focus_topic
-parameter correctly.  Inspired by Claude Code's /compact <focus>.
+parameter correctly.  Inspired by Alex Agent's /compact <focus>.
 """
 
 from unittest.mock import MagicMock, patch

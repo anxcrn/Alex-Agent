@@ -96,7 +96,7 @@ cd "$GITNEXUS_DIR/gitnexus-web" && npx vite build
 ```bash
 cd /path/to/target-repo
 npx gitnexus analyze --skip-agents-md
-rm -rf .claude/    # remove Claude Code-specific artifacts
+rm -rf .claude/    # remove Alex Agent-specific artifacts
 ```
 
 添加 `--embeddings` 可启用语义搜索（速度较慢——需要数分钟而非数秒）。
@@ -204,7 +204,7 @@ rm -rf .claude/
 
 - **隧道必须使用生产构建。** Vite 开发服务器默认阻止非 localhost 主机（`allowedHosts`）。使用生产构建 + Node 代理可完全规避此问题。
 
-- **Web UI 不会创建 `.claude/` 或 `CLAUDE.md`。** 这些文件由 `npx gitnexus analyze` 创建。使用 `--skip-agents-md` 可抑制 markdown 文件的生成，再用 `rm -rf .claude/` 清除其余内容。这些是 Claude Code 集成产物，Alex Agent 用户无需使用。
+- **Web UI 不会创建 `.claude/` 或 `CLAUDE.md`。** 这些文件由 `npx gitnexus analyze` 创建。使用 `--skip-agents-md` 可抑制 markdown 文件的生成，再用 `rm -rf .claude/` 清除其余内容。这些是 Alex Agent 集成产物，Alex Agent 用户无需使用。
 
 - **浏览器内存限制。** Web UI 将整个图谱加载至浏览器内存。文件数超过 5k 的仓库可能出现卡顿，超过 30k 文件的仓库很可能导致标签页崩溃。
 
