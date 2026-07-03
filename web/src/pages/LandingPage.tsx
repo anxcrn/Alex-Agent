@@ -272,26 +272,26 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ── NANO BANANA 2.0 MASCOT HYPER-PANEL ── */}
+        {/* ── CREATOR PROFILE HYPER-PANEL ── */}
         <section className="mt-16 py-20 border-t border-b border-white/[0.03] backdrop-blur-sm bg-black/20 rounded-3xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left Column: Glassmorphic Floating Banana Card */}
+            {/* Left Column: Glassmorphic Floating Creator Card */}
             <div className="lg:col-span-5 relative flex justify-center items-center">
               <div className="absolute w-[300px] h-[300px] bg-[#00F0FF]/10 rounded-full blur-[100px] pointer-events-none" />
               <div className="relative group overflow-hidden rounded-2xl border border-white/10 bg-[#07070f]/80 p-4 transform hover:scale-[1.03] transition-all duration-500 shadow-[0_0_50px_rgba(0,0,0,0.8)]">
                 <img 
-                  src="/nano_banana_2.png" 
-                  alt="Nano Banana 2.0" 
+                  src="/creator.png" 
+                  alt="Vankudoth Charan" 
                   className="rounded-xl max-h-[380px] w-auto object-cover filter drop-shadow-[0_0_20px_rgba(0,240,255,0.25)] group-hover:scale-[1.01] transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl backdrop-blur-md bg-black/60 border border-white/10 text-center space-y-1">
                   <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#00F0FF]">
-                    MASCOT SPECIFICATION
+                    LEAD ARCHITECT
                   </div>
                   <div className="text-xs text-white/50 font-mono tracking-wider">
-                    MODEL: NANO_BANANA_2.0 // ULTRA_SPEED
+                    CREATOR: VANKUDOTH CHARAN
                   </div>
                 </div>
               </div>
@@ -304,13 +304,13 @@ export default function LandingPage() {
                   CORE REVOLUTION
                 </span>
                 <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-white uppercase leading-none">
-                  INTEGRATE WORKFLOWS.<br />
-                  EVOLVE CAPABILITIES.
+                  VANKUDOTH CHARAN // <br />
+                  CREATOR OF MYTHOS-5
                 </h2>
               </div>
               
               <p className="text-white/60 leading-relaxed font-light text-base sm:text-lg">
-                Alex Agent leverages a multi-layer verification mesh to import code dynamically. When it crawls or discovers new developer interfaces:
+                Alex Agent is designed under the vision of Vankudoth Charan, the creator of the Mythos-5 experimental architecture series. Emphasizing extreme speed, automated validation, and deep file workspace manipulation, this system represents a significant milestone in agentic code generation.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
