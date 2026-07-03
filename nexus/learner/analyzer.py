@@ -29,18 +29,17 @@ class KnowledgeAnalyzer:
     """Analyzes raw crawl discoveries to extract structured AI-actionable knowledge."""
 
     def __init__(self) -> None:
-        self.api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("ALEX_LLM_API_KEY")
+        pass
 
     def analyze(self, discovery: Discovery) -> AnalysisResult:
         """Analyze a discovery to determine relevance, type, and usage instructions."""
-        # Fall back to heuristic keyword-based analysis if no LLM key is configured
-        if not self.api_key:
+        from nexus.llm_client import get_nexus_llm_client
+        client, model = get_nexus_llm_client()
+        
+        if not client:
             return self._heuristic_analyze(discovery)
             
         try:
-            from openai import OpenAI
-            client = OpenAI(api_key=self.api_key)
-            
             prompt = (
                 f"You are the self-evolution engine analyzer for Alex Agent (an advanced AI developer agent).\n"
                 f"Analyze the following discovery:\n"
@@ -57,17 +56,25 @@ class KnowledgeAnalyzer:
                 f"Respond ONLY with valid JSON."
             )
             
-            resp = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.1,
-                response_format={"type": "json_object"}
-            )
+            # Use JSON mode if possible, else standard call
+            kwargs = {
+                "model": model,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.1,
+            }
+            if "gpt-" in model or "deepseek" in model or "qwen" in model:
+                kwargs["response_format"] = {"type": "json_object"}
+                
+            resp = client.chat.completions.create(**kwargs)
             
             res_dict = {}
             import json
             if resp.choices and resp.choices[0].message.content:
-                res_dict = json.loads(resp.choices[0].message.content)
+                content = resp.choices[0].message.content.strip()
+                # Strip markdown codeblock backticks if present
+                if content.startswith("```"):
+                    content = content.replace("```json", "").replace("```", "").strip()
+                res_dict = json.loads(content)
                 
             return AnalysisResult(
                 what_is_it=str(res_dict.get("what_is_it", "technique")),

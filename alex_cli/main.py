@@ -300,6 +300,8 @@ from alex_cli.subcommands.pairing import build_pairing_parser
 from alex_cli.subcommands.plugins import build_plugins_parser
 from alex_cli.subcommands.mcp import build_mcp_parser
 from alex_cli.subcommands.claw import build_claw_parser
+from alex_cli.subcommands.exec import build_exec_parser
+from alex_cli.subcommands.managed_agent import build_managed_agent_parser
 
 
 def _require_tty(command_name: str) -> None:
@@ -4209,6 +4211,63 @@ def cmd_webhook(args):
     from alex_cli.webhook import webhook_command
 
     webhook_command(args)
+
+
+def cmd_exec(args):
+    """Headless agent execution for scripts and automation."""
+    from alex_cli.exec import exec_command
+
+    exec_command(args)
+
+
+def cmd_managed_agent(args):
+    """Managed Agents HTTP API server."""
+    action = getattr(args, "managed_agent_action", None) or "start"
+
+    if action == "start":
+        port = getattr(args, "port", 8080)
+        host = getattr(args, "host", "127.0.0.1")
+        daemon = getattr(args, "daemon", False)
+
+        if daemon:
+            import subprocess, sys
+            subprocess.Popen(
+                [sys.executable, "-m", "alex_cli.managed_agent_server"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                close_fds=True,
+            )
+            print(f"Managed Agents API server started on {host}:{port} (background)")
+        else:
+            from alex_cli.managed_agent_server import start_server
+            start_server(port=port, host=host)
+    elif action == "status":
+        import urllib.request, json
+        try:
+            resp = urllib.request.urlopen("http://127.0.0.1:8080/v1/health", timeout=5)
+            data = json.loads(resp.read())
+            print(f"Status: {data['status']}")
+            print(f"Active sessions: {data['active_sessions']}")
+        except Exception as exc:
+            print(f"Managed Agents API server is not running ({exc})")
+    elif action == "stop":
+        import urllib.request
+        import os, signal
+        if os.name == "nt":
+            print("On Windows, stop the server process manually (Ctrl+C or task manager)")
+        else:
+            try:
+                pid_path = "/tmp/alex-managed-agent.pid"
+                if os.path.exists(pid_path):
+                    with open(pid_path) as f:
+                        pid = int(f.read().strip())
+                    os.kill(pid, signal.SIGTERM)
+                    os.unlink(pid_path)
+                    print("Managed Agents API server stopped")
+                else:
+                    print("PID file not found. Stop the server process manually.")
+            except Exception as exc:
+                print(f"Failed to stop server: {exc}")
 
 
 def cmd_slack(args):
@@ -11586,8 +11645,10 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "acp", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
         "computer-use",
         "config", "cron", "curator", "dashboard", "debug", "doctor",
-        "dump", "fallback", "gateway", "hooks", "import", "insights",
-        "gui", "desktop", "kanban", "login", "logout", "logs", "lsp", "mcp", "memory", "migrate", "moa",
+        "dump", "exec", "fallback", "gateway", "hooks", "import", "insights",
+        "gui", "desktop", "kanban", "login", "logout", "logs", "lsp",
+        "managed-agent", "ma",
+        "mcp", "memory", "migrate", "moa",
         "model", "pairing", "pets", "plugins", "portal", "postinstall", "profile",
         "project", "proxy",
         "prompt-size",
@@ -12326,6 +12387,16 @@ def main():
     # webhook command  (parser built in alex_cli/subcommands/webhook.py)
     # =========================================================================
     build_webhook_parser(subparsers, cmd_webhook=cmd_webhook)
+
+    # =========================================================================
+    # exec command — headless agent execution (parser built in alex_cli/subcommands/exec.py)
+    # =========================================================================
+    build_exec_parser(subparsers, cmd_exec=cmd_exec)
+
+    # =========================================================================
+    # managed-agent command — Managed Agents HTTP API server
+    # =========================================================================
+    build_managed_agent_parser(subparsers, cmd_managed_agent=cmd_managed_agent)
 
     # =========================================================================
     # portal command — Nous Portal status + Tool Gateway routing

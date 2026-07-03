@@ -5,7 +5,25 @@ import path from 'path'
 
 export default defineConfig({
   base: './',
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    // Fix: @icons-pack/react-simple-icons index.mjs imports ./icons/SiXxx.mjs
+    // but some icon files only exist as .cjs. Resolve .mjs → .cjs when .mjs is missing.
+    {
+      name: 'simple-icons-cjs-fallback',
+      resolveId(source, importer) {
+        if (
+          source.endsWith('.mjs') &&
+          importer?.includes('@icons-pack/react-simple-icons')
+        ) {
+          const cjsSource = source.replace(/\.mjs$/, '.cjs');
+          return this.resolve(cjsSource, importer);
+        }
+        return null;
+      }
+    } as any,
+  ],
   css: {
     // Pin an explicit (empty) PostCSS config. Tailwind is handled entirely by
     // `@tailwindcss/vite`, so the renderer needs no PostCSS plugins — and

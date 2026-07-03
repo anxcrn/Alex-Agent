@@ -183,6 +183,16 @@ class KnowledgeBase:
         self._schema_ready = False
         logger.debug("[Nexus/KB] Database path: %s", self._db_path)
 
+    def close(self) -> None:
+        """Close the sqlite3 connection of the current thread, if any."""
+        conn: Optional[sqlite3.Connection] = getattr(self._local, "conn", None)
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
+            self._local.conn = None
+
     # -- connection helpers -------------------------------------------------
 
     def _get_conn(self) -> sqlite3.Connection:

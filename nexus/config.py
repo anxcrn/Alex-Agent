@@ -48,16 +48,16 @@ class SourcesConfig:
     Sources default to ``False`` — the operator explicitly opts in to each
     source.  This prevents surprise network traffic on first start.
     """
-    github: bool = False
-    mcp_registries: bool = False
-    pypi: bool = False
-    npm: bool = False
-    reddit: bool = False
-    hackernews: bool = False
-    youtube: bool = False
-    arxiv: bool = False
-    web: bool = False
-    docs: bool = False
+    github: bool = True
+    mcp_registries: bool = True
+    pypi: bool = True
+    npm: bool = True
+    reddit: bool = True
+    hackernews: bool = True
+    youtube: bool = True
+    arxiv: bool = True
+    web: bool = True
+    docs: bool = True
 
 
 @dataclass
@@ -84,7 +84,7 @@ class NexusConfig:
         sources:                  Enabled discovery sources.
         crawlers:                 Crawler-specific tuning.
     """
-    enabled: bool = False
+    enabled: bool = True
     mode: str = "full_auto"
     scan_interval_minutes: int = 30
     max_evolutions_per_day: int = 50

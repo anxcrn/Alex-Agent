@@ -1126,6 +1126,21 @@ def _build_child_agent(
     if effective_role == "orchestrator" and "delegation" not in child_toolsets:
         child_toolsets.append("delegation")
 
+    # Scoped subagent permissions — role-based tool allow/deny lists.
+    # Applied for named roles (auditor, coder, researcher, planner, reviewer).
+    if effective_role in ("auditor", "coder", "researcher", "planner", "reviewer"):
+        from tools.subagent_permissions import apply_role_restrictions, get_role_definitions
+
+        roles = get_role_definitions()
+        if effective_role in roles:
+            enabled, disabled = apply_role_restrictions(
+                effective_role, current_toolsets=child_toolsets
+            )
+            if enabled is not None:
+                child_toolsets = enabled
+            if disabled:
+                child_toolsets = [t for t in child_toolsets if t not in disabled]
+
     workspace_hint = _resolve_workspace_hint(parent_agent)
     child_prompt = _build_child_system_prompt(
         goal,
@@ -3038,7 +3053,11 @@ def _build_role_param_description() -> str:
     return (
         "Role of the child agent. 'leaf' (default) = focused "
         "worker, cannot delegate further. 'orchestrator' = can "
-        f"use delegate_task to spawn its own workers. {nesting_note}"
+        f"use delegate_task to spawn its own workers. "
+        "Named roles apply scoped tool permissions: 'auditor' (read-only, "
+        "file/web/search), 'coder' (terminal/file/browser/code_execution), "
+        "'researcher' (web/search/file), 'planner' (file/web/search/workflow). "
+        f"{nesting_note}"
     )
 
 

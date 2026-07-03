@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, ShieldAlert, Check, HelpCircle } from "lucide-react";
+import { ShieldAlert, Check, HelpCircle } from "lucide-react";
 import { Button } from "@nous-research/ui/ui/components/button";
 
 export interface DialogData {

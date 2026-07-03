@@ -47,6 +47,8 @@ _ALEX_CORE_TOOLS = [
     "browser_type", "browser_scroll", "browser_back",
     "browser_press", "browser_get_images",
     "browser_vision", "browser_console", "browser_cdp", "browser_dialog",
+    # Chrome DevTools — inspect element, edit CSS, console advanced
+    "browser_inspect", "browser_edit_css",
     # Text-to-speech
     "text_to_speech",
     # Planning & memory
@@ -64,6 +66,8 @@ _ALEX_CORE_TOOLS = [
     "execute_code", "delegate_task",
     # Cronjob management
     "cronjob",
+    # Development tools (structured git operations + dev workflows)
+    "git", "dev",
     # Home Assistant smart home control (gated on HASS_TOKEN via check_fn)
     "ha_list_entities", "ha_get_state", "ha_list_services", "ha_call_service",
     # Kanban multi-agent coordination — only in schema when the agent is
@@ -82,6 +86,8 @@ _ALEX_CORE_TOOLS = [
     "ask_question", "ask_permission",
     # Multi-Agent State Graph
     "run_agent_graph",
+    # Dynamic Workflow Engine (parallel multi-agent orchestration)
+    "dynamic_workflow", "workflow_status", "workflow_cancel", "workflow_list",
     # Nexus Evolution Engine
     "nexus",
 ]
@@ -176,13 +182,33 @@ TOOLSETS = {
     },
     
     "browser": {
-        "description": "Browser automation for web interaction (navigate, click, type, scroll, iframes, hold-click) with web search for finding URLs",
+        "description": "Browser automation for web interaction (navigate, click, type, scroll, iframes, hold-click) with web search for finding URLs. Includes Chrome DevTools capabilities (inspect element, edit CSS, network, cookies, etc.) when CDP is connected.",
         "tools": [
             "browser_navigate", "browser_snapshot", "browser_click",
             "browser_type", "browser_scroll", "browser_back",
             "browser_press", "browser_get_images",
             "browser_vision", "browser_console", "browser_cdp",
-            "browser_dialog", "web_search"
+            "browser_dialog", "web_search",
+            # Chrome DevTools
+            "browser_inspect", "browser_edit_css",
+            "browser_inspect_element", "browser_edit_dom",
+            "browser_network", "browser_cookies",
+            "browser_console_advanced",
+        ],
+        "includes": []
+    },
+
+    "browser-devtools": {
+        "description": "Full Chrome DevTools suite — inspect/edit DOM elements, edit CSS, monitor network requests, manage cookies/storage, profile performance, set JS breakpoints, capture screenshots, run accessibility audits, measure code coverage, and highlight elements. Requires a CDP-connected browser (/browser connect or browser.cdp_url in config).",
+        "tools": [
+            "browser_inspect_element", "browser_edit_dom",
+            "browser_inspect", "browser_edit_css",
+            "browser_network", "browser_performance",
+            "browser_cookies", "browser_storage",
+            "browser_highlight",
+            "browser_screenshot_devtools",
+            "browser_breakpoint", "browser_accessibility",
+            "browser_coverage", "browser_console_advanced",
         ],
         "includes": []
     },
@@ -194,6 +220,12 @@ TOOLSETS = {
     },
     
 
+    "multi_repo": {
+        "description": "Clone, search, and manage multiple git repositories in a single conversation",
+        "tools": ["repo_clone", "repo_status", "repo_search", "repo_exec", "repo_list"],
+        "includes": []
+    },
+
     "file": {
         "description": "File manipulation tools: read, write, patch (with fuzzy matching), and search (content + files)",
         "tools": ["read_file", "write_file", "patch", "search_files"],
@@ -201,8 +233,8 @@ TOOLSETS = {
     },
     
     "artifacts": {
-        "description": "Create, update, and view rich visual artifacts side-by-side with chat",
-        "tools": ["create_artifact", "update_artifact", "view_artifact"],
+        "description": "Create, update, view, and delete rich visual artifacts (markdown, HTML, images, JSON, CSV, SVG) side-by-side with chat",
+        "tools": ["create_artifact", "update_artifact", "view_artifact", "delete_artifact"],
         "includes": []
     },
     
@@ -271,6 +303,30 @@ TOOLSETS = {
     "delegation": {
         "description": "Spawn subagents with isolated context for complex subtasks",
         "tools": ["delegate_task", "run_agent_graph"],
+        "includes": []
+    },
+
+    "workflow": {
+        "description": (
+            "Dynamic multi-agent workflows: decompose goals into parallel "
+            "sub-tasks, execute across many agents, verify results, and "
+            "converge on a final answer."
+        ),
+        "tools": [
+            "dynamic_workflow", "workflow_status",
+            "workflow_cancel", "workflow_list",
+        ],
+        "includes": []
+    },
+
+    "dev": {
+        "description": (
+            "Development operations: test, lint, format, build, install, "
+            "clean, audit, typecheck, coverage, fix, and CI pipeline. "
+            "Auto-detects project type (Python, JS/TS, Rust, Go, Java, "
+            "etc.) and picks the correct toolchain commands."
+        ),
+        "tools": ["dev", "git"],
         "includes": []
     },
 
@@ -381,6 +437,8 @@ TOOLSETS = {
             "browser_type", "browser_scroll", "browser_back",
             "browser_press", "browser_get_images",
             "browser_vision", "browser_console", "browser_cdp", "browser_dialog",
+            # Chrome DevTools
+            "browser_inspect", "browser_edit_css",
             "todo", "memory",
             "session_search", "clarify",
             "execute_code", "delegate_task",
@@ -413,6 +471,8 @@ TOOLSETS = {
             "browser_type", "browser_scroll", "browser_back",
             "browser_press", "browser_get_images",
             "browser_vision", "browser_console", "browser_cdp", "browser_dialog",
+            # Chrome DevTools
+            "browser_inspect", "browser_edit_css",
             "todo", "memory",
             "session_search",
             "execute_code", "delegate_task",
@@ -438,6 +498,8 @@ TOOLSETS = {
             "browser_type", "browser_scroll", "browser_back",
             "browser_press", "browser_get_images",
             "browser_vision", "browser_console", "browser_cdp", "browser_dialog",
+            # Chrome DevTools
+            "browser_inspect", "browser_edit_css",
             # Planning & memory
             "todo", "memory",
             # Session history search

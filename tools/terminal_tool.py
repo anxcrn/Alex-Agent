@@ -47,7 +47,42 @@ from typing import Optional, Dict, Any, List
 
 from utils import env_var_enabled
 
+from tools.environments.shell_registry import ShellRegistry
+
 logger = logging.getLogger(__name__)
+
+
+# ---------------------------------------------------------------------------
+# Shell dispatch cache: lazily populated by _wrap_for_shell() so that
+# import-time overhead is zero when the feature is unused.
+# ---------------------------------------------------------------------------
+_shell_registry: Optional[ShellRegistry] = None
+
+
+def _get_shell_registry() -> ShellRegistry:
+    global _shell_registry
+    if _shell_registry is None:
+        _shell_registry = ShellRegistry()
+    return _shell_registry
+
+
+def _wrap_for_shell(command: str, shell: str, env_type: str) -> str:
+    """Wrap a command for the specified shell backend (local env only).
+
+    For container/SSH backends the shell inside the sandbox is always bash,
+    so wrapping is skipped and the command passes through unchanged.
+    """
+    if not shell:
+        return command
+    if env_type != "local":
+        logger.debug("Shell param %r ignored for env_type=%s", shell, env_type)
+        return command
+    registry = _get_shell_registry()
+    backend = registry.get(shell)
+    if backend is None:
+        logger.warning("Shell %r not available, falling back to default", shell)
+        return command
+    return backend.wrap_command(command)
 
 
 # ---------------------------------------------------------------------------
@@ -1976,6 +2011,7 @@ def terminal_tool(
     pty: bool = False,
     notify_on_complete: bool = False,
     watch_patterns: Optional[List[str]] = None,
+    shell: str = "",
 ) -> str:
     """
     Execute a command in the configured terminal environment.
@@ -1991,6 +2027,7 @@ def terminal_tool(
         pty: If True, use pseudo-terminal for interactive CLI tools (local backend only)
         notify_on_complete: If True and background=True, you'll be notified exactly once when the process exits. The right choice for almost every long task. MUTUALLY EXCLUSIVE with watch_patterns.
         watch_patterns: List of strings to watch for in background output. HARD rate limit: 1 notification per 15s per process. After 3 strike windows in a row, watch_patterns is disabled and the session is auto-promoted to notify_on_complete. Use ONLY for rare, one-shot mid-process signals on long-lived processes (server readiness, migration-done markers). NEVER use in loops/batch jobs — error patterns there will hit the strike limit and get disabled. MUTUALLY EXCLUSIVE with notify_on_complete — set one, not both.
+        shell: Shell to use for command execution. One of "powershell", "cmd", "wsl", "bash", or "" (default/auto). Only applies to local backend.
 
     Returns:
         str: JSON string with output, exit_code, and error fields
@@ -1999,7 +2036,16 @@ def terminal_tool(
         # Execute a simple command
         >>> result = terminal_tool(command="ls -la /tmp")
 
-        # Run a background task
+        # Run via PowerShell
+        >>> result = terminal_tool(command="Get-Process", shell="powershell")
+
+        # Run via cmd.exe
+        >>> result = terminal_tool(command="dir /w", shell="cmd")
+
+        # Run via WSL
+        >>> result = terminal_tool(command="ps aux", shell="wsl")
+
+        # Run background task
         >>> result = terminal_tool(command="python server.py", background=True)
 
         # With custom timeout
@@ -2024,6 +2070,10 @@ def terminal_tool(
         # Get configuration
         config = _get_env_config()
         env_type = config["env_type"]
+
+        # Wrap command for target shell (local backend only; container/SSH
+        # backends always use bash inside the sandbox).
+        command = _wrap_for_shell(command, shell, env_type)
 
         # Use task_id for environment isolation. By default all subagent
         # task_ids collapse back to "default" so the top-level agent and
@@ -2912,6 +2962,11 @@ TERMINAL_SCHEMA = {
                 "type": "array",
                 "items": {"type": "string"},
                 "description": "Strings to watch for in background process output. HARD RATE LIMIT: at most 1 notification per 15 seconds per process — matches arriving inside the cooldown are dropped. After 3 consecutive 15-second windows with dropped matches, watch_patterns is automatically disabled for that process and promoted to notify_on_complete behavior (one notification on exit, no more mid-process spam). USE ONLY for truly rare, one-shot mid-process signals on LONG-LIVED processes that will never exit on their own — e.g. ['Application startup complete'] on a server so you know when to hit its endpoint, or ['migration done'] on a daemon. DO NOT use for: (1) end-of-run markers like 'DONE'/'PASS' — use notify_on_complete instead; (2) error patterns like 'ERROR'/'Traceback' in loops or multi-item batch jobs — they fire on every iteration and you'll hit the strike limit fast; (3) anything you'd ever combine with notify_on_complete. When in doubt, choose notify_on_complete. MUTUALLY EXCLUSIVE with notify_on_complete — set one, not both."
+            },
+            "shell": {
+                "type": "string",
+                "enum": ["", "bash", "powershell", "cmd", "wsl"],
+                "description": "Shell to use for command execution (local backend only). \"\" = default/auto, \"bash\" = Git Bash/system bash, \"powershell\" = PowerShell 7+/5.1, \"cmd\" = Windows cmd.exe, \"wsl\" = Windows Subsystem for Linux. Ignored for container/SSH backends."
             }
         },
         "required": ["command"]
@@ -2930,6 +2985,7 @@ def _handle_terminal(args, **kw):
         pty=args.get("pty", False),
         notify_on_complete=args.get("notify_on_complete", False),
         watch_patterns=args.get("watch_patterns"),
+        shell=args.get("shell", ""),
     )
 
 

@@ -199,11 +199,32 @@ async def _lifespan(app: "FastAPI"):
         )
         cron_thread.start()
 
+    # Start Project Nexus evolution engine daemon
+    nexus_daemon = None
+    try:
+        from nexus.daemon import NexusDaemon
+        from nexus.knowledge_base import KnowledgeBase
+        from nexus.changelog import Changelog
+        
+        kb = KnowledgeBase()
+        changelog = Changelog()
+        nexus_daemon = NexusDaemon(kb, changelog)
+        nexus_daemon.start()
+        app.state.nexus_daemon = nexus_daemon
+        _log.info("[Nexus/Lifespan] Nexus evolution engine started.")
+    except Exception as exc:
+        _log.warning("[Nexus/Lifespan] Failed to start Nexus daemon: %s", exc, exc_info=True)
+
     try:
         yield
     finally:
         if cron_stop is not None:
             cron_stop.set()
+        if nexus_daemon is not None:
+            try:
+                nexus_daemon.stop()
+            except Exception:
+                pass
 
 
 def _get_event_state(app: "FastAPI"):
@@ -252,6 +273,13 @@ app = FastAPI(title="Alex Agent", version=__version__, lifespan=_lifespan)
 from alex_cli.memory_oauth import router as _memory_oauth_router  # noqa: E402
 
 app.include_router(_memory_oauth_router)
+
+# Agent View API — real-time agent activity and session monitoring.
+from alex_cli.agent_view_api import create_router as _create_agent_view_router
+
+_agent_view_router = _create_agent_view_router()
+if _agent_view_router is not None:
+    app.include_router(_agent_view_router)
 
 # ---------------------------------------------------------------------------
 # Session token for protecting sensitive endpoints (reveal).

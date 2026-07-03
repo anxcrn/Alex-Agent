@@ -28,6 +28,8 @@ class SourceType(Enum):
     ARXIV = "arxiv"
     WEB = "web"
     DOCS = "docs"
+    LOCAL = "local"
+
 
 
 class DiscoveryCategory(Enum):

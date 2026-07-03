@@ -144,7 +144,7 @@
   },
   "build": {
     "electronVersion": "40.10.2",
-    "appId": "com.charan vankudoth.alex",
+    "appId": "com.charanvankudoth.alex",
     "productName": "Alex",
     "executableName": "Alex",
     "protocols": [
@@ -241,7 +241,7 @@
     },
     "linux": {
       "category": "Development",
-      "maintainer": "charan vankudoth <support@charan vankudoth.com>",
+      "maintainer": "Charan Vankudoth <support@charanvankudoth.com>",
       "synopsis": "Native desktop shell for Alex Agent.",
       "target": [
         "AppImage",

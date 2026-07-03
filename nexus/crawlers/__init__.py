@@ -7,6 +7,7 @@ from nexus.crawlers.base import (
     DiscoveryCategory,
     SourceType,
 )
+from nexus.crawlers.local_crawler import LocalFolderCrawler
 
 __all__ = [
     "BaseCrawler",
@@ -14,4 +15,6 @@ __all__ = [
     "Discovery",
     "DiscoveryCategory",
     "SourceType",
+    "LocalFolderCrawler",
 ]
+

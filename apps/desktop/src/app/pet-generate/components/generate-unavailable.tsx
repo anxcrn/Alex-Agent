@@ -29,7 +29,7 @@ export function GenerateUnavailable({ onSetup }: GenerateUnavailableProps) {
       </Button>
       <p className="flex flex-wrap items-center justify-center gap-x-1.5 text-[0.6875rem] text-(--ui-text-tertiary)">
         <span>Grab a key from</span>
-        <ExternalLink href="https://portal.charan vankudoth.com" showExternalIcon={false}>
+        <ExternalLink href="https://portal.anxcrn.com" showExternalIcon={false}>
           Nous Portal
         </ExternalLink>
         <span>·</span>

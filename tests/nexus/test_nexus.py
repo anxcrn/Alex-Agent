@@ -97,6 +97,7 @@ def test_knowledge_base_crud(temp_home):
     stats = kb.get_stats()
     assert stats["discoveries"] == 1
     assert stats["knowledge"] == 1
+    kb.close()
 
 
 def test_changelog_append_and_read(temp_home):
@@ -129,15 +130,15 @@ def test_changelog_append_and_read(temp_home):
 def test_config_load_and_save(temp_home):
     """Test config serialization and default creation."""
     config = load_config()
-    assert config.enabled is False
+    assert config.enabled is True
     assert config.mode == "full_auto"
     
-    config.enabled = True
+    config.enabled = False
     config.mode = "semi_auto"
     save_config(config)
     
     reloaded = load_config()
-    assert reloaded.enabled is True
+    assert reloaded.enabled is False
     assert reloaded.mode == "semi_auto"
 
 

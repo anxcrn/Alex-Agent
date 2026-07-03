@@ -74,6 +74,10 @@ class EvolutionPipeline:
             return []
 
         crawlers = []
+        # Always include the local folder crawler for offline/local learning
+        from nexus.crawlers.local_crawler import LocalFolderCrawler
+        crawlers.append(LocalFolderCrawler(config.crawlers.max_pages_per_scan))
+
         if config.sources.github:
             crawlers.append(GitHubCrawler(config.crawlers.github_stars_threshold, config.crawlers.max_pages_per_scan))
         if config.sources.mcp_registries:
@@ -94,6 +98,7 @@ class EvolutionPipeline:
             crawlers.append(WebCrawler(config.crawlers.max_pages_per_scan))
         if config.sources.docs:
             crawlers.append(DocsCrawler(config.crawlers.max_pages_per_scan))
+
 
         discoveries: List[Discovery] = []
         for crawler in crawlers:

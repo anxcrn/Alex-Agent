@@ -2073,6 +2073,16 @@ DEFAULT_CONFIG = {
         "subagent_auto_approve": False,
     },
 
+    "workflow": {
+        "enabled": True,
+        "max_parallel_agents": 20,
+        "max_convergence_rounds": 5,
+        "verification_required": True,
+        "planner_model": "",
+        "reviewer_model": "",
+        "checkpoint_interval_seconds": 30,
+    },
+
     # Ephemeral prefill messages file — JSON list of {role, content} dicts
     # injected at the start of every API call for few-shot priming.
     # Never saved to sessions, logs, or trajectories.
@@ -2976,6 +2986,54 @@ DEFAULT_CONFIG = {
         "cua_telemetry": False,
     },
 
+    "managed_agents": {
+        "enabled": False,
+        "max_concurrent": 10,
+        "default_timeout_seconds": 300,
+        "api_port": 8080,
+        "api_key": "",
+    },
+
+    "agent_view": {
+        "enabled": True,
+        "artifacts_port": 9876,
+        "artifacts_public_url": "",
+    },
+
+    "security": {
+        "auto_approval_model": "",
+        "sandbox_vm": {
+            "enabled": False,
+            "provider": "firecracker",
+            "memory_mb": 2048,
+            "cpu_count": 2,
+            "disk_mb": 10000,
+            "network_access": False,
+        },
+        "subagent_roles": {
+            "auditor": {
+                "allow_toolsets": ["file", "web", "search"],
+                "deny_toolsets": ["terminal", "browser", "delegation", "code_execution"],
+            },
+            "coder": {
+                "allow_toolsets": ["file", "terminal", "browser", "code_execution"],
+                "deny_toolsets": ["delegation", "messaging", "gateway"],
+            },
+            "researcher": {
+                "allow_toolsets": ["web", "search", "file"],
+                "deny_toolsets": ["terminal", "browser", "delegation", "code_execution"],
+            },
+        },
+    },
+
+    "fallback_providers": [],
+    "fallback_model_chain": [],
+
+    "budget": {
+        "max_cost_usd": 0,
+        "max_cost_per_subagent_usd": 0,
+        "warn_at_percent": 80,
+    },
 
     # Config schema version - bump this when adding new required fields
     "_config_version": 31,

@@ -31,7 +31,7 @@ export const PROVIDER_GROUPS: ProviderPrefix[] = [
     prefix: 'NOUS_',
     name: 'Nous Portal',
     description: 'Hosted Alex & Nous-trained models',
-    docsUrl: 'https://portal.charan vankudoth.com',
+    docsUrl: 'https://portal.anxcrn.com',
     priority: 0
   },
   {

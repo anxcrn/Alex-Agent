@@ -683,7 +683,7 @@ app.setName(APP_NAME)
 // need this, so gate it on Windows. (Fixes: desktop approval/turn notifications
 // never firing on Windows.)
 if (IS_WINDOWS) {
-  app.setAppUserModelId('com.charan vankudoth.alex')
+  app.setAppUserModelId('com.charanvankudoth.alex')
 }
 // Seed the native About panel with the live Alex version. This is refreshed
 // on every open via the explicit "About" menu handler (refreshAboutPanel), so

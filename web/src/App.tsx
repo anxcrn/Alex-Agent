@@ -91,6 +91,10 @@ import ChannelsPage from "@/pages/ChannelsPage";
 import WebhooksPage from "@/pages/WebhooksPage";
 import SystemPage from "@/pages/SystemPage";
 import ChatPage from "@/pages/ChatPage";
+import LandingPage from "@/pages/LandingPage";
+import AgentViewPage from "@/pages/AgentViewPage";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { BackendStatusGate } from "@/components/BackendStatusGate";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { useI18n } from "@/i18n";
@@ -102,16 +106,12 @@ import { isDashboardEmbeddedChatEnabled } from "@/lib/dashboard-flags";
 import { api } from "@/lib/api";
 import type { StatusResponse } from "@/lib/api";
 
-function RootRedirect() {
-  return <Navigate to="/sessions" replace />;
-}
-
 function UnknownRouteFallback({ pluginsLoading }: { pluginsLoading: boolean }) {
   if (pluginsLoading) {
     // Render nothing during the plugin-load window — a spinner here would just flash.
     return null;
   }
-  return <Navigate to="/sessions" replace />;
+  return <Navigate to="/" replace />;
 }
 
 const CHAT_NAV_ITEM: NavItem = {
@@ -131,7 +131,8 @@ const CHAT_NAV_ITEM: NavItem = {
  * and nav highlight keep working.
  */
 const BUILTIN_ROUTES_CORE: Record<string, ComponentType> = {
-  "/": RootRedirect,
+  "/": LandingPage,
+  "/agent-view": AgentViewPage,
   "/sessions": SessionsPage,
   "/files": FilesPage,
   "/analytics": AnalyticsPage,
@@ -161,6 +162,11 @@ function ChatRouteSink() {
 }
 
 const BUILTIN_NAV_REST: NavItem[] = [
+  {
+    path: "/agent-view",
+    label: "Agent View",
+    icon: Activity,
+  },
   {
     path: "/sessions",
     labelKey: "sessions",
@@ -479,6 +485,20 @@ export default function App() {
     return () => mql.removeEventListener("change", onChange);
   }, []);
 
+  const isLandingPage = normalizedPath === "/";
+
+  // Landing page renders full-screen without dashboard chrome
+  if (isLandingPage) {
+    return (
+      <div className="h-dvh max-h-dvh min-h-0 overflow-auto bg-black text-white antialiased">
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="*" element={<LandingPage />} />
+        </Routes>
+      </div>
+    );
+  }
+
   return (
     <ProfileProvider>
     <div
@@ -737,6 +757,8 @@ export default function App() {
                     "min-h-0 flex flex-1 flex-col",
                 )}
               >
+                <BackendStatusGate>
+                <ErrorBoundary>
                 <ProfileKeyedRoutes>
                   <Routes>
                     {routes.map(({ key, path, element }) => (
@@ -750,6 +772,8 @@ export default function App() {
                     />
                   </Routes>
                 </ProfileKeyedRoutes>
+                </ErrorBoundary>
+                </BackendStatusGate>
 
                 {embeddedChat &&
                   !chatOverriddenByPlugin &&
@@ -767,6 +791,7 @@ export default function App() {
                       </div>
                     ) : null
                   ) : (
+                    <ErrorBoundary>
                     <div
                       data-chat-active={isChatRoute ? "true" : "false"}
                       className={cn(
@@ -777,6 +802,7 @@ export default function App() {
                     >
                       <ChatPage isActive={isChatRoute} />
                     </div>
+                    </ErrorBoundary>
                   ))}
               </div>
               <PluginSlot name="post-main" />
