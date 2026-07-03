@@ -184,7 +184,8 @@ class WslEnvironment(ShellEnvironment):
         parts = wsl_path.split("/")
         drive = parts[2].upper()
         rest = "/".join(parts[3:])
-        return f"{drive}:\\{rest.replace('/', '\\')}"
+        win_rest = rest.replace('/', '\\')
+        return f"{drive}:\\{win_rest}"
 
     def get_wsl_version(self) -> str:
         """Return the WSL version info."""
