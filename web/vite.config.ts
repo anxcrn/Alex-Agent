@@ -58,6 +58,7 @@ function alexDevToken(): Plugin {
 }
 
 export default defineConfig({
+  base: "./",
   plugins: [react(), tailwindcss(), alexDevToken()],
   resolve: {
     alias: {
