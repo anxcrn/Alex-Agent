@@ -14,8 +14,6 @@ import {
 import { Button } from "@nous-research/ui/ui/components/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@nous-research/ui/ui/components/card";
 import { H2 } from "@nous-research/ui/ui/components/typography/h2";
-import { api } from "@/lib/api";
-import { useI18n } from "@/i18n";
 import { usePageHeader } from "@/contexts/usePageHeader";
 import { cn, themedBody } from "@/lib/utils";
 
@@ -93,28 +91,32 @@ function StatCard({
 }
 
 export default function AgentViewPage() {
-  const { t } = useI18n();
-  usePageHeader("Agent View");
   const [summary, setSummary] = useState<Summary | null>(null);
   const [activities, setActivities] = useState<ActivityEvent[]>([]);
   const [toolCalls, setToolCalls] = useState<ToolCallEvent[]>([]);
   const [sessions, setSessions] = useState<SessionInfo[]>([]);
   const [activeTab, setActiveTab] = useState<"overview" | "sessions" | "tools">("overview");
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const { setTitle } = usePageHeader();
+
+  useEffect(() => {
+    setTitle("Agent View");
+    return () => setTitle(null);
+  }, [setTitle]);
 
   const fetchData = useCallback(async () => {
     try {
       const [summaryRes, activitiesRes, toolCallsRes, sessionsRes] = await Promise.all([
-        api.get("/api/v1/agent-view/summary").catch(() => null),
-        api.get("/api/v1/agent-view/activities?limit=20").catch(() => null),
-        api.get("/api/v1/agent-view/tool-calls?limit=20").catch(() => null),
-        api.get("/api/v1/agent-view/sessions").catch(() => null),
+        fetch("/api/v1/agent-view/summary").then(r => r.json()).catch(() => null),
+        fetch("/api/v1/agent-view/activities?limit=20").then(r => r.json()).catch(() => null),
+        fetch("/api/v1/agent-view/tool-calls?limit=20").then(r => r.json()).catch(() => null),
+        fetch("/api/v1/agent-view/sessions").then(r => r.json()).catch(() => null),
       ]);
 
-      if (summaryRes?.data) setSummary(summaryRes.data);
-      if (activitiesRes?.data?.activities) setActivities(activitiesRes.data.activities);
-      if (toolCallsRes?.data?.tool_calls) setToolCalls(toolCallsRes.data.tool_calls);
-      if (sessionsRes?.data?.sessions) setSessions(sessionsRes.data.sessions);
+      if (summaryRes) setSummary(summaryRes);
+      if (activitiesRes?.activities) setActivities(activitiesRes.activities);
+      if (toolCallsRes?.tool_calls) setToolCalls(toolCallsRes.tool_calls);
+      if (sessionsRes?.sessions) setSessions(sessionsRes.sessions);
     } catch {
       // API not available
     }
@@ -147,24 +149,21 @@ export default function AgentViewPage() {
         <H2>Agent View</H2>
         <div className="flex gap-2">
           <Button
-            variant={activeTab === "overview" ? "default" : "outline"}
-            size="sm"
+            className={cn("px-3 py-1 rounded text-xs font-medium border transition-colors duration-200", activeTab === "overview" ? "bg-[#BF5FFF]/10 border-[#BF5FFF]/30 text-[#BF5FFF]" : "border-white/10 text-white/60 bg-transparent hover:border-white/30")}
             onClick={() => setActiveTab("overview")}
           >
             <Activity className="mr-1 h-4 w-4" />
             Overview
           </Button>
           <Button
-            variant={activeTab === "sessions" ? "default" : "outline"}
-            size="sm"
+            className={cn("px-3 py-1 rounded text-xs font-medium border transition-colors duration-200", activeTab === "sessions" ? "bg-[#BF5FFF]/10 border-[#BF5FFF]/30 text-[#BF5FFF]" : "border-white/10 text-white/60 bg-transparent hover:border-white/30")}
             onClick={() => setActiveTab("sessions")}
           >
             <Terminal className="mr-1 h-4 w-4" />
             Sessions
           </Button>
           <Button
-            variant={activeTab === "tools" ? "default" : "outline"}
-            size="sm"
+            className={cn("px-3 py-1 rounded text-xs font-medium border transition-colors duration-200", activeTab === "tools" ? "bg-[#BF5FFF]/10 border-[#BF5FFF]/30 text-[#BF5FFF]" : "border-white/10 text-white/60 bg-transparent hover:border-white/30")}
             onClick={() => setActiveTab("tools")}
           >
             <ListTodo className="mr-1 h-4 w-4" />

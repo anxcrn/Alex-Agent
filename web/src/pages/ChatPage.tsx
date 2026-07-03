@@ -16,18 +16,12 @@
  *     POSIX PTY → `node ui-tui/dist/entry.js` → tui_gateway + AIAgent     .
  */
 
-import { FitAddon } from "@xterm/addon-fit";
-import { Unicode11Addon } from "@xterm/addon-unicode11";
-import { WebLinksAddon } from "@xterm/addon-web-links";
-import { WebglAddon } from "@xterm/addon-webgl";
-import { Terminal } from "@xterm/xterm";
-import "@xterm/xterm/css/xterm.css";
 import { Button } from "@nous-research/ui/ui/components/button";
 import { Typography } from "@nous-research/ui/ui/components/typography/index";
-import { ALEX_BASE_PATH, buildWsAuthParam } from "@/lib/api";
+import { ALEX_BASE_PATH } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { PanelRight, X } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { useSearchParams } from "react-router-dom";
 
@@ -39,36 +33,10 @@ import { useI18n } from "@/i18n";
 import { api } from "@/lib/api";
 import { normalizeSessionTitle } from "@/lib/chat-title";
 import { PluginSlot } from "@/plugins";
-import { useTheme } from "@/themes";
 import { useProfileScope } from "@/contexts/useProfileScope";
 import { ArtifactPanel } from "@/components/ArtifactPanel";
 import { DialogModal, type DialogData } from "@/components/DialogModal";
 
-function buildWsUrl(
-  authParam: [string, string],
-  resume: string | null,
-  channel: string,
-  profile: string,
-  fresh: boolean,
-): string {
-  const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-  // ``authParam`` is ``["token", <session>]`` in loopback mode and
-  // ``["ticket", <minted>]`` in gated mode. The server-side helper
-  // ``_ws_auth_ok`` picks whichever shape matches the current gate state.
-  const qs = new URLSearchParams({ [authParam[0]]: authParam[1], channel });
-  if (resume) qs.set("resume", resume);
-  if (fresh) qs.set("fresh", "1");
-  // Profile-scoped chat: the PTY child gets ALEX_HOME pointed at the
-  // selected profile, so the conversation runs with that profile's model,
-  // skills, memory, and sessions (see web_server._resolve_chat_argv).
-  if (profile) qs.set("profile", profile);
-  return `${proto}//${window.location.host}${ALEX_BASE_PATH}/api/pty?${qs.toString()}`;
-}
-
-// Channel id ties this chat tab's PTY child (publisher) to its sidebar
-// (subscriber).  Generated once per mount so a tab refresh starts a fresh
-// channel — the previous PTY child terminates with the old WS, and its
-// channel auto-evicts when no subscribers remain.
 function generateChannelId(scope?: string): string {
   const prefix = scope ? "chat" : "chat-fresh";
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -79,59 +47,9 @@ function generateChannelId(scope?: string): string {
   )}`;
 }
 
-// Colors for the terminal body.  Matches the dashboard's dark teal canvas
-// with cream foreground — we intentionally don't pick monokai or a loud
-// theme, because the TUI's skin engine already paints the content; the
-// terminal chrome just needs to sit quietly inside the dashboard.
-// `background` is omitted here — it's supplied dynamically from the active
-// theme's `terminalBackground` field so users can control it via YAML themes.
-const TERMINAL_THEME_STATIC = {
-  foreground: "#f0e6d2",
-  cursor: "#f0e6d2",
-  cursorAccent: "#0d2626",
-  selectionBackground: "#f0e6d244",
-};
-
-/**
- * CSS width for xterm font tiers.
- *
- * Prefer the terminal host's `clientWidth` — Chrome DevTools device mode often
- * keeps `window.innerWidth` at the full desktop value while the *drawn* layout
- * is phone-sized, which made us pick desktop font sizes (~14px) and look huge.
- */
-function terminalTierWidthPx(host: HTMLElement | null): number {
-  if (typeof window === "undefined") return 1280;
-  const fromHost = host?.clientWidth ?? 0;
-  if (fromHost > 2) return Math.round(fromHost);
-  const doc = document.documentElement?.clientWidth ?? 0;
-  const vv = window.visualViewport;
-  const inner = window.innerWidth;
-  const vvw = vv?.width ?? inner;
-  const layout = Math.min(inner, vvw, doc > 0 ? doc : inner);
-  return Math.max(1, Math.round(layout));
-}
-
-function terminalFontSizeForWidth(layoutWidthPx: number): number {
-  if (layoutWidthPx < 300) return 7;
-  if (layoutWidthPx < 360) return 8;
-  if (layoutWidthPx < 420) return 9;
-  if (layoutWidthPx < 520) return 10;
-  if (layoutWidthPx < 720) return 11;
-  if (layoutWidthPx < 1024) return 12;
-  return 14;
-}
-
-function terminalLineHeightForWidth(layoutWidthPx: number): number {
-  return layoutWidthPx < 1024 ? 1.02 : 1.15;
-}
-
 export default function ChatPage({ isActive = true }: { isActive?: boolean }) {
+  const banner: string | null = null;
   const [searchParams, setSearchParams] = useSearchParams();
-  // Lazy-init: the missing-token check happens at construction so the effect
-  // body doesn't have to setState (React 19's set-state-in-effect rule).
-  // In gated (OAuth) mode the server intentionally omits the session token —
-  // the SPA authenticates the WS via a single-use ticket (buildWsAuthParam),
-  // so a missing token there is expected, not an error.
   const [reconnectNonce, setReconnectNonce] = useState(0);
   const startFreshDashboardChat = useCallback(() => {
     const next = new URLSearchParams(searchParams);
@@ -140,14 +58,7 @@ export default function ChatPage({ isActive = true }: { isActive?: boolean }) {
     setSearchParams(next, { replace: true });
     setReconnectNonce((n) => n + 1);
   }, [searchParams, setSearchParams]);
-  // Raw state for the mobile side-sheet + a derived value that force-
-  // closes whenever the chat tab isn't active.  The *derived* value is
-  // what side-effects (body-scroll lock, keydown listener, portal render)
-  // key on — that way switching to another tab triggers the effect's
-  // cleanup, releasing the scroll-lock on /sessions etc.  Returning to
-  // /chat re-runs the effect (derived flips back to true) and re-locks.
-  // Keying on the raw state would leak the body.overflow="hidden" across
-  // tabs because the dep wouldn't change on tab switch.
+
   const [mobilePanelOpenRaw, setMobilePanelOpenRaw] = useState(false);
   const mobilePanelOpen = isActive && mobilePanelOpenRaw;
   const [activeArtifactName, setActiveArtifactName] = useState<string | null>(null);
@@ -172,23 +83,7 @@ export default function ChatPage({ isActive = true }: { isActive?: boolean }) {
       : false,
   );
 
-  const { theme } = useTheme();
-  const terminalBg = theme.terminalBackground ?? "#000000";
-  const terminalTheme = useMemo(
-    () => ({ ...TERMINAL_THEME_STATIC, background: terminalBg }),
-    [terminalBg],
-  );
-
-  // The dashboard keeps ChatPage mounted persistently so the PTY survives tab
-  // switches. That is great for ordinary /chat navigation, but it means query
-  // param changes do NOT remount the component. Resume-in-chat from the
-  // Sessions page relies on `/chat?resume=<id>` changing at runtime, so we must
-  // treat the current resume target as part of the PTY identity and rebuild the
-  // terminal session when it changes.
   const resumeParam = searchParams.get("resume");
-  // Profile-scoped chat: spawn the PTY under the globally selected
-  // management profile. Changing it remounts the terminal (key below /
-  // effect dep) so the user explicitly starts a fresh scoped session.
   const { profile: scopedProfile } = useProfileScope();
   const channel = useMemo(
     () => generateChannelId(`${resumeParam ?? ""}\0${scopedProfile}`),
