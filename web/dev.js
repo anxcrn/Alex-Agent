@@ -21,8 +21,8 @@ function getPythonExecutable() {
   return "python";
 }
 
-const pythonCmd = getPythonExecutable();
-const cliPath = path.join(WORKSPACE_DIR, "cli.py");
+const pythonCmd = `"${getPythonExecutable()}"`;
+const cliPath = `"${path.join(WORKSPACE_DIR, "cli.py")}"`;
 
 console.log(`🔌 Launching Alex Backend Gateway: ${pythonCmd} cli.py gateway...`);
 
