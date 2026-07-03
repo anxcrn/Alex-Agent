@@ -7,11 +7,26 @@
 // rebuild. Empty string means "served at root".
 function readBasePath(): string {
   if (typeof window === "undefined") return "";
-  const raw = window.__ALEX_BASE_PATH__ ?? "";
-  if (!raw) return "";
-  // Normalise: ensure leading slash, strip trailing slash.
-  const withLead = raw.startsWith("/") ? raw : `/${raw}`;
-  return withLead.replace(/\/+$/, "");
+  
+  // If the Python server injected a base path, use it
+  if (window.__ALEX_BASE_PATH__ !== undefined) {
+    const raw = window.__ALEX_BASE_PATH__ ?? "";
+    if (!raw) return "";
+    const withLead = raw.startsWith("/") ? raw : `/${raw}`;
+    return withLead.replace(/\/+$/, "");
+  }
+  
+  // Fallback for static hosts (like GitHub Pages) where Python is not serving index.html
+  const path = window.location.pathname;
+  if (window.location.hostname.endsWith("github.io")) {
+    const parts = path.split("/");
+    if (parts.length > 1 && parts[1]) {
+      // The first segment of the path is the repository name (e.g., "Alex-Agent")
+      return `/${parts[1]}`;
+    }
+  }
+  
+  return "";
 }
 
 export const ALEX_BASE_PATH = readBasePath();
